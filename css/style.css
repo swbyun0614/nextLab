@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+@import url(font.css);
+@import url(reset.css);
+
+html {
+    font-size: 10px;
+}
+body {
+    font-family: 'Pretendard';
+    background: #ffffff;
+    position: relative;
+    overflow-x: hidden;
+}
+.pc {
+    display: block;
+}
+.mo {
+    display: none;
+}
+:root {
+    --maincolor1: #f0620a;
+    --maincolor2: #04456f;
+    --dark-blue: #13384f;
+    --text-dark: #1f1f1f;
+    --text-gray: #333333;
+    --bg-light: #f8f8f8;
+}
+
