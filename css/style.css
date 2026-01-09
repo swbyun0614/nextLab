@@ -3,6 +3,7 @@
 @import url(font.css);
 @import url(reset.css);
 
+/* 기본 설정들 */
 html {
     font-size: 10px;
 }
@@ -12,12 +13,6 @@ body {
     position: relative;
     overflow-x: hidden;
 }
-.pc {
-    display: block;
-}
-.mo {
-    display: none;
-}
 :root {
     --maincolor1: #f0620a;
     --maincolor2: #04456f;
@@ -25,4 +20,109 @@ body {
     --text: #333333;
     --bg-light: #f8f8f8;
 }
+.logo img {width: 190px;}
 
+/* 시~~작 */
+.container {
+    max-width: 1720px; margin: 0 auto;
+    border: 1px solid #000;
+}
+
+.sideBar {
+    position: fixed; right: 2.3vw; top: 50%; transform: translateY(-50%);
+}
+.sideBar .btnKakao {}
+.sideBar .btnTop {
+    margin-top: 15px;
+}
+
+
+header {
+    position: absolute;
+}
+header .topset {
+    display: flex; justify-content: space-between;
+    max-width: 1520px; margin: 30px 200px;
+    border: 1px solid #000;
+}
+header .topset .logo {}
+    header .topset .logo a {}
+header .topset .gnb {
+    display: flex;
+    font-size: 2.2rem;
+    
+}
+    header .topset .gnb li {}
+    header .topset .gnb li a {
+        display: block;
+        padding: 10px;
+        border: 1px solid red;
+    }
+header .topset .blog {
+    display: flex; align-items: center;
+}
+    header .topset .blog a {
+        display: flex; align-items: center; gap: 0.78vw;
+        font-size: 1.8rem;
+    }
+
+
+#hero {}
+
+
+#section1 {}
+#section1 .container {}
+#section1 .container .productList {}
+#section1 .container .productList li {}
+#section1 .container .productList li a {}
+#section1 .container .productList li a .productImg {}
+#section1 .container .productList li a .textBox {}
+#section1 .container .productList li a .textBox strong {}
+#section1 .container .productList li a .textBox p {}
+#section1 .container .productList li a .textBox .productTag {}
+#section1 .container .productList li a .textBox .productTag li {}
+#section1 .container .productList li h2 {}
+#section1 .container .productList li h2 .tbo {}
+#section1 .container .productList li h2 .tb {}
+
+
+#section2 {}
+#section2 h2 {}
+#section2 h2 .tbo {}
+#section2 h2 .tb {}
+#section2 .btn_more {}
+#section2 .container {}
+#section2 .container .tech1 {}
+#section2 .container .tech2 {}
+#section2 .container .tech3 {}
+#section2 .container .tech4 {}
+#section2 .container .tech5 {}
+#section2 .container .tech6 {}
+
+
+#section3 {}
+#section3 h2 {}
+#section3 h2 .tb {}
+#section3 .btn_more {}
+
+
+#section4 {}
+#section4 h2 {}
+#section4 h2 .tbo {}
+#section4 h2 .tb {}
+#section4 .container {}
+#section4 .container .support {}
+#section4 .container .support .sup1 {}
+#section4 .container .support .sup2 {}
+#section4 .container .support .sup3 {}
+#section4 .container p {}
+#section4 .container p strong {}
+#section4 .container .tel {}
+#section4 .container .email {}
+
+
+footer {}
+footer .container {}
+footer .container .logoFoot {}
+footer .container p {}
+footer .container p span {}
