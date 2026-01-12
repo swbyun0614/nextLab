@@ -31,7 +31,6 @@ body {
 .sideBar {
     position: fixed; right: 2.3vw; top: 50%; transform: translateY(-50%);
 }
-.sideBar .btnKakao {}
 .sideBar .btnTop {
     margin-top: 15px;
 }
@@ -39,32 +38,113 @@ body {
 
 header {
     position: absolute;
+    width: 100%;
+    top: 0; left: 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.3s;
 }
+
+header:hover { background: #fff; }
+
+/* --- GNB 스타일 --- */
 header .topset {
-    display: flex; justify-content: space-between;
-    max-width: 1520px; margin: 30px 200px;
-    border: 1px solid #000;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 79vw; 
+    margin: 0 10.4vw;
+    height: 100px;
 }
-header .topset .logo {}
-    header .topset .logo a {}
 header .topset .gnb {
+    display: flex; 
+    gap: 7.65vw;
+    height: 100%;
+}
+header .topset .gnb > li {
+    position: relative; /* LNB 위치의 기준점 */
     display: flex;
-    font-size: 2.2rem;
-    
+    flex-direction: column; /* 세로 방향 정렬로 하위 요소 배치 */
+    align-items: center; 
 }
-    header .topset .gnb li {}
-    header .topset .gnb li a {
-        display: block;
-        padding: 10px;
-        border: 1px solid red;
-    }
-header .topset .blog {
+
+header .topset .gnb > li > a {
+    display: flex;
+    align-items: center;
+    height: 100px; /* 헤더 높이와 일치 */
+    padding: 0 10px;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+}
+
+/* 헤더 호버 시 전체 글씨색 변경 */
+header:hover .topset .gnb > li > a,
+header:hover .topset .blog a { color: #1F1F1F; }
+
+/* ✨ GNB 특정 메뉴 호버 시: 컬러 변경 및 하단 보더 */
+header .topset .gnb > li:hover > a {
+    color: var(--maincolor1) !important;
+    border-bottom: 3px solid var(--maincolor1);
+}
+
+/* --- LNB 스타일 --- */
+header .topset .gnb .lnb {
+    position: absolute;
+    top: 100px; /* GNB a태그 바로 아래 위치 */
+    left: 50%;
+    transform: translateX(-50%); /* 부모 li를 기준으로 중앙 정렬 */
+    width: max-content; /* 글자 길이에 맞게 너비 자동 조절 */
+    min-width: 160px; /* 최소 너비 유지 */
+    padding: 15px 0;
+    text-align: center;
+    z-index: 10;
+    display: none; /* 제이쿼리로 제어 */
+}
+header .topset .gnb .lnb li {
+    width: 100%;
+}
+header .topset .gnb .lnb li a {
+    display: block;
+    padding: 10px 20px; /* 좌우 여유 공간 확보 */
+    font-size: 1.6rem;
+    color: #1F1F1F;
+    font-weight: 500;
+    white-space: nowrap; /* 글자가 줄바꿈되지 않도록 설정 */
+    transition: all 0.2s;
+}
+
+/* ✨ LNB 호버 시: 배경색 변경 및 글씨색 반전 */
+header .topset .gnb .lnb li a:hover {
+    background-color: var(--maincolor1);
+    color: #fff;
+}
+
+header .lnb_bg {
+    position: absolute; top: 100px; left: 0; width: 100%; height: 200px;
+    background: #fff; border-top: 1px solid #eee;
+    z-index: 5; display: none;
+}
+
+/* --- 블로그 버튼 및 이미지 교체 --- */
+header .topset .blog a {
     display: flex; align-items: center;
+    font-size: 1.8rem; color: #fff; font-weight: 300;
 }
-    header .topset .blog a {
-        display: flex; align-items: center; gap: 0.78vw;
-        font-size: 1.8rem;
-    }
+
+/* ✨ 블로그 호버 시 이미지 변경 효과 */
+header .topset .blog a:hover { color: var(--maincolor1) !important; }
+
+header .topset .blog a .blog_icon {
+    margin-left: 10px; width: 20px; transition: all 0.2s;
+}
+
+/* 블로그 영역 호버 시 이미지 소스 변경 (CSS content 속성 활용) */
+/* 주의: 브라우저 호환성을 위해 실제로 이미지를 교체하거나 filter를 쓸 수도 있습니다 */
+header .topset:hover .blog a .blog_icon {
+    content: url('../images/btn_go2.png'); /* 마우스 올렸을 때의 이미지 경로 */
+}
 
 
 #hero {}
