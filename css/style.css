@@ -137,7 +137,10 @@ header .topset {
         list-style: none; padding: 0; margin: 0;
     }
     #section1 .container .productList > li {
-        width: 25.7vw; overflow: hidden; border: 1px solid var(--maincolor1);
+        width: 25.7vw; overflow: hidden; border: 1px solid var(--maincolor1); box-sizing: border-box; transition: .3s;
+    }
+    #section1 .container .productList > li:hover {
+        transform: translateY(-15px);
     }
 
     /* border radius 조절을 위한 영역 */
@@ -162,8 +165,8 @@ header .topset {
     }
         #section1 .container .productList li a .productImg {
             position: relative;
-            width: 100%; height: 280px;
-            background: #f5f5f5;
+            display: flex; justify-content: center; align-items: center;
+            width: 100%; height: 280px; margin-top: 20px;
         }
         #section1 .container .productList li a .textBox {
             position: relative;
@@ -185,7 +188,7 @@ header .topset {
                 display: flex; gap: 10px; justify-content: center;
             }
                 #section1 .container .productList li a .textBox .productTag li {
-                    width: 4.63vw; font-size: 1.6rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 0px; border-radius: 10px; transition: .3s; text-align: center;
+                    width: 4.63vw; font-size: 1.5rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 0px; border-radius: 10px; transition: .3s; text-align: center;
                 }
         #section1 .container .productList li h2 {}
         #section1 .container .productList li h2 .tbo {}
