@@ -17,12 +17,11 @@ body {
     --maincolor1: #f0620a;
     --maincolor2: #04456f;
     --dark-blue: #13384f;
-    --text: #333333;
+    --text: #1f1f1f;
     --bg-light: #f8f8f8;
 }
 .logo img {width: 190px;}
 
-/* 시~~작 */
 .container {
     max-width: 1720px; margin: 0 auto;
     border: 1px solid #000;
@@ -36,114 +35,93 @@ body {
 }
 
 
-header {
-    position: absolute;
-    width: 100%;
-    top: 0; left: 0;
-    z-index: 999;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    transition: background 0.3s;
-}
 
-header:hover { background: #fff; }
+
+
+/* 시~~작 */
+
+header {
+    position: absolute; top: 0; left: 0; z-index: 999;
+    width: 100%; transition: background 0.3s;
+}
+header:hover {
+    background: #fff;
+}
 
 /* --- GNB 스타일 --- */
 header .topset {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    width: 79vw; 
-    margin: 0 10.4vw;
-    height: 100px;
+    display: flex; justify-content: space-between; align-items: center;
+    width: 79vw; height: 86px; margin: 0 10.4vw;
 }
-header .topset .gnb {
-    display: flex; 
-    gap: 7.65vw;
-    height: 100%;
-}
-header .topset .gnb > li {
-    position: relative; /* LNB 위치의 기준점 */
-    display: flex;
-    flex-direction: column; /* 세로 방향 정렬로 하위 요소 배치 */
-    align-items: center; 
-}
+    header .topset .gnb {
+        display: flex;
+        height: 100%;
+    }
+    header .topset .gnb > li {
+        position: relative;
+        display: flex; align-items: center;
+        flex-direction: column; /* 이거 없으면 주황색 바 안 두꺼워짐 */
+    }
+        header .topset .gnb > li > a {
+            display: flex; align-items: center; justify-content: center;
+            width: 11.9vw; height: 100%; padding: 0 10px; font-size: 2rem; color: #fff; font-weight: 500; border-bottom: 3px solid transparent; /* 보더 있되 투명하게 */
+        }
 
-header .topset .gnb > li > a {
-    display: flex;
-    align-items: center;
-    height: 100px; /* 헤더 높이와 일치 */
-    padding: 0 10px;
-    font-size: 2rem;
-    color: #fff;
-    font-weight: 500;
-    border-bottom: 3px solid transparent;
-}
+        /* 헤더 호버 시 전체 글씨색 변경 */
+        header:hover .topset .gnb > li > a {color: var(--text);}
+        header:hover .topset .blog a {color: var(--maincolor2); transition: .3s;}
 
-/* 헤더 호버 시 전체 글씨색 변경 */
-header:hover .topset .gnb > li > a,
-header:hover .topset .blog a { color: #1F1F1F; }
+        /* ✨ GNB 특정 메뉴 호버 시: 컬러 변경 및 하단 보더 */
+        header .topset .gnb > li:hover > a {
+            border-bottom: 2px solid var(--maincolor1);
+        }
 
-/* ✨ GNB 특정 메뉴 호버 시: 컬러 변경 및 하단 보더 */
-header .topset .gnb > li:hover > a {
-    color: var(--maincolor1) !important;
-    border-bottom: 3px solid var(--maincolor1);
-}
+        /* --- LNB 스타일 --- */
+        header .topset .gnb .lnb {
+            position: absolute; top: 86px; left: 50%; transform: translateX(-50%);
+            width: 100%; padding-top: 5px; text-align: center; z-index: 10;
+            display: none; /* 제이쿼리로 제어 */
+        }
+        header .topset .gnb .lnb li a {
+            display: block;
+            padding: 20px 0px; font-size: 1.6rem; color: var(--text); font-weight: 500; transition: 0.2s;
+            white-space: nowrap; /* 글자가 줄바꿈되지 않도록 설정 */
+        }
 
-/* --- LNB 스타일 --- */
-header .topset .gnb .lnb {
-    position: absolute;
-    top: 100px; /* GNB a태그 바로 아래 위치 */
-    left: 50%;
-    transform: translateX(-50%); /* 부모 li를 기준으로 중앙 정렬 */
-    width: max-content; /* 글자 길이에 맞게 너비 자동 조절 */
-    min-width: 160px; /* 최소 너비 유지 */
-    padding: 15px 0;
-    text-align: center;
-    z-index: 10;
-    display: none; /* 제이쿼리로 제어 */
-}
-header .topset .gnb .lnb li {
-    width: 100%;
-}
-header .topset .gnb .lnb li a {
-    display: block;
-    padding: 10px 20px; /* 좌우 여유 공간 확보 */
-    font-size: 1.6rem;
-    color: #1F1F1F;
-    font-weight: 500;
-    white-space: nowrap; /* 글자가 줄바꿈되지 않도록 설정 */
-    transition: all 0.2s;
-}
+        /* ✨ LNB 호버 시: 배경색 변경 및 글씨색 반전 */
+        header .topset .gnb .lnb li a:hover {
+            background-color: var(--maincolor1);
+            color: #fff;
+        }
+        header .lnb_bg {
+            position: absolute; top: 86px; left: 0; width: 100%; height: 320px;
+            background: #fff;
+            z-index: 5; display: none;
+        }
 
-/* ✨ LNB 호버 시: 배경색 변경 및 글씨색 반전 */
-header .topset .gnb .lnb li a:hover {
-    background-color: var(--maincolor1);
-    color: #fff;
-}
-
-header .lnb_bg {
-    position: absolute; top: 100px; left: 0; width: 100%; height: 200px;
-    background: #fff; border-top: 1px solid #eee;
-    z-index: 5; display: none;
-}
-
-/* --- 블로그 버튼 및 이미지 교체 --- */
+/* --- 블로그 버튼 및 이미지 설정 --- */
 header .topset .blog a {
-    display: flex; align-items: center;
-    font-size: 1.8rem; color: #fff; font-weight: 300;
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 300;
+    transition: color 0.3s;
 }
 
 /* ✨ 블로그 호버 시 이미지 변경 효과 */
-header .topset .blog a:hover { color: var(--maincolor1) !important; }
+header .topset .blog a:hover {font-weight: 600;}
 
 header .topset .blog a .blog_icon {
-    margin-left: 10px; width: 20px; transition: all 0.2s;
+    margin-left: 0.78vw;
+    width: 20px;
+    /* transition은 content 속성에 적용되지 않으므로 제거하거나 필터에만 사용 */
 }
 
 /* 블로그 영역 호버 시 이미지 소스 변경 (CSS content 속성 활용) */
 /* 주의: 브라우저 호환성을 위해 실제로 이미지를 교체하거나 filter를 쓸 수도 있습니다 */
-header .topset:hover .blog a .blog_icon {
-    content: url('../images/btn_go2.png'); /* 마우스 올렸을 때의 이미지 경로 */
+header:hover .topset .blog a .blog_icon {
+    content: url('../images/btn_go2.png');
 }
 
 
