@@ -64,7 +64,7 @@ header .topset {
     }
         header .topset .gnb > li > a {
             display: flex; align-items: center; justify-content: center;
-            width: 11.9vw; height: 100%; padding: 0 10px; font-size: 2rem; color: #fff; font-weight: 500; border-bottom: 3px solid transparent; /* 보더 있되 투명하게 */
+            width: 11.9vw; height: 100%; padding: 0 10px; padding-top: 5px; font-size: 2rem; color: #fff; font-weight: 500; border-bottom: 2px solid transparent; /* 보더 있되 투명하게 */
         }
 
         /* 헤더 호버 시 전체 글씨색 변경 */
@@ -74,6 +74,7 @@ header .topset {
         /* ✨ GNB 특정 메뉴 호버 시: 컬러 변경 및 하단 보더 */
         header .topset .gnb > li:hover > a {
             border-bottom: 2px solid var(--maincolor1);
+            color: var(--maincolor1); font-weight: 600;
         }
 
         /* --- LNB 스타일 --- */
@@ -96,33 +97,28 @@ header .topset {
         header .lnb_bg {
             position: absolute; top: 86px; left: 0; width: 100%; height: 320px;
             background: #fff;
-            z-index: 5; display: none;
+            box-shadow: 0px 10px 100px rgba(0, 0, 0, 0.25); clip-path: inset(0px -500px -500px -500px); /* 위쪽(0px)은 자르고 나머지 방향은 여백(-500px) */
+            display: none; /* 제이쿼리에서 제어 */
         }
 
-/* --- 블로그 버튼 및 이미지 설정 --- */
-header .topset .blog a {
-    display: flex;
-    align-items: center;
-    font-size: 1.8rem;
-    color: #fff;
-    font-weight: 300;
-    transition: color 0.3s;
-}
+        /* --- 블로그 버튼 및 이미지 설정 --- */
+        header .topset .blog a {
+            display: flex; align-items: center;
+            font-size: 1.8rem; color: #fff; font-weight: 300; transition: color 0.3s; padding: 20px 0;
+        }
 
-/* ✨ 블로그 호버 시 이미지 변경 효과 */
-header .topset .blog a:hover {font-weight: 600;}
+        /* ✨ 블로그 호버 시 이미지 변경 효과 */
+        header .topset .blog a:hover {
+            font-weight: 600;
+        }
+        header .topset .blog a .blog_icon {
+            margin-left: 0.78vw; width: 20px;
+        }
 
-header .topset .blog a .blog_icon {
-    margin-left: 0.78vw;
-    width: 20px;
-    /* transition은 content 속성에 적용되지 않으므로 제거하거나 필터에만 사용 */
-}
-
-/* 블로그 영역 호버 시 이미지 소스 변경 (CSS content 속성 활용) */
-/* 주의: 브라우저 호환성을 위해 실제로 이미지를 교체하거나 filter를 쓸 수도 있습니다 */
-header:hover .topset .blog a .blog_icon {
-    content: url('../images/btn_go2.png');
-}
+        /* 블로그 영역 호버 시 이미지 소스 변경 */
+        header:hover .topset .blog a .blog_icon {
+            content: url('../images/btn_go2.png');
+        }
 
 
 #hero {}
