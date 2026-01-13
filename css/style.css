@@ -23,15 +23,21 @@ body {
 .logo img {width: 190px;}
 
 .container {
-    max-width: 1720px; margin: 0 auto;
-    border: 1px solid #000;
+    max-width: 1720px; margin: 0 200px; margin-top: 200px;
 }
 
 .sideBar {
-    position: fixed; right: 2.3vw; top: 50%; transform: translateY(-50%);
+    position: fixed; right: 2.3vw; top: 50%; transform: translateY(-50%); z-index: 999;
 }
 .sideBar .btnTop {
     margin-top: 15px;
+}
+
+.tbo {
+    color: var(--maincolor1); font-weight: 600;
+}
+.tb {
+    font-weight: 600;
 }
 
 
@@ -126,18 +132,89 @@ header .topset {
 
 #section1 {}
 #section1 .container {}
-#section1 .container .productList {}
-#section1 .container .productList li {}
-#section1 .container .productList li a {}
-#section1 .container .productList li a .productImg {}
-#section1 .container .productList li a .textBox {}
-#section1 .container .productList li a .textBox strong {}
-#section1 .container .productList li a .textBox p {}
-#section1 .container .productList li a .textBox .productTag {}
-#section1 .container .productList li a .textBox .productTag li {}
-#section1 .container .productList li h2 {}
-#section1 .container .productList li h2 .tbo {}
-#section1 .container .productList li h2 .tb {}
+    #section1 .container .productList {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 21px 19px;
+        list-style: none; padding: 0; margin: 0;
+    }
+    #section1 .container .productList > li {
+        width: 25.7vw; overflow: hidden; border: 1px solid var(--maincolor1);
+    }
+
+    /* border radius 조절을 위한 영역 */
+    #section1 .container .productList > li:first-child,
+    #section1 .container .productList > li:nth-child(3) {
+        border-radius: 20px 20px 0 0;
+    }
+    #section1 .container .productList > li:nth-child(2) {
+        border-radius: 0px; border: 1px solid var(--maincolor1); border-left: none; border-right: none;
+    }
+    #section1 .container .productList > li:nth-child(4),
+    #section1 .container .productList > li:last-child {
+        border-radius: 20px;
+    }
+    #section1 .container .productList > li:nth-child(5) {
+        border-radius: 0 0 20px 20px;
+    }
+    
+    #section1 .container .productList li a {
+        display: block;
+        height: 100%; text-decoration: none; color: inherit;
+    }
+        #section1 .container .productList li a .productImg {
+            position: relative;
+            width: 100%; height: 280px;
+            background: #f5f5f5;
+        }
+        #section1 .container .productList li a .textBox {
+            position: relative;
+            height: 100%; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
+        }
+            #section1 .container .productList li a .textBox strong {
+                display: block;
+                font-size: 2.2rem; font-weight: 700; color: var(--text); margin-bottom: 15px;
+            }
+            #section1 .container .productList li a .textBox strong::before {
+                content: "";
+                position: absolute; top: 25px; left: 2.6vw;
+                width: 20px; height: 3px; background: var(--maincolor1);
+            }
+            #section1 .container .productList li a .textBox p {
+                font-size: 1.6rem; line-height: 2; font-weight: 500; color: #333; margin-bottom: 20px;
+            }
+            #section1 .container .productList li a .textBox .productTag {
+                display: flex; gap: 10px; justify-content: center;
+            }
+                #section1 .container .productList li a .textBox .productTag li {
+                    width: 4.63vw; font-size: 1.6rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 0px; border-radius: 10px; transition: .3s; text-align: center;
+                }
+        #section1 .container .productList li h2 {}
+        #section1 .container .productList li h2 .tbo {}
+        #section1 .container .productList li h2 .tb {}
+
+        /* 두 번째 li */
+        #section1 .container .productList > li:nth-child(2) {
+            display: flex; justify-content: space-between; align-items: center; flex-direction: column;
+            background: #F8F8F8;
+        }
+        #section1 .container .productList > li:nth-child(2) h2 {
+            font-size: 3.5rem; line-height: 1.7; text-align: center; color: var(--text); font-weight: 400; margin-top: 95px;
+        }
+        #section1 .container .productList > li:nth-child(2) img {
+        }
+
+        /* Hover Effect */
+        #section1 .container .productList > li:hover .textBox {
+            background: var(--maincolor1);
+        }
+        #section1 .container .productList > li:hover .textBox strong {
+            color: #ffffff;
+        }
+        #section1 .container .productList > li:hover .textBox p {
+            color: #ffffff;
+        }
+        #section1 .container .productList li:hover a .textBox strong::before {
+            background: #fff;
+        }
 
 
 #section2 {}
