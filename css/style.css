@@ -105,13 +105,16 @@ header .topset {
             display: flex; align-items: center;
             font-size: 1.8rem; color: #fff; font-weight: 300; transition: color 0.3s; padding: 20px 0;
         }
+        header .topset .blog img {
+            width: 100%;
+        }
 
         /* ✨ 블로그 호버 시 이미지 변경 효과 */
         header .topset .blog a:hover {
             font-weight: 600;
         }
         header .topset .blog a .blog_icon {
-            margin-left: 0.78vw; width: 20px;
+            margin-left: 0.78vw; width: 35px;
         }
 
         /* 블로그 영역 호버 시 이미지 소스 변경 */
