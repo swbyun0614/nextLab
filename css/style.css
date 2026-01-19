@@ -128,8 +128,8 @@ header .topset {
 #hero {}
 /* Swiper 전체 테마 색상을 사용자 정의 컬러로 변경 */
 .mySwiper {
-    --swiper-theme-color: rgba(255, 255, 255, 0); /* 페이지네이션, 화살표 색상 통합 변경 */
-    --swiper-navigation-size: 30px;          /* 화살표 크기도 조절 가능 */
+    --swiper-theme-color: #fff; /* 페이지네이션, 화살표 색상 통합 변경 */
+    --swiper-navigation-size: 43px;
 }
 .swiper {
     width: 100%; height: 100%;
@@ -137,6 +137,43 @@ header .topset {
 .swiper-slide {
     display: flex; justify-content: center; align-items: center;
     font-size: 18px;
+}
+/* --- 페이지네이션 커스텀 --- */
+/* 기본 공통 스타일 (10x10 사이즈) */
+#hero .mySwiper .swiper-pagination-bullet {
+    width: 10px; height: 10px; background: transparent; border: 1px solid #fff; box-sizing: border-box; transition: .3s;
+    opacity: 1; /* 기본 투명도 제거 */
+}
+
+/* 활성화된(현재 페이지) 점 스타일 */
+#hero .mySwiper .swiper-pagination-bullet-active {
+    background: #fff; border: none;
+}
+
+#hero .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: var(--swiper-pagination-bottom, 30px);
+}
+
+/* --- 좌우 화살표 커스텀 --- */
+#hero .mySwiper .swiper-button-next,
+#hero .swiper-button-prev {
+    top: 50%; transform: translateY(-50%);
+    color: #fff;
+}
+
+/* 화살표 위치 세부 조정 */
+#hero .mySwiper .swiper-button-next {
+    right: 3.64vw;
+}
+#hero .mySwiper .swiper-button-prev {
+    left: 3.64vw;
+}
+
+/* 화살표 두께 및 크기 조정 */
+#hero .mySwiper .swiper-button-next:after,
+#hero .mySwiper .swiper-button-prev:after {
+    font-size: 4.3rem; /* 화살표 크기 */
+    font-weight: 1000; /* 두께 (두꺼울수록 숫자가 커짐) */
 }
 
 
@@ -369,13 +406,13 @@ header .topset {
     }
     #section4 .container .btn_wrap {
         display: flex; gap: 1vw; justify-content: center;
-        font-size: 2.4rem; font-weight: 300;
+        max-width: 66vw; font-size: 2.4rem; font-weight: 300; margin: 50px auto 0;
     }
         #section4 .container .tel,
         #section4 .container .email {
             display: block;
             display: flex; justify-content: center; align-items: center; gap: 10px;
-            width: 32.39vw; height: 51px; background: var(--maincolor1); color: #fff; margin-top: 50px; transition: .2s;
+            width: 32.39vw; height: 51px; background: var(--maincolor1); color: #fff; transition: .2s;
         }
         #section4 .container .tel {
             background: var(--maincolor2);
