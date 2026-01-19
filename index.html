@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextLab - 산업용 스마트 관제 솔루션</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 </head>
 <body>
     <div class="sideBar">
@@ -66,8 +68,24 @@
 
 
     <div id="hero">
-        <!-- 자동 이미지 전환 + 히어로 텍스트 -->
-        <img src="images/hero_bg.png" alt="">
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="images/img01.png" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/img03.png" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/img02.png" alt="">
+            </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
     </div>
 
 
@@ -284,5 +302,8 @@
 
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="script/action.js"></script>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 </body>
 </html>
