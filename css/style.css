@@ -25,7 +25,9 @@ body {
 .container {max-width: 1720px; margin: 0 200px; margin-top: 200px;}
 
 .sideBar {position: fixed; right: 2.3vw; top: 50%; transform: translateY(-50%); z-index: 999;}
-.sideBar .btnTop {margin-top: 15px;}
+.sideBar .btnKakao {transition: .3s;}
+.sideBar .btnKakao:hover, .sideBar .btnTop:hover {transform: translateY(-10px);}
+.sideBar .btnTop {margin-top: 15px; transition: .3s;}
 
 h2 {z-index: 10;
     font-size: 3.5rem; line-height: 1.7; text-align: center; color: var(--text); font-weight: 400; margin-top: 95px;}
