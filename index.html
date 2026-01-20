@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextLab - 산업용 스마트 관제 솔루션</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AOS 애니메이션 라이브러리 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="sideBar">
@@ -73,24 +78,38 @@
             <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="images/hero_bg1.png" alt="">
+                <span>
+                    <p>현장의 안전·품질·효율을 완성하는 산업용 스마트 관제 솔루션</p>
+                    <p>넥스트랩은 전기·통신 인프라 유무와 관계없이 <br>즉시 운영 가능한 가장 최적화된 스마트 감시 솔루션입니다.</p>
+                </span>
             </div>
             <div class="swiper-slide">
                 <img src="images/hero_bg2.png" alt="">
+                <span>
+                    <p>현장의 안전·품질·효율을 완성하는 산업용 스마트 관제 솔루션</p>
+                    <p>넥스트랩은 전기·통신 인프라 유무와 관계없이 <br>즉시 운영 가능한 가장 최적화된 스마트 감시 솔루션입니다.</p>
+                </span>
             </div>
             <div class="swiper-slide">
                 <img src="images/hero_bg3.png" alt="">
+                <span>
+                    <p>현장의 안전·품질·효율을 완성하는 산업용 스마트 관제 솔루션</p>
+                    <p>넥스트랩은 전기·통신 인프라 유무와 관계없이 <br>즉시 운영 가능한 가장 최적화된 스마트 감시 솔루션입니다.</p>
+                </span>
             </div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
-        
     </div>
 
 
     <section>
-        <div id="section1">
+        <div id="section1"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true">
             <div class="container">
                 <ul class="productList">
                     <li><a href="#">
@@ -195,7 +214,10 @@
         </div>
     
     
-        <div id="section2">
+        <div id="section2"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true">
             <div class="container">
                 <h2>넥스트랩이 제공하는<br><span class="tbo">산업 맞춤형</span> <span class="tb">기술 경쟁력</span></h2>
                 <a href="#" class="btn_more">자세히 보기</a>
@@ -241,14 +263,20 @@
         </div>
     
     
-        <div id="section3">
+        <div id="section3"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true">
             <h2>넥스트랩 제품 <span class="tb">구축 사례</span></h2>
             <a href="#" class="btn_more">더보기</a>
             <!-- 이 자리에 자동 슬라이드 + 설명 텍스트 -->
         </div>
     
     
-        <div id="section4">
+        <div id="section4"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-once="true">
             <div class="container">
                 <h2><span class="tbo">문의</span> <span class="tb">및</span> <span class="tbo">기술</span> <span class="tb">지원</span></h2>
                 <div class="support">
@@ -305,5 +333,11 @@
     
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <!-- AOS 애니메이션 라이브러리 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init();
+    </script>
 </body>
 </html>

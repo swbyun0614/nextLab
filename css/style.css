@@ -134,47 +134,63 @@ header .topset {
 .swiper {
     width: 100%; height: 100%;
 }
-.swiper-slide {
-    display: flex; justify-content: center; align-items: center;
-    font-size: 18px;
-}
-/* --- 페이지네이션 커스텀 --- */
-/* 기본 공통 스타일 (10x10 사이즈) */
-#hero .mySwiper .swiper-pagination-bullet {
-    width: 10px; height: 10px; background: transparent; border: 1px solid #fff; box-sizing: border-box; transition: .3s;
-    opacity: 1; /* 기본 투명도 제거 */
-}
+    .swiper-slide {
+        display: flex; justify-content: center; align-items: center;
+        font-size: 18px;
+    }
+        /* --- 페이지네이션 커스텀 --- */
+        /* 기본 공통 스타일 (10x10 사이즈) */
+        #hero .mySwiper .swiper-pagination-bullet {
+            width: 10px; height: 10px; background: transparent; border: 1px solid #fff; box-sizing: border-box; transition: .3s;
+            opacity: 1; /* 기본 투명도 제거 */
+        }
 
-/* 활성화된(현재 페이지) 점 스타일 */
-#hero .mySwiper .swiper-pagination-bullet-active {
-    background: #fff; border: none;
-}
+        /* 활성화된(현재 페이지) 점 스타일 */
+        #hero .mySwiper .swiper-pagination-bullet-active {
+            background: #fff; border: none;
+        }
 
-#hero .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-    bottom: var(--swiper-pagination-bottom, 30px);
-}
+        #hero .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+            bottom: var(--swiper-pagination-bottom, 30px);
+        }
 
-/* --- 좌우 화살표 커스텀 --- */
-#hero .mySwiper .swiper-button-next,
-#hero .swiper-button-prev {
-    top: 50%; transform: translateY(-50%);
-    color: #fff;
-}
+        /* --- 좌우 화살표 커스텀 --- */
+        #hero .mySwiper .swiper-button-next,
+        #hero .mySwiper .swiper-button-prev {
+            top: 50%; transform: translateY(-50%);
+            color: #fff;
+        }
 
-/* 화살표 위치 세부 조정 */
-#hero .mySwiper .swiper-button-next {
-    right: 3.64vw;
-}
-#hero .mySwiper .swiper-button-prev {
-    left: 3.64vw;
-}
+        /* 화살표 위치 세부 조정 */
+        #hero .mySwiper .swiper-button-next {
+            right: 3.64vw;
+            width: 60px; height: 60px; background: url('../images/hero_arrow_right.svg') no-repeat center; background-size: contain;
+        }
+        #hero .mySwiper .swiper-button-prev {
+            left: 3.64vw;
+            width: 60px; height: 60px; background: url('../images/hero_arrow_left.svg') no-repeat center; background-size: contain;
+        }
 
-/* 화살표 두께 및 크기 조정 */
-#hero .mySwiper .swiper-button-next:after,
-#hero .mySwiper .swiper-button-prev:after {
-    font-size: 4.3rem; /* 화살표 크기 */
-    font-weight: 1000; /* 두께 (두꺼울수록 숫자가 커짐) */
-}
+        /* 기존 화살표 없애기 */
+        .mySwiper .swiper-navigation-icon {
+            display: none;
+        }
+
+        #hero .swiper-slide > span {
+            position: absolute; top: 327px; left: 195px;
+            width: 27.8vw;
+        }
+        #hero .swiper-slide > span p {
+            color: #fff;
+        }
+        #hero .swiper-slide > span p:first-child {
+            font-size: 4rem; font-weight: 600; line-height: 140%;
+        }
+        #hero .swiper-slide > span p:last-child {
+            font-size: 1.8rem; line-height: 160%; margin-top: 25px;
+        }
+
+        /* 슬라이드 내 이미지 드래그 및 선택 방지 */
 
 
 #section1 {}
