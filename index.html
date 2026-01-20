@@ -269,8 +269,27 @@
         data-aos-once="true">
             <h2>넥스트랩 제품 <span class="tb">구축 사례</span></h2>
             <a href="#" class="btn_more">더보기</a>
-            <!-- 이 자리에 자동 슬라이드 + 설명 텍스트 -->
-            <img src="images/sec3_img1.png" alt="" style="margin: 80px 200px;">
+            
+            <div class="swiper sec3Swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/sec3_img1.png" alt="구축사례 1">
+                        <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 1</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/sec3_img1.png" alt="구축사례 2">
+                        <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 2</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/sec3_img1.png" alt="구축사례 3">
+                        <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 3</div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/sec3_img1.png" alt="구축사례 4">
+                        <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 4</div>
+                    </div>
+                </div>
+            </div>
         </div>
     
     
@@ -330,36 +349,11 @@
 
 
     <script src="script/jquery-3.7.1.min.js"></script>
-    <script src="script/action.js"></script>
     
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
-    <!-- AOS 애니메이션 라이브러리 -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        $(window).on('load', function() {
-            // 모든 이미지와 Swiper가 로드된 후 AOS 실행
-            AOS.init({
-                duration: 800,
-                once: false,   // 다시 올라갔을 때 사라지게 하려면 false
-                mirror: true,  // 스크롤 올릴 때 애니메이션 역재생
-                offset: 120,    // 요소가 120px 정도 보였을 때 실행
-            });
-            
-            // 혹시 모르니 스크롤 시 높이를 다시 계산하도록 리프레시 호출
-            AOS.refresh();
-        });
 
-        // Swiper가 초기화될 때 AOS 높이를 다시 계산하도록 강제함
-        var heroSwiper = new Swiper(".mySwiper", {
-            // ...기존 옵션들...
-            on: {
-                init: function () {
-                    AOS.refresh();
-                },
-            },
-        });
-    </script>
+    <script src="script/action.js"></script>
+</body>
 </body>
 </html>

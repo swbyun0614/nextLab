@@ -138,6 +138,9 @@ header .topset {
         display: flex; justify-content: center; align-items: center;
         font-size: 18px;
     }
+    .swiper-slide img {
+        width: 100%;
+    }
         /* --- 페이지네이션 커스텀 --- */
         /* 기본 공통 스타일 (10x10 사이즈) */
         #hero .mySwiper .swiper-pagination-bullet {
@@ -367,6 +370,52 @@ header .topset {
 #section3 .btn_more {
     display: flex; justify-content: center; align-items: center;
     max-width: 182px; padding: 15px 0px; font-weight: 500; font-size: 2.4rem; background: var(--dark-blue); border-radius: 15px; color: #fff; margin: 0 auto; margin-top: 42px; transition: .2s;
+}
+
+/* Section 3 Swiper 커스텀 */
+#section3 {
+}
+/* Section 3 Swiper 컨테이너 */
+.sec3Swiper {
+    width: 100%;
+    overflow: hidden; /* 슬라이더 밖으로 나가는 이미지 숨김 */
+    padding: 50px 0 80px;
+}
+
+.sec3Swiper .swiper-wrapper {
+    /* 이미지가 잘리지 않도록 정렬 */
+    display: flex;
+    align-items: center;
+}
+
+.sec3Swiper .swiper-slide {
+    flex-direction: column;
+    width: 80%; /* 화면에 보일 메인 이미지의 너비 (적절히 조절 가능) */
+    height: auto;
+    transition: .5s; /* 부드러운 전환 효과 */
+    
+    /* [핵심] 비활성화된 슬라이드 상태 (흐리고 밝게) */
+    opacity: 0.3;
+}
+    .swiper-3d .swiper-slide-shadow-left,
+    .swiper-3d .swiper-slide-shadow-right {
+        background-image: none;
+    }
+
+/* [핵심] 활성화된(가운데) 슬라이드 상태 */
+.sec3Swiper .swiper-slide-active {
+    opacity: 1;
+    filter: brightness(1) grayscale(0);
+    transform: scale(1); /* 중앙 이미지는 100% 크기 */
+    z-index: 10;
+}
+
+.sec3Swiper .swiper-slide img {
+    width: 100%;
+    display: block;
+}
+.sec3Swiper .swiper-slide .slide-text {
+    font-size: 2.4rem; margin-top: 30px; font-weight: 300;
 }
 
 /* hover 효과 */
