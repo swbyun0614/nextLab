@@ -1,3 +1,15 @@
+$('header').load('/include/header.html', function(){
+    gnbAction();
+    
+    /* $('.hamburger').click(function(){
+        $('.hamburger').toggleClass('on')
+        $('header nav').toggleClass('on')
+    }) */
+})
+$('footer').load('/include/footer.html', function(){
+    gnbAction();
+})
+
 $(function () {
     /* 1. 라이브러리 초기화 (AOS)
      * 이미지 로딩 등으로 인한 높이 계산 오류를 방지하기 위해 window load 시점에 실행 권장 */
@@ -77,17 +89,15 @@ $(function () {
 
 
     /* 3. UI 컴포넌트 제어 (Header, Buttons) */
-
-    // 헤더 GNB/LNB 슬라이드
     let $header = $('header');
-    let $lnb = $('.lnb, .lnb_bg');
 
     $header.on({
         'mouseenter': function() {
-            $lnb.stop().slideDown(200);
+            // 마우스를 올릴 때 비로소 .lnb를 찾음 (미리 찾아두지 않음)
+            $(this).find('.lnb, .lnb_bg').stop().slideDown(200);
         },
         'mouseleave': function() {
-            $lnb.stop().slideUp(200);
+            $(this).find('.lnb, .lnb_bg').stop().slideUp(200);
         }
     });
 
