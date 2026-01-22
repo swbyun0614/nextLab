@@ -551,7 +551,8 @@ footer .container .logoFoot {
     
     .container {
         position: relative;
-        max-width: 100%; margin: 0 20px; margin-top: 80px;
+        display: flex; flex-direction: column;
+        max-width: 100%; margin: 0 20px; margin-top: 170px !important;
     }
 
     .sideBar {
@@ -563,7 +564,7 @@ footer .container .logoFoot {
     }
 
     h2 {
-        font-size: 2.4rem; line-height: 1.5; margin-top: 50px;
+        font-size: 2.4rem; line-height: 1.5; margin-top: 0px; margin-bottom: 20px;
     }
     
     .h2bg_left,
@@ -837,7 +838,7 @@ footer .container .logoFoot {
 
     /* === SECTION 1 === */
     #section1 .container {
-        margin-top: 40px;
+        margin-top: 40px !important;
     }
 
     /* 모바일 섹션1 타이틀 영역 */
@@ -868,7 +869,7 @@ footer .container .logoFoot {
     
     .sec1MobileSwiper .swiper-slide {
         display: flex; flex-direction: column;
-        height: auto; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: hidden;
+        height: 576px; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: hidden;
     }
 
     .sec1MobileSwiper .swiper-slide a {
@@ -879,31 +880,25 @@ footer .container .logoFoot {
     .sec1MobileSwiper .swiper-slide .productImg {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 100%; height: 200px; margin-top: 10px;
+        width: 100%; height: 240px; margin-top: 30px; margin-bottom: 30px;
     }
     
     .sec1MobileSwiper .swiper-slide .productImg img {
-        max-height: 180px; max-width: 90%; object-fit: contain; transform: scale(1.3);
+        max-height: 180px; max-width: 90%; object-fit: contain; transform: scale(1.8);
     }
     
     .sec1MobileSwiper .swiper-slide .textBox {
         position: relative;
-        padding: 20px 15px; background: #ffffff; flex: 1;
+        width: 100%; height: 273px; background: var(--maincolor1); flex: 1; padding: 38px 30px;
     }
     
     .sec1MobileSwiper .swiper-slide .textBox strong {
         display: block;
-        font-size: 1.8rem; font-weight: 700; color: var(--text); margin-bottom: 10px;
-    }
-    
-    .sec1MobileSwiper .swiper-slide .textBox strong::before {
-        content: "";
-        position: absolute; top: 10px; left: 15px;
-        width: 15px; height: 2px; background: var(--maincolor1);
+        font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 10px; color: #fff;
     }
     
     .sec1MobileSwiper .swiper-slide .textBox p {
-        font-size: 1.4rem; line-height: 1.6; font-weight: 500; color: #333; margin-bottom: 15px;
+        font-size: 1.6rem; line-height: 1.8; font-weight: 500; color: #fff; margin-bottom: 15px;
     }
     
     .sec1MobileSwiper .swiper-slide .textBox .productTag {
@@ -911,7 +906,7 @@ footer .container .logoFoot {
     }
     
     .sec1MobileSwiper .swiper-slide .textBox .productTag li {
-        min-width: 60px; font-size: 1.2rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 10px; border-radius: 5px; text-align: center; list-style: none;
+        min-width: 60px; font-size: 1.4rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 9px 18px; border-radius: 10px; text-align: center; list-style: none;
     }
     
     /* Swiper 페이지네이션 */
@@ -920,7 +915,7 @@ footer .container .logoFoot {
     }
     
     .sec1MobileSwiper .swiper-pagination-bullet {
-        width: 8px; height: 8px; background: #ddd; opacity: 1;
+        width: 8px; height: 8px; background: transparent; opacity: 1; border: 1px solid var(--maincolor1);
     }
     
     .sec1MobileSwiper .swiper-pagination-bullet-active {
@@ -954,14 +949,32 @@ footer .container .logoFoot {
     #section2 .container {
         margin-top: 60px;
     }
+    .h2bg_left {
+        content: "";
+        position: absolute; left: 0px; top: -35px; z-index: -1;
+        display: flex;
+        background: url(../images/title_bg_left_m.png) no-repeat center; width: 100%; height: 103px;
+        background-position: left;
+    }
+    .h2bg_right {
+        content: "";
+        position: absolute; right: 0px; top: -35px; z-index: -1;
+        display: flex;
+        background: url(../images/title_bg_right_m.png) no-repeat center; width: 100%; height: 103px;
+        background-position: right;
+    }
+    #section2 .container .h2bg_left,
+    #section2 .container .h2bg_right {
+        top: -25px;
+    }
 
     #section2 .container .btn_more {
-        max-width: 150px; padding: 12px 0; font-size: 1.8rem; margin-top: 25px;
+        max-width: 196px; padding: 12px 60px; font-size: 1.6rem; margin-top: 25px; order: 2; border-radius: 10px;
     }
 
     #section2 .container .sec2_contentBox {
         display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); gap: 15px;
-        margin: 30px 0 0;
+        margin: 30px 0 0; margin-top: 60px; order: 1;
     }
 
     #section2 .container .sec2_contentBox .content_wrap {
@@ -985,7 +998,7 @@ footer .container .logoFoot {
     }
 
     #section2 .container .sec2_contentBox .tech span {
-        font-size: 1.4rem; line-height: 1.4; white-space: normal; padding: 0 10px;
+        width: 105px; font-size: 1.6rem; line-height: 1.6; white-space: pre-line; padding: 0 10px; word-break: keep-all;
     }
 
     /* Hover 효과 모바일에서 제거 */
@@ -999,15 +1012,16 @@ footer .container .logoFoot {
 
     /* === SECTION 3 === */
     #section3 {
+        display: flex; flex-direction: column;
         margin-top: 60px;
     }
 
     #section3 .btn_more {
-        max-width: 150px; padding: 12px 0; font-size: 1.8rem; margin-top: 25px;
+        max-width: 196px; padding: 12px 74px; font-size: 1.6rem; margin-top: 25px; order: 2; border-radius: 10px;
     }
 
     .sec3Swiper {
-        padding: 30px 0 50px;
+        padding: 30px 0 50px; order: 1;
     }
 
     .sec3Swiper .swiper-slide {
@@ -1015,11 +1029,11 @@ footer .container .logoFoot {
     }
 
     .sec3Swiper .swiper-slide img {
-        width: 100%; height: auto; min-height: 280px; object-fit: cover; border-radius: 10px;
+        width: 100%; height: auto; min-height: 280px; object-fit: cover;
     }
 
     .sec3Swiper .swiper-slide .slide-text {
-        font-size: 1.4rem; margin-top: 15px; text-align: center;
+        font-size: 1.5rem; margin-top: 15px; text-align: center;
     }
 
     /* === SECTION 4 === */
@@ -1033,8 +1047,9 @@ footer .container .logoFoot {
     }
 
     #section4 .container .support .sup {
+        position: relative;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
-        padding: 20px 10px; border-radius: 15px;
+        padding: 27px 27px; border-radius: 15px; box-shadow: 0 3px 26px rgba(0, 0, 0, 0.1);
     }
 
     #section4 .container .support .sup img {
@@ -1042,28 +1057,30 @@ footer .container .logoFoot {
     }
 
     #section4 .container .support .sup span {
-        font-size: 1.3rem; margin-top: 12px; text-align: center; white-space: nowrap;
+        position: absolute; bottom: -30px;
+        font-size: 1.5rem; white-space: nowrap;
     }
 
     #section4 .container > p {
-        font-size: 1.4rem; line-height: 1.6; margin-top: 30px; padding: 0 10px;
+        font-size: 1.5rem; line-height: 1.6; margin-top: 60px; padding: 0 10px; word-break: keep-all;
     }
 
     /* 버튼을 박스 바깥으로 이동 및 세로 정렬 */
     #section4 .container .btn_wrap {
         display: flex; flex-direction: column; gap: 15px;
-        max-width: 100%; margin: 30px auto 0; padding: 0;
+        max-width: 100%; margin: 30px 0 0; padding: 0;
     }
-
     #section4 .container .tel,
     #section4 .container .email {
         display: flex; justify-content: center; align-items: center; gap: 10px;
-        width: 100%; height: auto; padding: 15px 20px; font-size: 1.6rem; border-radius: 8px;
+        width: 100%; height: auto; padding: 15px 20px; font-size: 1.9rem;
     }
-
     #section4 .container .tel img,
     #section4 .container .email img {
         width: 20px; height: 20px;
+    }
+    #section4 .container .btn_wrap span {
+        display: none;
     }
 
     /* Hover 효과 모바일에서 제거 */
@@ -1079,12 +1096,12 @@ footer .container .logoFoot {
 
     /* === FOOTER === */
     footer {
-        padding: 40px 0; margin-top: 60px;
+        padding: 40px 0; margin-top: 100px; padding-bottom: 80px;
     }
 
     footer .container {
         display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
-        padding: 0 20px; margin: 0;
+        padding: 0 30px; margin-top: 0 !important;
     }
 
     footer .container .logoFoot {
@@ -1096,10 +1113,12 @@ footer .container .logoFoot {
     }
 
     footer .container p {
-        font-size: 1.2rem; line-height: 1.6;
+        position: relative;
+        font-size: 1.4rem; line-height: 1.6;
     }
 
     footer .container p span {
-        font-size: 1.1rem;
+        position: absolute; bottom: -105px;
+        font-size: 1.4rem; font-weight: 600;
     }
 }
