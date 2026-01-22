@@ -36,14 +36,14 @@ h2 {z-index: 10;
 strong {font-weight: 600;}
 .h2bg_left {
     content: "";
-    position: absolute; left: -10.4vw; top: -18px; z-index: -1;
+    position: absolute; left: -200px; top: -18px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_left.png); width: 36vw; height: 103px;
     background-position: right center;
 }
 .h2bg_right {
     content: "";
-    position: absolute; right: -10.4vw; top: -18px; z-index: -1;
+    position: absolute; right: -200px; top: -18px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_right.png); width: 36vw; height: 103px;
 }
@@ -54,15 +54,20 @@ strong {font-weight: 600;}
 /* 시~~작 */
 
 header {
-    position: absolute; top: 0; left: 0; z-index: 999;
-    width: 100%; transition: background 0.3s;
+    position: absolute; top: 0; left: 0; z-index: 1000;
+    display: block;
+    width: 100%; background: rgba(255, 255, 255, 0); transition: background 0.2s ease-in-out;
 }
 header:hover {
     background: #fff;
 }
+header.on {
+    background: #fff !important; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
 
 /* --- GNB 스타일 --- */
 header .topset {
+    position: relative; z-index: 30;
     display: flex; justify-content: space-between; align-items: center;
     width: 79vw; height: 86px; margin: 0 10.4vw;
 }
@@ -92,26 +97,32 @@ header .topset {
 
         /* --- LNB 스타일 --- */
         header .topset .gnb .lnb {
-            position: absolute; top: 86px; left: 50%; transform: translateX(-50%);
-            width: 100%; padding-top: 5px; text-align: center; z-index: 10;
-            display: none; /* 제이쿼리로 제어 */
+            position: absolute; top: 86px; left: 50%; z-index: 20; transform: translateX(-50%);
+            display: block;
+            width: 100%; padding-top: 5px; text-align: center; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
         }
+        /* 헤더에 on 클래스가 붙으면 LNB 표시 */
+        header.on .topset .gnb .lnb {
+            max-height: 320px; opacity: 1; padding-top: 5px;
+        }
+
         header .topset .gnb .lnb li a {
             display: block;
-            padding: 20px 0px; font-size: 1.6rem; color: var(--text); font-weight: 500; transition: 0.2s;
-            white-space: nowrap; /* 글자가 줄바꿈되지 않도록 설정 */
+            padding: 20px 0px; font-size: 1.6rem; color: var(--text); font-weight: 500; transition: 0.2s; white-space: nowrap;
         }
 
         /* ✨ LNB 호버 시: 배경색 변경 및 글씨색 반전 */
         header .topset .gnb .lnb li a:hover {
-            background-color: var(--maincolor1);
-            color: #fff;
+            background-color: var(--maincolor1); color: #fff;
         }
         header .lnb_bg {
-            position: absolute; top: 86px; left: 0; width: 100%; height: 320px;
-            background: #fff;
-            box-shadow: 0px 10px 100px rgba(0, 0, 0, 0.25); clip-path: inset(0px -500px -500px -500px); /* 위쪽(0px)은 자르고 나머지 방향은 여백(-500px) */
-            display: none; /* 제이쿼리에서 제어 */
+            position: absolute; top: 86px; left: 0; z-index: 10;
+            display: block;
+            width: 100%; height: 0; background: #fff; box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1); clip-path: inset(0px -100px -100px -100px); overflow: hidden; opacity: 0; transition: height 0.3s ease, opacity 0.3s ease;
+        }
+        /* 헤더에 on 클래스가 붙으면 배경 표시 */
+        header.on .lnb_bg {
+            height: 320px; opacity: 1;
         }
 
         /* --- 블로그 버튼 및 이미지 설정 --- */
@@ -192,8 +203,8 @@ header .topset {
         }
 
         #hero .swiper-slide > span {
-            position: absolute; top: 327px; left: 195px;
-            width: 27.8vw;
+            position: absolute; top: 50%; left: 195px; transform: translateY(-50%);
+            width: 535px;
         }
         #hero .swiper-slide > span p {
             color: #fff;
@@ -204,8 +215,6 @@ header .topset {
         #hero .swiper-slide > span p:last-child {
             font-size: 1.8rem; line-height: 160%; margin-top: 25px;
         }
-
-        /* 슬라이드 내 이미지 드래그 및 선택 방지 */
 
 
 #section1 {}
@@ -494,11 +503,21 @@ footer .container .logoFoot {
 
 
 
-@media screen and (max-width: 1800px) {
+/* 반응형 시작 */
+@media screen and (max-width: 1760px) {
+    #hero .swiper-slide > span p:first-child {
+        font-size: 3.8rem;
+    }
+    header .topset .gnb > li > a {
+    }
 }
 
+/* 태블릿 */
 @media screen and (max-width: 1024px) {
+
 }
 
+/* 모바일 */
 @media screen and (max-width: 768px) {
+    
 }
