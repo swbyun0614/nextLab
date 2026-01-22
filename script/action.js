@@ -47,7 +47,12 @@ function mobileMenuAction() {
     });
 }
 
-// 3. 헤더 및 푸터 로드
+// 3. Swiper 인스턴스 저장 변수 (전역)
+var heroSwiper = null;
+var sec3Swiper = null;
+var sec1MobileSwiper = null;
+
+// 4. 헤더 및 푸터 로드
 $(function() {
     // intro.html과 index.html이 모두 최상위에 있으므로 경로는 동일합니다.
     $('header').load('include/header.html', function() {
@@ -57,7 +62,7 @@ $(function() {
 
     $('footer').load('include/footer.html');
 
-    /* 4. 라이브러리 초기화 (AOS) */
+    /* 5. 라이브러리 초기화 (AOS) */
     $(window).on('load', function () {
         if (typeof AOS !== 'undefined') {
             AOS.init({
@@ -69,45 +74,60 @@ $(function() {
         }
     });
 
-    /* 5. Swiper 슬라이더 제어 */
+    /* 6. Swiper 슬라이더 제어 */
     // 메인 슬라이더 (요소가 있을 때만 실행하여 에러 방지)
     if ($('.mySwiper').length > 0) {
-        new Swiper(".mySwiper", {
+        heroSwiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
             loop: true,
             speed: 1200,
-            autoplay: { delay: 4500, disableOnInteraction: false },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            on: { transitionEnd: function() { if(typeof AOS !== 'undefined') AOS.refresh(); } }
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            on: {
+                transitionEnd: function() {
+                    if (typeof AOS !== 'undefined') AOS.refresh();
+                }
+            }
         });
     }
 
     // 섹션 3 슬라이더 (자동 재생 추가 버전)
     if ($('.sec3Swiper').length > 0) {
-        new Swiper(".sec3Swiper", {
+        sec3Swiper = new Swiper(".sec3Swiper", {
             effect: "coverflow",
             centeredSlides: true,
             slidesPerView: "auto",
             loop: true,
             speed: 1000,
             autoplay: {
-                delay: 4500, // 4.5초마다 전환
-                disableOnInteraction: false, // 사용자 클릭 후에도 자동 재생 유지
+                delay: 4500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false
             },
             coverflowEffect: {
                 rotate: 0,
-                stretch: -200, // 슬라이드 간 간격
+                stretch: -200,
                 depth: 200,
                 modifier: 1,
-                slideShadows: false // 그림자가 너무 진하면 false로 변경 가능
+                slideShadows: false
             }
         });
     }
 
-    // 섹션 1 모바일 슬라이더 (화살표 + 페이지네이션)
+    // 섹션 1 모바일 슬라이더 (수동 조작만 가능 - autoplay 제거)
     if ($('.sec1MobileSwiper').length > 0) {
-        new Swiper(".sec1MobileSwiper", {
+        sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
             slidesPerView: 1,
             spaceBetween: 20,
             loop: true,
@@ -123,13 +143,26 @@ $(function() {
         });
     }
 
-    /* 6. TOP 버튼 */
+    /* 7. Page Visibility API - 탭 활성화 시 autoplay 재시작 */
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+            // 탭이 다시 활성화되면 autoplay가 있는 Swiper만 재시작
+            if (heroSwiper && heroSwiper.autoplay) {
+                heroSwiper.autoplay.start();
+            }
+            if (sec3Swiper && sec3Swiper.autoplay) {
+                sec3Swiper.autoplay.start();
+            }
+        }
+    });
+
+    /* 8. TOP 버튼 */
     $('.btnTop').on('click', function(e) {
         e.preventDefault();
         $('html, body').stop().animate({ scrollTop: 0 }, 600);
     });
     
-    /* 7. 윈도우 리사이즈 시 메뉴 상태 초기화 */
+    /* 9. 윈도우 리사이즈 시 메뉴 상태 초기화 */
     $(window).on('resize', function() {
         if ($(window).width() > 768) {
             // PC 사이즈로 변경 시 모바일 메뉴 닫기
