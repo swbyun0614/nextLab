@@ -1,0 +1,19 @@
+# OS 관련 파일
+.DS_Store
+Thumbs.db
+
+# 에디터 및 툴 설정
+.vscode/
+.idea/
+
+# 라이브러리 및 종속성 (프로젝트에 따라 다름)
+node_modules/
+dist/
+
+# 대용량 및 불필요 파일
+*.log
+*.tmp
+
+# [본인 프로젝트 맞춤] 대용량 이미지나 원본 소스가 있다면 추가
+# 예: images/raw 폴더 전체 제외
+/images/raw/
