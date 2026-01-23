@@ -1,11 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sub2_</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>sub2</title>
+        <link rel="stylesheet" href="css/sub2.css">
+    </head>
+    <body>
+        <!-- Product Selector -->
+        <section class="product-picker" aria-labelledby="productPickerTitle">
+            <div class="container">
+                <h2 id="productPickerTitle" class="section-title">제품 <span>선택</span></h2>
+
+                <!-- 제품 탭/카테고리 네비게이션 -->
+                <nav class="product-nav" aria-label="제품 선택">
+                    <ul class="product-list" role="list">
+                        <!-- 현재 선택된 항목: aria-current="true" or class="is-active" -->
+                        <li class="product-item">
+                            <a
+                                class="product-btn is-active"
+                                href="#p1"
+                                aria-current="true"
+                            >
+                                <span class="thumb" aria-hidden="true">
+                                    <img src="images/sub2_cctv1.png" alt="" />
+                                </span>
+                                <span class="label">4배줌 이동식 CCTV</span>
+                            </a>
+                        </li>
+
+                        <li class="product-item">
+                            <a class="product-btn" href="#p2">
+                                <span class="thumb" aria-hidden="true">
+                                    <img src="images/sub2_cctv2.png" alt="" />
+                                </span>
+                                <span class="label">태양광 CCTV (독립형)</span>
+                            </a>
+                        </li>
+
+                        <li class="product-item">
+                            <a class="product-btn" href="#p3">
+                                <span class="thumb" aria-hidden="true">
+                                    <img src="images/sub2_cctv3.png" alt="" />
+                                </span>
+                                <span class="label"
+                                    >이동식 태양광 CCTV (바퀴형)</span
+                                >
+                            </a>
+                        </li>
+
+                        <li class="product-item">
+                            <a class="product-btn" href="#p4">
+                                <span class="thumb" aria-hidden="true">
+                                    <img src="images/sub2_cctv4.png" alt="" />
+                                </span>
+                                <span class="label"
+                                    >줌대 이동식 CCTV (독립형)</span
+                                >
+                            </a>
+                        </li>
+
+                        <li class="product-item">
+                            <a class="product-btn" href="#p5">
+                                <span class="thumb" aria-hidden="true">
+                                    <img src="images/sub2_cctv5.png" class="sub2_cctv5" alt="" />
+                                </span>
+                                <span class="label">타워크레인 CCTV</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </body>
 </html>
