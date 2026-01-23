@@ -2,6 +2,7 @@
 
 @import url(font.css);
 @import url(reset.css);
+@import url(sub_Product01.css);
 
 /* --------------------------------------------------------------------------- */
 /* 기본 설정들 */
@@ -138,6 +139,9 @@ header .topset {
         }
         header .topset .blog img {
             width: 100%;
+        }
+        header .topset .blog img.blog_icon_sub {
+            display: none;
         }
 
         /* 블로그 호버 시 이미지 변경 효과 */
@@ -508,6 +512,35 @@ footer .container .logoFoot {
     }
     footer .container p span {
         font-size: 1.4rem;
+    }
+
+
+
+
+
+/* --------------------------------------------------------------------------- */
+/* 서브 공통 */
+header.sub {
+    position: relative;
+}
+    header.sub .topset .gnb > li > a {
+        color: var(--text);
+    }
+    header.sub .topset .blog a {
+        color: var(--maincolor2);
+    }
+    /* ✨ GNB 특정 메뉴 호버 시: 컬러 변경 및 하단 보더 */
+    header.sub .topset .gnb > li:hover > a ,
+    header.sub .topset .gnb > li.current > a {
+        border-bottom: 2px solid var(--maincolor1);
+        color: var(--maincolor1); font-weight: 600;
+    }
+    header.sub .topset .blog img.blog_icon_sub {
+        display: block;
+        margin-left: 0.78vw; width: 35px;
+    }
+    header.sub .topset .blog img.blog_icon {
+        display: none;
     }
 
 

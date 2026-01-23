@@ -47,22 +47,59 @@ function mobileMenuAction() {
     });
 }
 
-// 3. Swiper 인스턴스 저장 변수 (전역)
+// 3. 현재 페이지에 해당하는 GNB 활성화
+function setActiveGnb() {
+    var currentPath = window.location.pathname;
+    var currentPage = currentPath.split('/').pop(); // 현재 파일명 추출
+    
+    // GNB와 매칭되는 페이지 패턴 정의
+    var gnbPages = {
+        0: ['sub_Company'], // 회사 소개
+        1: ['sub_Product01', 'sub_Product02', 'sub_Product03', 'sub_Product04', 'sub_Product05'], // 제품 소개
+        2: ['sub_Tech01', 'sub_Tech02'], // 핵심 기술
+        3: ['sub_Solution01', 'sub_Solution02'] // 솔루션
+    };
+    
+    // 현재 페이지가 어느 GNB에 속하는지 확인
+    $('header .topset .gnb > li').each(function(index) {
+        var $gnbItem = $(this);
+        var pages = gnbPages[index] || [];
+        
+        // 현재 페이지명이 해당 GNB의 페이지 목록에 포함되는지 확인
+        for (var i = 0; i < pages.length; i++) {
+            if (currentPage.toLowerCase().indexOf(pages[i].toLowerCase()) !== -1) {
+                $gnbItem.addClass('current');
+                return false; // each 루프 종료
+            }
+        }
+        
+        // LNB 링크의 href와 현재 페이지 비교
+        $gnbItem.find('.lnb a').each(function() {
+            var linkHref = $(this).attr('href');
+            if (linkHref && currentPath.indexOf(linkHref.replace('.html', '')) !== -1) {
+                $gnbItem.addClass('current');
+                return false;
+            }
+        });
+    });
+}
+
+// 4. Swiper 인스턴스 저장 변수 (전역)
 var heroSwiper = null;
 var sec3Swiper = null;
 var sec1MobileSwiper = null;
 
-// 4. 헤더 및 푸터 로드
+// 5. 헤더 및 푸터 로드
 $(function() {
-    // intro.html과 index.html이 모두 최상위에 있으므로 경로는 동일합니다.
     $('header').load('include/header.html', function() {
-        gnbAction(); // 로드 완료 후 실행
-        mobileMenuAction(); // 모바일 메뉴 기능 초기화
+        gnbAction();
+        mobileMenuAction();
+        setActiveGnb(); // 현재 페이지 GNB 활성화
     });
 
     $('footer').load('include/footer.html');
 
-    /* 5. 라이브러리 초기화 (AOS) */
+    /* 6. 라이브러리 초기화 (AOS) */
     $(window).on('load', function () {
         if (typeof AOS !== 'undefined') {
             AOS.init({
@@ -74,8 +111,7 @@ $(function() {
         }
     });
 
-    /* 6. Swiper 슬라이더 제어 */
-    // 메인 슬라이더 (요소가 있을 때만 실행하여 에러 방지)
+    /* 7. Swiper 슬라이더 제어 */
     if ($('.mySwiper').length > 0) {
         heroSwiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
@@ -102,7 +138,6 @@ $(function() {
         });
     }
 
-    // 섹션 3 슬라이더 (자동 재생 추가 버전)
     if ($('.sec3Swiper').length > 0) {
         sec3Swiper = new Swiper(".sec3Swiper", {
             effect: "coverflow",
@@ -125,7 +160,6 @@ $(function() {
         });
     }
 
-    // 섹션 1 모바일 슬라이더 (수동 조작만 가능 - autoplay 제거)
     if ($('.sec1MobileSwiper').length > 0) {
         sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
             slidesPerView: 1,
@@ -143,10 +177,9 @@ $(function() {
         });
     }
 
-    /* 7. Page Visibility API - 탭 활성화 시 autoplay 재시작 */
+    /* 8. Page Visibility API */
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'visible') {
-            // 탭이 다시 활성화되면 autoplay가 있는 Swiper만 재시작
             if (heroSwiper && heroSwiper.autoplay) {
                 heroSwiper.autoplay.start();
             }
@@ -156,19 +189,41 @@ $(function() {
         }
     });
 
-    /* 8. TOP 버튼 */
+    /* 9. TOP 버튼 */
     $('.btnTop').on('click', function(e) {
         e.preventDefault();
         $('html, body').stop().animate({ scrollTop: 0 }, 600);
     });
     
-    /* 9. 윈도우 리사이즈 시 메뉴 상태 초기화 */
+    /* 10. 윈도우 리사이즈 시 메뉴 상태 초기화 */
     $(window).on('resize', function() {
         if ($(window).width() > 768) {
-            // PC 사이즈로 변경 시 모바일 메뉴 닫기
             $('header').removeClass('menu-open');
             $('header .topset .gnb > li').removeClass('active');
             $('body').css('overflow', '');
         }
     });
 });
+
+// 제품 상세 갤러리 슬라이더 (서브페이지 전용)
+        var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+            spaceBetween: 15,
+            slidesPerView: 5,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.prod-next',
+                prevEl: '.prod-prev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 3, spaceBetween: 10 },
+                768: { slidesPerView: 4, spaceBetween: 12 },
+                1024: { slidesPerView: 5, spaceBetween: 15 }
+            }
+        });
+
+        var prodMainSwiper = new Swiper('.prodMainSwiper', {
+            spaceBetween: 10,
+            thumbs: {
+                swiper: prodThumbSwiper,
+            },
+        });

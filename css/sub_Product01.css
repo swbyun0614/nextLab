@@ -1,0 +1,291 @@
+@charset "UTF-8";
+
+/* ===========================
+    서브페이지 전용 CSS
+    기존 style.css와 충돌 방지
+=========================== */
+
+:root {
+    --maincolor1: #f0620a;
+    --maincolor2: #04456f;
+    --dark-blue: #13384f;
+    --text: #1f1f1f;
+    --bg-light: #f8f8f8;
+}
+
+
+/* ===========================
+    Product Picker Section
+=========================== */
+.product-picker {
+    padding: 40px 0 10px;
+}
+
+.container.sec1 {
+    margin-top: 180px;
+}
+
+.product-nav {
+    padding: 30px 0 80px; border-bottom: 1px solid #D9D9D9;
+}
+
+.product-list {
+    display: flex; justify-content: center; gap: 28px; flex-wrap: nowrap;
+    margin: 0; padding: 0; list-style: none;
+}
+
+.product-btn {
+    display: grid; justify-items: center; gap: 10px;
+    min-width: 120px; text-decoration: none; color: var(--text);
+}
+
+.product-btn .thumb {
+    display: grid; place-items: center;
+    width: 12.8vw;
+    border-radius: 50%; background: #F8F8F8; outline: 10px solid transparent; transition: .2s; overflow: hidden;
+}
+
+.product-btn .thumb img {
+    width: 100%; object-fit: contain;
+}
+
+.product-btn .label {
+    font-size: 1.8rem; text-align: center; white-space: nowrap; transition: .1s; margin-top: 20px;
+}
+
+/* hover 효과 */
+.product-btn:hover .thumb {
+    outline: 10px solid var(--maincolor1); transform: translateY(-5px);
+}
+
+.product-btn:hover .label {
+    font-weight: 600;
+}
+
+/* 선택(활성) 상태 */
+.product-btn.is-active .thumb {
+    outline: 10px solid var(--maincolor1);
+}
+
+.product-btn.is-active .label {
+    font-weight: 600;
+}
+
+
+/* ===========================
+    Product Detail Section
+=========================== */
+.product-detail {
+}
+
+.detail-wrap {
+    display: flex; align-items: flex-start; gap: 60px;
+}
+
+/* 좌측: 갤러리 영역 */
+.detail-gallery {
+    width: 39vw; flex-shrink: 0;
+}
+
+/* 메인 이미지 슬라이더 */
+.prodMainSwiper {
+    width: 100%; height: 610px;
+    margin-bottom: 20px; border: 1px solid #e5e5e5; overflow: hidden;
+}
+
+.prodMainSwiper .swiper-slide {
+    display: flex; justify-content: center; align-items: center;
+    aspect-ratio: 1 / 1; background: #fff;
+}
+
+.prodMainSwiper .swiper-slide img {
+    width: 100%; height: 100%; object-fit: contain;
+}
+
+/* 썸네일 네비게이션 영역 */
+.thumb-nav {
+    display: flex; align-items: center; gap: 10px;
+}
+
+/* 이전/다음 버튼 */
+.prod-nav-btn {
+    display: flex; justify-content: center; align-items: center;
+    width: 30px; height: 80px;
+    flex-shrink: 0; background: transparent; border: none; cursor: pointer; transition: .2s;
+}
+
+.prod-nav-btn:hover svg path {
+    stroke: var(--maincolor1);
+}
+
+.prod-nav-btn:disabled {
+    opacity: 0.3; cursor: default;
+}
+
+/* 썸네일 슬라이더 */
+.prodThumbSwiper {
+    flex: 1; overflow: hidden;
+}
+
+.prodThumbSwiper .swiper-slide {
+    display: flex; justify-content: center; align-items: center;
+    width: 90px; height: 90px;
+    border: 1px solid #e5e5e5; background: #fff; cursor: pointer; transition: border-color .2s; overflow: hidden;
+}
+
+.prodThumbSwiper .swiper-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 썸네일 선택 상태 */
+.prodThumbSwiper .swiper-slide-thumb-active {
+    border-color: var(--maincolor1); border-width: 2px;
+}
+
+.prodThumbSwiper .swiper-slide:hover {
+    border-color: var(--maincolor1);
+}
+
+
+/* 우측: 제품 정보 영역 */
+.detail-info {
+    flex: 1; padding-top: 10px;
+}
+
+.product-name {
+    font-size: 2.4rem; font-weight: 600; color: var(--text); margin-bottom: 30px; margin-top: 75px; padding-bottom: 20px;
+}
+
+/* 스펙 리스트 */
+.spec-list {
+    margin-bottom: 60px;
+}
+
+.spec-row {
+    display: flex; gap: 30px;
+    margin-bottom: 20px; padding-bottom: 20px;
+}
+
+.spec-row:last-child {
+    margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+}
+
+.spec-row dt {
+    flex-shrink: 0; font-size: 1.6rem; font-weight: 600; color: var(--text); line-height: 2;
+}
+
+.spec-row dd {
+    flex: 1; font-size: 1.6rem; font-weight: 500; line-height: 2; color: #555; margin: 0;
+}
+
+/* 견적 문의 버튼 */
+.btn-inquiry {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%; height: 56px;
+    font-size: 1.8rem; font-weight: 500; color: #fff; background: var(--maincolor1); text-decoration: none; transition: background .2s; margin-bottom: 25px;
+}
+
+.btn-inquiry:hover {
+    background: var(--maincolor2);
+}
+
+/* 해시태그 리스트 */
+.hashtag-list {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+    margin: 0; padding: 0; list-style: none;
+}
+
+.hashtag-list li {
+    font-size: 1.6rem; font-weight: 600; color: var(--text); background: #efefef; padding: 8px 18px; border-radius: 10px; transition: .2s;
+}
+
+
+/* ===========================
+    Responsive - Tablet
+=========================== */
+@media screen and (max-width: 1200px) {
+    .detail-wrap {
+        gap: 40px;
+    }
+    
+    .detail-gallery {
+        width: 450px;
+    }
+    
+    .prodThumbSwiper .swiper-slide {
+        width: 75px; height: 75px;
+    }
+}
+
+
+/* ===========================
+    Responsive - Mobile
+=========================== */
+@media screen and (max-width: 768px) {
+    /* Product Picker */
+    .container.sec1 {
+        margin-top: 120px;
+    }
+    
+    .product-nav {
+        padding: 20px 0 40px;
+    }
+    
+    .product-list {
+        gap: 15px; flex-wrap: wrap;
+    }
+    
+    .product-btn .thumb {
+        width: 100px;
+    }
+    
+    .product-btn .label {
+        font-size: 1.4rem; margin-top: 10px;
+    }
+    
+    /* Product Detail */
+    .product-detail {
+        padding: 40px 0;
+    }
+    
+    .detail-wrap {
+        flex-direction: column; gap: 30px;
+    }
+    
+    .detail-gallery {
+        width: 100%;
+    }
+    
+    .prodMainSwiper .swiper-slide {
+        aspect-ratio: 1 / 1;
+    }
+    
+    .prodThumbSwiper .swiper-slide {
+        width: 65px; height: 65px;
+    }
+    
+    .product-name {
+        font-size: 2.2rem; margin-bottom: 20px; padding-bottom: 15px;
+    }
+    
+    .spec-row {
+        flex-direction: column; gap: 10px;
+        margin-bottom: 20px; padding-bottom: 20px;
+    }
+    
+    .spec-row dt {
+        width: auto; font-size: 1.5rem;
+    }
+    
+    .spec-row dd {
+        font-size: 1.4rem;
+    }
+    
+    .btn-inquiry {
+        height: 50px; font-size: 1.6rem;
+    }
+    
+    .hashtag-list li {
+        font-size: 1.3rem; padding: 6px 14px;
+    }
+}
