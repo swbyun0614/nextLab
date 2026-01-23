@@ -1,0 +1,371 @@
+@charset "UTF-8";
+
+/* =========================================================
+SUB TECH 01
+- 공통(style.css) 위에 "서브페이지에서만" 덮어쓰기
+- Figma(1920 기준) : 좌/우 200px 패딩 고정
+========================================================= */
+
+:root{
+--maincolor1:#f0620a;
+--maincolor2:#04456f;
+--text:#1f1f1f;
+--bg:#ffffff;
+}
+
+/* ========== 공통 컨테이너(좌/우 200px 고정) ========== */
+.page--tech .inner-200{
+width: 100%;
+max-width: 1920px;          /* 1920 캔버스 기준 */
+margin: 0 auto;
+padding-left: 200px;
+padding-right: 200px;
+box-sizing: border-box;
+}
+
+/* ========== 헤더(서브) : GNB 가시성 고정 ========== */
+.page--tech header.sub{
+position: fixed;
+top: 0; left: 0;
+width: 100%;
+background: #fff !important;
+box-shadow: 0 4px 10px rgba(0,0,0,.05);
+z-index: 2000;
+}
+
+/* 공통 header가 86px 기준이라 가정 */
+.page--tech{ padding-top: 86px; }
+
+.page--tech header.sub .topset .gnb > li > a{
+color: var(--text) !important;
+}
+.page--tech header.sub .topset .gnb > li:hover > a{
+color: var(--maincolor1) !important;
+border-bottom-color: var(--maincolor1) !important;
+}
+.page--tech header.sub .topset .blog a{
+color: var(--maincolor2) !important;
+}
+
+/* ========== HERO ========== */
+.page--tech .tech-hero{
+position: relative;
+background: #fff;
+overflow: hidden;
+}
+
+.page--tech .tech-hero__inner{
+position: relative;
+padding-top: 140px;
+padding-bottom: 110px;
+min-height: 700px;
+}
+
+.page--tech .tech-hero__kicker{
+margin: 0 0 26px;
+font-size: 35px;
+line-height: 1.6;
+letter-spacing: -0.02em;
+}
+.page--tech .tech-hero__brand{
+color: var(--text);
+font-weight: 500;
+}
+.page--tech .tech-hero__kicker-accent{
+color: var(--maincolor1);
+font-weight: 700;
+margin-left: 10px;
+}
+
+.page--tech .tech-hero__title{
+margin: 0;
+font-size: 52px;
+line-height: 1.35;
+letter-spacing: -0.03em;
+color: var(--text);
+font-weight: 800;
+}
+
+/* 우측 이미지 */
+.page--tech .tech-hero__media{
+position: absolute;
+right: 200px;   /* inner-200 기준: 우측 여백 정확히 일치 */
+top: 80px;
+width: 680px;
+max-width: 45%;
+pointer-events: none;
+}
+.page--tech .tech-hero__media img{
+width: 100%;
+height: auto;
+display: block;
+}
+
+/* 우측 상단 글로우 */
+.page--tech .tech-hero__glow{
+position: absolute;
+right: -180px;
+top: -120px;
+width: 520px;
+height: 520px;
+background: radial-gradient(circle at 35% 35%, rgba(4,69,111,.22), rgba(4,69,111,0) 62%);
+filter: blur(1px);
+pointer-events: none; display: none;
+}
+
+/* ========== INTRO (2 COLUMN) ========== */
+.page--tech .tech-intro{
+background:#fff;
+padding-bottom: 140px;
+}
+.page--tech .tech-intro__inner{
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+}
+
+/* 원본처럼 상단 주황 라인(각 컬럼 상단) */
+.page--tech .tech-card{
+position: relative;
+padding-top: 34px;
+}
+.page--tech .tech-card::before{
+content:"";
+position:absolute;
+left:0; top:0;
+width:100%;
+height:2px;
+background: var(--maincolor1);
+}
+
+.page--tech .tech-card__title{
+margin: 0 0 22px;
+font-size: 28px;
+line-height: 1.55;
+letter-spacing: -0.02em;
+color: var(--text);
+font-weight: 700;
+}
+.page--tech .tech-card__brand{
+color: var(--maincolor1);
+font-weight: 800;
+}
+.page--tech .tech-card__body p{
+margin: 0 0 16px;
+font-size: 16px;
+line-height: 1.9;
+letter-spacing: -0.01em;
+color: #222;
+}
+.page--tech .tech-card__body p:last-child{ margin-bottom: 0; }
+
+/* ========== PROCESS (픽셀 고정) ========== */
+.page--tech .tech-process{
+background:#fff;
+padding: 90px 0 140px;
+}
+
+/* 섹션 내부는 inner-200로 좌/우 여백 동일 */
+.page--tech .tech-process__inner{
+text-align: center;
+}
+
+/* 상단 제목(검정, 원본 위치 느낌) */
+.page--tech .tech-process__title{
+margin: 0 0 70px;
+font-size: 18px;
+font-weight: 800;
+color: var(--text);
+letter-spacing: -0.02em;
+}
+
+/* 카드 + 화살표 한 줄 */
+.page--tech .tech-process__flow{
+display: flex;
+justify-content: center;
+align-items: flex-end;   /* 핵심: 카드 하단 기준으로 붙이기 */
+gap: 34px;
+}
+
+/* 카드 래퍼 */
+.page--tech .p-item{
+width: 270px;
+position: relative;
+}
+
+/* 번호(주황, 카드 위) */
+.page--tech .p-num{
+margin-bottom: 20px;
+font-size: 24px;
+font-weight: 900;
+color: var(--maincolor1);
+letter-spacing: -0.01em;
+}
+
+/* 카드 공통(정확한 가로 270 + 높이 단계) */
+.page--tech .p-card{
+width: 270px;
+border-radius: 200px;
+position: relative;
+overflow: hidden;
+
+/* 배경 그라데이션 */
+background: linear-gradient(180deg, #f0620a 0%, #ffbb00 100%);
+}
+
+/* 높이 고정 */
+.page--tech .p-card--1{ height: 404px; }
+.page--tech .p-card--2{ height: 484px; }
+.page--tech .p-card--3{ height: 544px; }
+.page--tech .p-card--4{ height: 624px; }
+
+/* 패턴 오버레이(공통) */
+.page--tech .p-card::after{
+content:"";
+position:absolute;
+inset:0;
+opacity: .18;           /* 원본처럼 은은하게 */
+pointer-events:none;
+}
+
+/* 1번: SVG 패턴 (패턴 크기 작게 = 촘촘하게) */
+.page--tech .p-card--1::after{
+background-image: url("../images/sub_Tech01_patton1.svg");
+background-repeat: repeat;
+background-size: 30px 30px;   /* ← 여기 값이 “패턴 크기”입니다 (작게 조정됨) */
+background-position: center;
+}
+
+/* 2~4번: PNG 패턴 */
+.page--tech .p-card--2::after{
+background-image: url("../images/sub_Tech01_patton2.png");
+background-repeat: repeat;
+background-size: 180px auto;
+background-position: center;
+}
+.page--tech .p-card--3::after{
+background-image: url("../images/sub_Tech01_patton3.png");
+background-repeat: repeat;
+background-size: 200px auto;
+background-position: center;
+}
+.page--tech .p-card--4::after{
+background-image: url("../images/sub_Tech01_patton4.png");
+background-repeat: repeat;
+background-size: 220px auto;
+background-position: center;
+}
+
+/* 카드 내부 중앙정렬(아이콘+텍스트) */
+.page--tech .p-content{
+position: relative;
+z-index: 1;
+height: 100%;
+width: 100%;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;   /* 카드 내부 중앙 */
+gap: 18px;
+padding: 0 18px;
+box-sizing: border-box;
+
+color: #fff;
+text-align: center;
+}
+
+/* 아이콘 */
+.page--tech .p-icon{
+width: 86px;
+height: auto;
+display: block;
+}
+
+/* 텍스트 */
+.page--tech .p-text{
+margin: 0;
+font-size: 24px;
+line-height: 1.75;
+letter-spacing: -0.02em;
+font-weight: 600;
+}
+
+/* 화살표(IMG 사용) - 카드 사이 “중앙정렬” */
+.page--tech .p-arrow{
+width: 40px;            /* 화살표 영역 폭 */
+height: 404px;          /* 가장 큰 카드 높이 기준으로 중앙 맞춤 */
+display: flex;
+align-items: center;    /* 세로 중앙 */
+justify-content: center;
+align-self: flex-end;   /* 카드 하단 라인 기준으로 함께 내려오게 */
+}
+.page--tech .p-arrow img{
+width: 22px;            /* 화살표 크기(원본 느낌) */
+height: auto;
+display:block;
+}
+
+/* 하단 라인 + 캡션 */
+.page--tech .tech-process__rule{
+margin: 70px 0 16px;
+height: 2px;
+width: 100%;
+background: var(--maincolor1);
+}
+.page--tech .tech-process__caption{
+font-size: 24px;
+font-weight: 800;
+color: var(--maincolor1);
+letter-spacing: -0.02em;
+}
+
+/* ========== 반응형(최소) ========== */
+@media (max-width: 1400px){
+.page--tech .inner-200{
+padding-left: 40px;
+padding-right: 40px;
+}
+.page--tech .tech-hero__media{
+right: 40px;
+}
+}
+
+@media (max-width: 1024px){
+.page--tech .tech-intro__inner{ grid-template-columns: 1fr; }
+.page--tech .tech-process__flow{
+flex-wrap: wrap;
+align-items: center;
+}
+.page--tech .p-arrow{ display:none; }
+}
+
+@media (max-width: 768px){
+.page--tech{ padding-top: 70px; }
+.page--tech .tech-hero__inner{ padding-top: 90px; min-height: 520px; }
+.page--tech .tech-hero__title{ font-size: 34px; }
+.page--tech .tech-hero__media{
+position: static;
+width: 100%;
+max-width: 100%;
+margin-top: 30px;
+}
+}
+
+/* =========================
+[FIX] 공정 카드 영역 좌우 여백(다른 섹션과 동일하게 보이게)
+- 카드+화살표 전체 폭이 1520px에 가깝게 되도록 gap 조정
+========================= */
+
+/* (1) 카드/화살표 줄의 총폭을 키워서 좌우 여백이 '추가로' 생기지 않게 */
+.page--tech .tech-process__flow{
+/* 기존 gap: 34px -> 53px 권장 (1520px 폭에 거의 맞음) */
+gap: 53px;
+justify-content: center; /* 유지 */
+}
+
+/* (2) 화살표 세로 중앙정렬 기준도 가장 큰 카드(624px)로 맞춰두면 더 안정적 */
+.page--tech .p-arrow{
+height: 404px; /* 기존 404px이면 가운데가 조금 어긋날 수 있음 */
+}
+
