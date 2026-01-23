@@ -13,6 +13,20 @@
     --bg-light: #f8f8f8;
 }
 
+.h2bg_left {
+    content: "";
+    position: absolute; left: -200px; top: -18px; z-index: -1;
+    display: flex;
+    background: url(../images/title_bg_left.png); width: 36vw; height: 103px;
+    background-position: right center;
+}
+.h2bg_right {
+    content: "";
+    position: absolute; right: -200px; top: -18px; z-index: -1;
+    display: flex;
+    background: url(../images/title_bg_right.png); width: 36vw; height: 103px;
+}
+
 
 /* ===========================
     Product Picker Section
@@ -75,9 +89,6 @@
 /* ===========================
     Product Detail Section
 =========================== */
-.product-detail {
-}
-
 .detail-wrap {
     display: flex; align-items: flex-start; gap: 60px;
 }
@@ -199,7 +210,182 @@
     font-size: 1.6rem; font-weight: 600; color: var(--text); background: #efefef; padding: 8px 18px; border-radius: 10px; transition: .2s;
 }
 
+/* ===========================
+    Features Section (특장점)
+=========================== */
+.features-section {
+    padding: 100px 0; background: #fff;
+}
 
+h2.section-title {
+    margin-bottom: 100px;
+}
+
+.features-list {
+    display: flex; flex-direction: column; gap: 80px;
+}
+
+/* 특장점 아이템 */
+.feature-item {
+    display: flex; align-items: flex-start; gap: 50px;
+}
+
+.feature-item .feature-img {
+    width: 580px;
+    flex-shrink: 0; margin: 0;
+}
+
+.feature-item .feature-img img {
+    width: 100%; height: auto;
+}
+
+.feature-item .feature-content {
+    flex: 1; padding-left: 30px;
+}
+
+.feature-item .feature-content h3 {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 2.2rem; font-weight: 700; color: var(--text); margin-bottom: 20px;
+}
+
+.feature-item .feature-content h3 .bar {
+    display: inline-block;
+    width: 4px; height: 20px;
+    background: var(--maincolor1);
+}
+
+.feature-item .feature-content p {
+    font-size: 1.6rem; font-weight: 400; line-height: 1.9; color: #555; margin-bottom: 18px;
+}
+
+.feature-item .feature-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 모니터링 그룹 */
+.monitoring-group {
+    display: flex; flex-direction: column; gap: 20px;
+}
+
+.monitoring-type h4 {
+    font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 8px;
+}
+
+.monitoring-type p {
+    margin-bottom: 0;
+}
+
+
+/* ===========================
+    Specs Section (제품 스펙)
+=========================== */
+.specs-section {
+    padding: 100px 0; background: var(--bg-light);
+}
+
+.specs-content {
+    display: flex; align-items: flex-start; gap: 60px;
+}
+
+/* 제품 전면도 */
+.specs-diagram {
+    flex: 1;
+}
+
+.specs-sub-title {
+    display: inline-block;
+    font-size: 1.6rem; font-weight: 500; color: #fff; background: var(--maincolor1); padding: 10px 30px; border-radius: 25px; margin-bottom: 30px;
+}
+
+.diagram-wrap {
+    position: relative;
+    padding: 40px; background: #fff; border-radius: 15px;
+}
+
+.diagram-wrap > img {
+    display: block;
+    width: 100%;
+    max-width: 350px; margin: 0 auto;
+}
+
+/* 다이어그램 라벨 */
+.diagram-label {
+    position: absolute;
+    margin: 0;
+}
+
+.diagram-label dt {
+    font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 5px;
+}
+
+.diagram-label dd {
+    font-size: 1.3rem; font-weight: 400; line-height: 1.6; color: #666; margin: 0;
+}
+
+/* 라벨 위치 - 시안 기준 */
+.label-camera {
+    top: 10%; right: 8%;
+    text-align: left;
+}
+
+.label-power {
+    top: 38%; left: 8%;
+    text-align: right;
+}
+
+.label-battery {
+    top: 50%; right: 5%;
+    text-align: left;
+}
+
+.label-tripod {
+    bottom: 15%; left: 50%; transform: translateX(-50%);
+    text-align: center;
+}
+
+
+/* 제품 사양 테이블 */
+.specs-table-wrap {
+    flex: 1;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden;
+}
+
+.specs-table thead tr {
+    background: #f5f5f5; border-bottom: 2px solid #e0e0e0;
+}
+
+.specs-table thead th {
+    font-size: 1.5rem; font-weight: 600; color: var(--text); padding: 15px 20px; text-align: center;
+}
+
+.specs-table tbody th,
+.specs-table tbody td {
+    font-size: 1.4rem; padding: 14px 20px; border-bottom: 1px solid #eee; vertical-align: middle;
+}
+
+.specs-table tbody th {
+    width: 180px;
+    font-weight: 500; color: var(--text); background: #fafafa; text-align: left;
+}
+
+.specs-table tbody td {
+    font-weight: 400; color: #555; text-align: left;
+}
+
+.specs-table tbody tr:last-child th,
+.specs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+
+
+
+/* ----------------------------------------------------------------------- */
 /* ===========================
     Responsive - Tablet
 =========================== */
@@ -215,9 +401,29 @@
     .prodThumbSwiper .swiper-slide {
         width: 75px; height: 75px;
     }
+
+    /* Features */
+    .feature-item {
+        gap: 40px;
+    }
+    
+    .feature-item .feature-img {
+        width: 450px;
+    }
+    
+    /* Specs */
+    .specs-content {
+        flex-direction: column; gap: 50px;
+    }
+    
+    .specs-diagram,
+    .specs-table-wrap {
+        width: 100%;
+    }
 }
 
 
+/* ----------------------------------------------------------------------- */
 /* ===========================
     Responsive - Mobile
 =========================== */
@@ -287,5 +493,68 @@
     
     .hashtag-list li {
         font-size: 1.3rem; padding: 6px 14px;
+    }
+
+    /* Features Section */
+    .features-section {
+        padding: 60px 0;
+    }
+    
+    .features-list {
+        gap: 50px;
+    }
+    
+    .feature-item {
+        flex-direction: column; gap: 25px;
+    }
+    
+    .feature-item .feature-img {
+        width: 100%;
+    }
+    
+    .feature-item .feature-content {
+        padding-left: 15px;
+    }
+    
+    .feature-item .feature-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .feature-item .feature-content p {
+        font-size: 1.4rem;
+    }
+    
+    .monitoring-type h4 {
+        font-size: 1.5rem;
+    }
+    
+    /* Specs Section */
+    .specs-section {
+        padding: 60px 0;
+    }
+    
+    .specs-sub-title {
+        font-size: 1.4rem; padding: 8px 20px;
+    }
+    
+    .diagram-wrap {
+        padding: 25px;
+    }
+    
+    .diagram-label {
+        display: none;
+    }
+    
+    .specs-table thead th {
+        font-size: 1.3rem; padding: 12px 15px;
+    }
+    
+    .specs-table tbody th,
+    .specs-table tbody td {
+        font-size: 1.2rem; padding: 12px 15px;
+    }
+    
+    .specs-table tbody th {
+        width: 110px;
     }
 }
