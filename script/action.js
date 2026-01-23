@@ -1,107 +1,66 @@
-$('header').load('/include/header.html', function(){
-    gnbAction();
-    
-    /* $('.hamburger').click(function(){
-        $('.hamburger').toggleClass('on')
-        $('header nav').toggleClass('on')
-    }) */
-})
-$('footer').load('/include/footer.html', function(){
-    gnbAction();
-})
-
-$(function () {
-    /* 1. 라이브러리 초기화 (AOS)
-     * 이미지 로딩 등으로 인한 높이 계산 오류를 방지하기 위해 window load 시점에 실행 권장 */
-    $(window).on('load', function () {
-        AOS.init({
-            duration: 800,
-            once: false,    // 스크롤 올릴 때 다시 사라지게 설정
-            mirror: true,   // 요소 지나칠 때 애니메이션 역재생
-            offset: 120
-        });
-    });
-
-    /* 2. Swiper 슬라이더 제어 */
-    
-    // 메인 히어로 (Section: Hero)
-    let heroSwiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        loop: true,
-        speed: 1200,
-        spaceBetween: 0,
-        autoplay: {
-            delay: 4500,
-            disableOnInteraction: false,
-        },
-        // [성능 최적화] 드래그 시 흰색 깜빡임 방지 및 렌더링 안정화
-        watchSlidesProgress: true,
-        grabCursor: true,
-        preventClicks: true,
-        observer: true,
-        observeParents: true,
-
-        navigation: {
-            nextEl: ".mySwiper .swiper-button-next",
-            prevEl: ".mySwiper .swiper-button-prev",
-        },
-        pagination: {
-            el: ".mySwiper .swiper-pagination",
-            clickable: true,
-        },
-        on: {
-            // 슬라이드 변경 시 AOS 위치 재계산 (충돌 방지)
-            transitionEnd: function() {
-                AOS.refresh();
-            }
-        }
-    });
-
-    // 섹션 3 제품 구축 사례 (Coverflow Effect 적용)
-    let sec3Swiper = new Swiper(".sec3Swiper", {
-        effect: "coverflow", // 커버플로우 효과 활성화
-        grabCursor: true,
-        centeredSlides: true, // 가운데 정렬 필수
-        slidesPerView: "auto", // 너비를 CSS에서 조절할 수 있게 auto 설정
-        loop: true,
-        speed: 1200,
-        coverflowEffect: {
-            rotate: 0,    // 슬라이드 회전 각도
-            stretch: -200,     // 슬라이드 사이 간격 (겹침 정도)
-            depth: 200,     // 깊이감 (숫자가 클수록 멀어짐)
-            modifier: 1,    // 효과 배수
-            slideShadows: true, // 그림자 활성화
-        },
-        autoplay: {
-            delay: 4500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".sec3Swiper .swiper-pagination",
-            clickable: true,
-        },
-        on: {
-            transitionEnd: function() {
-                AOS.refresh(); // 슬라이드가 넘어갈 때마다 AOS 높이 갱신
-            }
-        }
-    });
-
-
-    /* 3. UI 컴포넌트 제어 (Header, Buttons) */
-    let $header = $('header');
-
-    $header.on({
+// 1. gnbAction 함수 정의 (스크립트 최상단에 배치)
+function gnbAction() {
+    // 서브메뉴(lnb) 제어 로직
+    $('header').on({
         'mouseenter': function() {
-            // 마우스를 올릴 때 비로소 .lnb를 찾음 (미리 찾아두지 않음)
             $(this).find('.lnb, .lnb_bg').stop().slideDown(200);
         },
         'mouseleave': function() {
             $(this).find('.lnb, .lnb_bg').stop().slideUp(200);
         }
     });
+}
 
-    // TOP 버튼
+// 2. 헤더 및 푸터 로드
+$(function() {
+    // intro.html과 index.html이 모두 최상위에 있으므로 경로는 동일합니다.
+    $('header').load('include/header.html', function() {
+        gnbAction(); // 로드 완료 후 실행
+    });
+
+    $('footer').load('include/footer.html');
+
+    /* 3. 라이브러리 초기화 (AOS) */
+    $(window).on('load', function () {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: false,
+                mirror: true,
+                offset: 120
+            });
+        }
+    });
+
+    /* 4. Swiper 슬라이더 제어 */
+    // 메인 슬라이더 (요소가 있을 때만 실행하여 에러 방지)
+    if ($('.mySwiper').length > 0) {
+        new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            loop: true,
+            speed: 1200,
+            autoplay: { delay: 4500, disableOnInteraction: false },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            on: { transitionEnd: function() { if(typeof AOS !== 'undefined') AOS.refresh(); } }
+        });
+    }
+
+    // 섹션 3 슬라이더 (요소가 있을 때만 실행)
+    if ($('.sec3Swiper').length > 0) {
+        new Swiper(".sec3Swiper", {
+            effect: "coverflow",
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            speed: 1200,
+            coverflowEffect: { rotate: 0, stretch: -200, depth: 200, modifier: 1, slideShadows: true },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            on: { transitionEnd: function() { if(typeof AOS !== 'undefined') AOS.refresh(); } }
+        });
+    }
+
+    /* 5. TOP 버튼 */
     $('.btnTop').on('click', function(e) {
         e.preventDefault();
         $('html, body').stop().animate({ scrollTop: 0 }, 600);

@@ -1,0 +1,112 @@
+
+body {
+  }
+
+.hero {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  background: transparent;
+}
+  /* 이미지 높이랑 맞춰 */
+
+
+/* 이미지 */
+.hero-image{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.hero-image img{
+  height: 100%;
+  width: auto;
+  display: block;
+}
+/* 텍스트 */
+.hero-content {
+  padding: 80px 0 0 80px;
+}
+
+.hero-content strong {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+/* 모바일 대응 */
+ /* COMPANY INTRO */
+.company-intro {
+  padding: 120px 80px;
+}
+
+.company-intro h2 {
+  font-size: 32px;
+  margin-bottom: 48px;
+}
+
+.ceo-message h3 {
+  font-size: 22px;
+  margin-bottom: 24px;
+  
+ 
+}
+
+.ceo-bg {
+ position: relative;
+  width: 100%;
+  min-height: 600px; /* 내용에 맞춰 높이 확보 */
+  overflow: hidden;
+  border-radius: 50px 0 50px 0; /* 이미지의 굴곡을 CSS로도 줄 수 있습니다 */
+ 
+}
+
+.ceo-bg img {
+ display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 이미지 위 전체 텍스트 영역 */
+.ceo-bg-content {
+  position: absolute;
+  inset: 0;
+  padding: 60px 80px;
+
+  display: flex;
+  gap: 80px;
+
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* 좌우 비율 */
+.ceo-left {
+  flex: 1.2;
+}
+
+.ceo-right {
+  flex: 1;padding-top: 155px;
+}
+
+.ceo-bg-content p {
+  margin-bottom: 24px;
+}
+
+/* 마지막 문단 강조 */
+.ceo-strong {
+  font-weight: 700;
+}
+
+/* 글씨 가독성용 오버레이 (강추) */
+.ceo-bg::after {
+  display: none;
+}
+
+.ceo-bg-content {
+  position: absolute;
+  z-index: 1;
+}
