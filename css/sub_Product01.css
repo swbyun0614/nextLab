@@ -359,6 +359,9 @@ h2.section-title {
 .option_tl .container .tl-content .tl01 p {
     font-weight: 500; font-size: 2rem; line-height: 2; padding: 40px 0 80px;
 }
+.option_tl .container .tl-content .tl01 img {
+    width: 100%;
+}
 
 .option_tl .container .tl-content .tl02 {
     margin-bottom: 200px;
