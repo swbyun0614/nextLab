@@ -13,19 +13,8 @@
     --bg-light: #f8f8f8;
 }
 
-.h2bg_left {
-    content: "";
-    position: absolute; left: -200px; top: -18px; z-index: -1;
-    display: flex;
-    background: url(../images/title_bg_left.png); width: 36vw; height: 103px;
-    background-position: right center;
-}
-.h2bg_right {
-    content: "";
-    position: absolute; right: -200px; top: -18px; z-index: -1;
-    display: flex;
-    background: url(../images/title_bg_right.png); width: 36vw; height: 103px;
-}
+.features-section .container .h2bg_left,
+.features-section .container .h2bg_right {z-index: 0;}
 
 
 /* ===========================
@@ -210,14 +199,37 @@
     font-size: 1.6rem; font-weight: 600; color: var(--text); background: #efefef; padding: 8px 18px; border-radius: 10px; transition: .2s;
 }
 
+
+/* ===========================
+    prod_intro
+=========================== */
+.prod_intro {
+    background: url(../images/sub_prod_textBg.png) #F8F8F8;
+    width: 100%;
+}
+.prod_intro h2 {
+    padding-top: 40px;
+}
+.prod_intro h2 .tbo {
+    
+}
+.prod_intro h2 .tb {
+    
+}
+.prod_intro p {
+    font-size: 2rem; font-weight: 500; text-align: center; line-height: 2; padding: 20px 0 40px;
+}
+
+
 /* ===========================
     Features Section (특장점)
 =========================== */
 .features-section {
-    padding: 100px 0; background: #fff;
+    background: #fff;
 }
 
 h2.section-title {
+    position: relative;
     margin-bottom: 100px;
 }
 
@@ -227,11 +239,11 @@ h2.section-title {
 
 /* 특장점 아이템 */
 .feature-item {
-    display: flex; align-items: flex-start; gap: 50px;
+    display: flex; align-items: center; gap: 50px;
 }
 
 .feature-item .feature-img {
-    width: 580px;
+    width: 38vw;
     flex-shrink: 0; margin: 0;
 }
 
@@ -240,12 +252,12 @@ h2.section-title {
 }
 
 .feature-item .feature-content {
-    flex: 1; padding-left: 30px;
+    padding-left: 30px;
 }
 
 .feature-item .feature-content h3 {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 2.2rem; font-weight: 700; color: var(--text); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 19px;
+    font-size: 2.4rem; font-weight: 700; margin-bottom: 45px;
 }
 
 .feature-item .feature-content h3 .bar {
@@ -255,7 +267,7 @@ h2.section-title {
 }
 
 .feature-item .feature-content p {
-    font-size: 1.6rem; font-weight: 400; line-height: 1.9; color: #555; margin-bottom: 18px;
+    font-size: 2rem; font-weight: 500; line-height: 1.9; margin-bottom: 18px;
 }
 
 .feature-item .feature-content p:last-child {
@@ -268,7 +280,7 @@ h2.section-title {
 }
 
 .monitoring-type h4 {
-    font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 8px;
+    font-size: 2rem; font-weight: 700; margin-bottom: 8px;
 }
 
 .monitoring-type p {
@@ -280,107 +292,96 @@ h2.section-title {
     Specs Section (제품 스펙)
 =========================== */
 .specs-section {
-    padding: 100px 0; background: var(--bg-light);
+    padding: 100px 0 0;
 }
 
 .specs-content {
-    display: flex; align-items: flex-start; gap: 60px;
+    display: flex; align-items: flex-start; flex-direction: column; text-align: center;
 }
 
 /* 제품 전면도 */
 .specs-diagram {
-    flex: 1;
 }
 
-.specs-sub-title {
-    display: inline-block;
-    font-size: 1.6rem; font-weight: 500; color: #fff; background: var(--maincolor1); padding: 10px 30px; border-radius: 25px; margin-bottom: 30px;
-}
-
-.diagram-wrap {
-    position: relative;
-    padding: 40px; background: #fff; border-radius: 15px;
-}
-
-.diagram-wrap > img {
-    display: block;
+.specs-diagram img {
     width: 100%;
-    max-width: 350px; margin: 0 auto;
-}
-
-/* 다이어그램 라벨 */
-.diagram-label {
-    position: absolute;
-    margin: 0;
-}
-
-.diagram-label dt {
-    font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 5px;
-}
-
-.diagram-label dd {
-    font-size: 1.3rem; font-weight: 400; line-height: 1.6; color: #666; margin: 0;
-}
-
-/* 라벨 위치 - 시안 기준 */
-.label-camera {
-    top: 10%; right: 8%;
-    text-align: left;
-}
-
-.label-power {
-    top: 38%; left: 8%;
-    text-align: right;
-}
-
-.label-battery {
-    top: 50%; right: 5%;
-    text-align: left;
-}
-
-.label-tripod {
-    bottom: 15%; left: 50%; transform: translateX(-50%);
-    text-align: center;
 }
 
 
 /* 제품 사양 테이블 */
 .specs-table-wrap {
-    flex: 1;
+    width: 46.7vw; margin: 160px auto 0;
 }
 
 .specs-table {
-    width: 100%;
-    border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden;
+    width: 100%; margin-top: 80px;
 }
 
 .specs-table thead tr {
-    background: #f5f5f5; border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid #ADADAD;
 }
 
 .specs-table thead th {
-    font-size: 1.5rem; font-weight: 600; color: var(--text); padding: 15px 20px; text-align: center;
+    font-size: 2rem; font-weight: 600; padding: 17px 0; text-align: left; color: #3d3d3d;
 }
 
 .specs-table tbody th,
 .specs-table tbody td {
-    font-size: 1.4rem; padding: 14px 20px; border-bottom: 1px solid #eee; vertical-align: middle;
+    font-size: 2rem; padding: 20px 0px; border-bottom: 2px solid #e3e3e3; color: #3d3d3d;
+}
+
+.specs-table tbody tr:first-child th,
+.specs-table tbody tr:first-child td {
+    padding-top: 45px;
 }
 
 .specs-table tbody th {
-    width: 180px;
-    font-weight: 500; color: var(--text); background: #fafafa; text-align: left;
+    width: 16.8vw; font-weight: 500; text-align: left;
 }
 
 .specs-table tbody td {
-    font-weight: 400; color: #555; text-align: left;
+    font-weight: 500; color: #555; text-align: left;
 }
 
-.specs-table tbody tr:last-child th,
-.specs-table tbody tr:last-child td {
-    border-bottom: none;
+
+/* ===========================
+    option (Time-lapse)
+=========================== */
+.option_tl {
+    text-align: center;
+}
+.option_tl .container .tl-content {
+    padding-top: 10px;
+}
+.option_tl .container .tl-content .tl01 {
+    margin-bottom: 200px;
+}
+.option_tl .container .tl-content .tl01 p {
+    font-weight: 500; font-size: 2rem; line-height: 2; padding: 40px 0 80px;
 }
 
+.option_tl .container .tl-content .tl02 {
+    margin-bottom: 200px;
+}
+.option_tl .container .tl-content .tl02 > ul {
+    padding-top: 40px;
+}
+.option_tl .container .tl-content .tl02 > ul li .fst_li,
+.option_tl .container .tl-content .tl02 > ul li .sec_li {
+    display: flex; justify-content: center; gap: 3.33vw;
+}
+.option_tl .container .tl-content .tl02 > ul li .fst_li li,
+.option_tl .container .tl-content .tl02 > ul li .sec_li li {
+    position: relative;
+}
+.option_tl .container .tl-content .tl02 > ul li .fst_li li p,
+.option_tl .container .tl-content .tl02 ul li .sec_li li p {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 100%; color: #fff; font-size: 2.4rem; font-weight: 500; line-height: 1.8;
+}
+.option_tl .container .tl-content .tl03 {
+  
+}
 
 
 
@@ -533,7 +534,7 @@ h2.section-title {
         padding: 60px 0;
     }
     
-    .specs-sub-title {
+    .sub_title_db {
         font-size: 1.4rem; padding: 8px 20px;
     }
     

@@ -34,18 +34,26 @@ h2 {z-index: 10;
 .tbo {color: var(--maincolor1); font-weight: 600;}
 .tb {font-weight: 600;}
 strong {font-weight: 600;}
+h2.smalltext {font-size: 2.8rem;}
 .h2bg_left {
-    content: "";
     position: absolute; left: -200px; top: -18px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_left.png); width: 36vw; height: 103px;
     background-position: right center;
 }
 .h2bg_right {
-    content: "";
     position: absolute; right: -200px; top: -18px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_right.png); width: 36vw; height: 103px;
+}
+.h2bg_left.smalltext {
+    top: -28px;
+}
+.h2bg_right.smalltext {
+    top: -28px;
+}
+.sub_title_db {
+    width: 29.7vw; font-size: 2.8rem; font-weight: 600; color: #fff; background: var(--dark-blue); padding: 13px 0; border-radius: 30px; margin: 80px auto 40px;
 }
 
 /* PC/모바일 분기 기본 설정 */
