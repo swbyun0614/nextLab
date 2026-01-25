@@ -389,7 +389,7 @@ h2.section-title {
     width: 41.1vw;
 }
 .tl03_text_wrap {
-    display: flex; margin: 80px 0; gap: 30px; justify-content: center;
+    display: flex; margin: 40px 0 80px; gap: 30px; justify-content: center;
 }
 .tl03_text_wrap p {
     display: flex; flex-direction: column; gap: 20px;
