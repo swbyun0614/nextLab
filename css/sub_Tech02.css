@@ -213,54 +213,37 @@ button {
 }
 
 .case-header1, 
-.case-header5, 
+.case-header3, 
+.case-header5,
+.case-header7,
 .case-header9 {
   background: var(--color-secondary) url(../sub_Tech02_images/sub_Tech02_img1.png);
   background-size: cover;
   background-position: center;
-  padding: var(--spacing-sm) clamp(20px, 4vw, 50px);
-  min-height: 94px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.case-header3, 
-.case-header7 {
-  background: var(--color-secondary) url(../sub_Tech02_images/sub_Tech02_img3.png);
-  background-size: cover;
-  background-position: center;
-  padding: var(--spacing-sm) clamp(20px, 4vw, 50px);
-  min-height: 94px;
+  height: 94px;                 /* ✅ 박스 키 딱 고정 */
+  padding: 0 clamp(20px, 4vw, 50px); /* ✅ 위아래 0, 좌우만 */
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.case-header4, 
-.case-header6 {
-  background: var(--color-secondary) url(../sub_Tech02_images/sub_Tech02_img4.png);
-  background-size: cover;
-  background-position: center;
-  padding: var(--spacing-sm) clamp(20px, 4vw, 50px);
-  min-height: 94px;
-  display: flex;
-  align-items: center;
+  align-items: center;          /* ✅ 글자/숫자 위아래 가운데 */
   justify-content: space-between;
 }
 
 .case-header2, 
-.case-header8, 
+.case-header4, 
+.case-header6,
+.case-header8,
 .case-header10 {
   background: var(--color-secondary) url(../sub_Tech02_images/sub_Tech02_img2.png);
   background-size: cover;
   background-position: center;
-  padding: var(--spacing-sm) clamp(20px, 4vw, 50px);
-  min-height: 94px;
+
+  height: 94px;                 /* ✅ 박스 키 딱 고정 */
+  padding: 0 clamp(20px, 4vw, 50px); /* ✅ 위아래 0, 좌우만 */
   display: flex;
-  align-items: center;
+  align-items: center;          /* ✅ 글자/숫자 위아래 가운데 */
   justify-content: space-between;
 }
+
 
 .case-title {
   color: white;
@@ -268,6 +251,7 @@ button {
   font-weight: 600;
   line-height: 1.5;
   flex: 1;
+  margin: 0;
 }
 
 .case-number {
@@ -275,8 +259,9 @@ button {
   font-size: clamp(24px, 2.2vw, 32px);
   font-weight: 700;
   line-height: 1;
-  margin-left: var(--spacing-md);
   flex-shrink: 0;
+  margin: 0;                 /* 기본 마진 0 */
+  margin-left: var(--spacing-md); /* ✅ 왼쪽만 띄우기 */
 }
 
 .case-image {
@@ -454,11 +439,12 @@ button {
   .case-header8,
   .case-header9,
   .case-header10 {
-    padding: var(--spacing-sm) 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-xs);
-    min-height: auto;
+    height: 94px;
+    padding: 0 30px;
+    flex-direction: row;      /* ✅ 다시 가로 배치 */
+    align-items: center;      /* ✅ 위아래 가운데 */
+    justify-content: space-between;
+    gap: 0;
   }
   
   .case-title {
@@ -469,7 +455,6 @@ button {
   .case-number {
     font-size: 20px;
     margin-left: 0;
-    align-self: flex-end;
   }
   
   .case-image {
