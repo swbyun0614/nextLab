@@ -21,7 +21,7 @@
     Product Picker Section
 =========================== */
 .product-picker {
-    padding: 40px 0 10px;
+    padding: 0px 0 10px;
 }
 
 .container.sec1 {
@@ -228,7 +228,7 @@
     background: #fff;
 }
 
-h2.section-title {
+h2.section-title.smalltext {
     position: relative;
     margin-bottom: 100px;
 }
@@ -293,6 +293,9 @@ h2.section-title {
 =========================== */
 .specs-section {
     padding: 100px 0 0;
+}
+body.prod05 .specs-table-wrap {
+    margin: 0 auto;
 }
 
 .specs-content {
@@ -386,7 +389,7 @@ h2.section-title {
     display: flex; flex-direction: column; align-items: center;
 }
 .tl03 .sub_title_db {
-    width: 41.1vw;
+    width: 41.1vw; margin-top: 0;
 }
 .tl03_text_wrap {
     display: flex; margin: 40px 0 80px; gap: 30px; justify-content: center;
