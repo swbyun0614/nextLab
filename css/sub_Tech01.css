@@ -369,3 +369,32 @@ justify-content: center; /* 유지 */
 height: 404px; /* 기존 404px이면 가운데가 조금 어긋날 수 있음 */
 }
 
+/* ============================
+MOBILE TITLE CENTER ALIGN
+============================ */
+@media (max-width: 768px) {
+
+.tech-hero__inner {
+text-align: center;
+}
+
+.tech-hero__kicker {
+justify-content: center;
+}
+
+.tech-hero__title {
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+
+.tech-hero__media {
+display: flex;
+justify-content: center;
+}
+
+.tech-hero__media img {
+margin: 0 auto;
+}
+}
+
