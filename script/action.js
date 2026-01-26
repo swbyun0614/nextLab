@@ -254,17 +254,129 @@ var prodMainSwiper = new Swiper('.prodMainSwiper', {
 // Solution 02 갤러리 페이지네이션 및 상단 이미지 변경 기능
 
 $(function() {
+    $(function() {
     /************************************************************
-     * ✅ 갤러리 데이터
+     * ✅ 데이터 설정값 (여기만 수정)
      ************************************************************/
-    const items = Array.from({ length: 53 }, (_, i) => {
+    const TOTAL_IMAGES = 53;           // 전체 이미지 개수
+    const IMG_PATH = "images/solution02_gridData/img_";    // 이미지 경로 및 앞부분 파일명
+    const IMG_EXT = ".png";            // 이미지 확장자
+    const PER_PAGE = 12;               // 한 페이지당 보여줄 개수
+    const PAGE_WINDOW = 5;             // 페이지네이션 범위
+
+    let currentPage = 1;
+    let selectedId = null;
+
+    // 데이터 자동 생성 (img_1.jpg, img_2.jpg... 형식)
+    const items = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
         const n = i + 1;
         return {
             id: n,
-            title: `현장 스냅샷 ${String(n).padStart(2, "0")}`,
-            img: `images/sec3_img1.png`
+            img: `${IMG_PATH}${n}${IMG_EXT}`
         };
     });
+    // 제이쿼리 객체 캐싱
+    const $grid = $("#grid");
+    const $pager = $("#pager");
+    const $heroImg = $("#heroImg");
+    const $heroCaption = $("#heroCaption");
+
+    /************************************************************
+     * ✅ 핵심 기능 함수
+     ************************************************************/
+
+    function getTotalPages() {
+        return Math.ceil(items.length / PER_PAGE);
+    }
+
+    // 상단 메인 이미지 변경 (타이틀 제외, 파일명 등으로 대체 가능)
+    function setHero(item) {
+        if (!item) return;
+        $heroImg.attr({ "src": item.img, "alt": `이미지 ${item.id}` });
+        $heroCaption.text(`▲ Image ${item.id}`); // 타이틀 대신 순번 표시
+    }
+
+    // 그리드 렌더링
+    function renderGrid(page) {
+        const start = (page - 1) * PER_PAGE;
+        const pageItems = items.slice(start, start + PER_PAGE);
+
+        const html = pageItems.map((it) => `
+            <article class="card" data-id="${it.id}" tabindex="0" role="button">
+                <div class="thumb">
+                    <img src="${it.img}" alt="이미지 ${it.id}" loading="lazy">
+                </div>
+            </article>
+        `).join("");
+
+        $grid.html(html);
+
+        // 카드 클릭 이벤트
+        $grid.find(".card").on("click keydown", function(e) {
+            if (e.type === "keydown" && e.key !== "Enter") return;
+            
+            const id = $(this).data("id");
+            const item = items.find(x => x.id === id);
+            selectedId = id;
+            setHero(item);
+        });
+
+        // 처음 로드하거나 페이지 이동 시 hero 유지 로직
+        if (selectedId === null && pageItems.length) {
+            selectedId = pageItems[0].id;
+            setHero(pageItems[0]);
+        } else {
+            const selectedItem = items.find(x => x.id === selectedId);
+            if (selectedItem) setHero(selectedItem);
+        }
+    }
+
+    // 페이지네이션 렌더링
+    function renderPager(page) {
+        const total = getTotalPages();
+        const start = Math.floor((page - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
+        const end = Math.min(start + PAGE_WINDOW - 1, total);
+
+        let pagerHtml = `
+            <button type="button" data-action="first" ${page === 1 ? "disabled" : ""}>«</button>
+            <button type="button" data-action="prev" ${page === 1 ? "disabled" : ""}>‹</button>
+        `;
+
+        for (let p = start; p <= end; p++) {
+            pagerHtml += `<button type="button" class="num ${p === page ? "active" : ""}" data-page="${p}">${p}</button>`;
+        }
+
+        pagerHtml += `
+            <button type="button" data-action="next" ${page === total ? "disabled" : ""}>›</button>
+            <button type="button" data-action="last" ${page === total ? "disabled" : ""}>»</button>
+        `;
+
+        $pager.html(pagerHtml);
+    }
+
+    function goToPage(page) {
+        const total = getTotalPages();
+        currentPage = Math.min(Math.max(1, page), total);
+        renderGrid(currentPage);
+        renderPager(currentPage);
+    }
+
+    // 페이지네이션 클릭 이벤트
+    $pager.on("click", "button", function() {
+        const $btn = $(this);
+        const pageNum = $btn.data("page");
+        const action = $btn.data("action");
+
+        if (pageNum) goToPage(pageNum);
+        else if (action === "first") goToPage(1);
+        else if (action === "prev")  goToPage(currentPage - 1);
+        else if (action === "next")  goToPage(currentPage + 1);
+        else if (action === "last")  goToPage(getTotalPages());
+    });
+
+    // 초기 실행
+    goToPage(1);
+});
 
     /************************************************************
      * ✅ 설정값 & 요소 선택
@@ -300,7 +412,6 @@ $(function() {
             "src": item.img,
             "alt": item.title
         });
-        $heroCaption.text(`▲ ${item.title}`);
     }
 
     // 그리드 렌더링
@@ -315,9 +426,6 @@ $(function() {
             aria-label="${escapeHtml(it.title)} 상단에 표시">
                 <div class="thumb">
                     <img src="${it.img}" alt="${escapeHtml(it.title)}" loading="lazy">
-                </div>
-                <div class="meta">
-                    <div class="title">${escapeHtml(it.title)}</div>
                 </div>
             </article>
         `).join("");

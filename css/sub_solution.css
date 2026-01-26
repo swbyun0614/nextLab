@@ -71,7 +71,7 @@
 .solu02Swiper {
     width: 100%;
     overflow: hidden; /* 슬라이더 밖으로 나가는 이미지 숨김 */
-    padding: 50px 0 0px;
+    padding: 50px 0 0px; cursor: grab;
 }
 
 .solu02Swiper .swiper-wrapper {
