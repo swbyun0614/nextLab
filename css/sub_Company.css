@@ -224,17 +224,18 @@ img {
 }
 
 .hero-image {
-    width: 100%;
-    flex: 1;
-    margin: 0;
-    border: 1px solid red;
+  border-radius: 0;
+  overflow: hidden;   /* 👈 이게 제일 중요 */
 }
 
+
 .hero-image img {
-    width: 100%;
-    max-width: 1077px;
-    height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;   /* ❌ 여기선 둥글게 하지 않음 */
 }
+
 
 /* ======================
    CEO 섹션
@@ -472,6 +473,23 @@ img {
     .footer-container {
         padding: 0 100px;
     }
+
+.hero-image {
+    background-image: url("../sub_Company_images/sub_mobile_img1.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border-radius: 0;
+    overflow: hidden;
+
+    width: 100%;
+    height: 420px;   /* 👈 이 줄이 제일 중요 */
+}
+
+.hero-image img {
+    display: none;
+}
 }
 
 @media screen and (max-width: 1024px) {
@@ -536,7 +554,20 @@ img {
     .footer-content {
         gap: 50px;
     }
+
+  .hero-image {
+    border-radius: 0;
+    height: 300px;   /* 태블릿 */
+  }
+
+
+
+    .hero-image img {
+    border-radius: 0; /* 📱 태블릿부터 일반 이미지 */
+  }
 }
+
+
 
 /* ======================
    반응형 - 모바일
@@ -606,6 +637,10 @@ img {
     .hero-description {
         font-size: 26px;
     }
+
+    .hero-image {
+        height: 240px;   /* 모바일 */
+  }
 
     .ceo-section {
         margin-top: 50px;
