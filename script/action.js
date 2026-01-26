@@ -254,11 +254,10 @@ var prodMainSwiper = new Swiper('.prodMainSwiper', {
 // Solution 02 갤러리 페이지네이션 및 상단 이미지 변경 기능
 
 $(function() {
-    $(function() {
     /************************************************************
      * ✅ 데이터 설정값 (여기만 수정)
      ************************************************************/
-    const TOTAL_IMAGES = 53;           // 전체 이미지 개수
+    const TOTAL_IMAGES = 60;           // 전체 이미지 개수
     const IMG_PATH = "images/solution02_gridData/img_";    // 이미지 경로 및 앞부분 파일명
     const IMG_EXT = ".png";            // 이미지 확장자
     const PER_PAGE = 12;               // 한 페이지당 보여줄 개수
@@ -292,8 +291,32 @@ $(function() {
     // 상단 메인 이미지 변경 (타이틀 제외, 파일명 등으로 대체 가능)
     function setHero(item) {
         if (!item) return;
-        $heroImg.attr({ "src": item.img, "alt": `이미지 ${item.id}` });
-        $heroCaption.text(`▲ Image ${item.id}`); // 타이틀 대신 순번 표시
+        
+        // 현재 이미지의 src 확인
+        const currentSrc = $heroImg.attr('src');
+        
+        // 같은 이미지면 변경하지 않음
+        if (currentSrc === item.img) return;
+        
+        // active 클래스 제거 (페이드 아웃 시작)
+        $heroImg.removeClass('active');
+        
+        // 이미지 변경 및 페이드 인
+        setTimeout(function() {
+            $heroImg.attr({ "src": item.img, "alt": `이미지 ${item.id}` });
+            
+            // 이미지 로드 완료 후 active 추가 (페이드 인)
+            const img = new Image();
+            img.onload = function() {
+                $heroImg.addClass('active');
+            };
+            img.src = item.img;
+            
+            // 이미지가 이미 캐시되어 있으면 즉시 표시
+            if (img.complete) {
+                $heroImg.addClass('active');
+            }
+        }, 200);
     }
 
     // 그리드 렌더링
@@ -318,6 +341,12 @@ $(function() {
             const id = $(this).data("id");
             const item = items.find(x => x.id === id);
             selectedId = id;
+            
+            // 모든 카드에서 selected 클래스 제거
+            $grid.find(".card").removeClass("selected");
+            // 현재 클릭한 카드에 selected 클래스 추가
+            $(this).addClass("selected");
+            
             setHero(item);
         });
 
@@ -329,6 +358,11 @@ $(function() {
             const selectedItem = items.find(x => x.id === selectedId);
             if (selectedItem) setHero(selectedItem);
         }
+        
+        // 현재 선택된 카드에 selected 클래스 적용
+        if (selectedId !== null) {
+            $grid.find(`.card[data-id="${selectedId}"]`).addClass("selected");
+        }
     }
 
     // 페이지네이션 렌더링
@@ -338,8 +372,8 @@ $(function() {
         const end = Math.min(start + PAGE_WINDOW - 1, total);
 
         let pagerHtml = `
-            <button type="button" data-action="first" ${page === 1 ? "disabled" : ""}>«</button>
-            <button type="button" data-action="prev" ${page === 1 ? "disabled" : ""}>‹</button>
+            <button type="button" data-action="first" ${page === 1 ? "disabled" : ""}><img src="images/sub_solu02_pagi_fst.png" alt="첫 페이지"></button>
+            <button type="button" data-action="prev" ${page === 1 ? "disabled" : ""}><img src="images/sub_solu02_pagi_prev.png" alt="이전 페이지"></button>
         `;
 
         for (let p = start; p <= end; p++) {
@@ -347,8 +381,8 @@ $(function() {
         }
 
         pagerHtml += `
-            <button type="button" data-action="next" ${page === total ? "disabled" : ""}>›</button>
-            <button type="button" data-action="last" ${page === total ? "disabled" : ""}>»</button>
+            <button type="button" data-action="next" ${page === total ? "disabled" : ""}><img src="images/sub_solu02_pagi_next.png" alt="다음 페이지"></button>
+            <button type="button" data-action="last" ${page === total ? "disabled" : ""}><img src="images/sub_solu02_pagi_last.png" alt="마지막 페이지"></button>
         `;
 
         $pager.html(pagerHtml);
@@ -374,146 +408,54 @@ $(function() {
         else if (action === "last")  goToPage(getTotalPages());
     });
 
-    // 초기 실행
-    goToPage(1);
-});
-
-    /************************************************************
-     * ✅ 설정값 & 요소 선택
-     ************************************************************/
-    const PER_PAGE = 12;
-    const PAGE_WINDOW = 5;
-    let currentPage = 1;
-    let selectedId = null;
-
-    // 제이쿼리 객체 캐싱
-    const $grid = $("#grid");
-    const $pager = $("#pager");
-    const $heroImg = $("#heroImg");
-    const $heroCaption = $("#heroCaption");
-
-    /************************************************************
-     * ✅ 기능 함수
-     ************************************************************/
-
-    function getTotalPages() {
-        return Math.ceil(items.length / PER_PAGE);
-    }
-
-    function sliceByPage(page) {
-        const start = (page - 1) * PER_PAGE;
-        return items.slice(start, start + PER_PAGE);
-    }
-
-    // 상단 메인 이미지 변경
-    function setHero(item) {
-        if (!item) return;
-        $heroImg.attr({
-            "src": item.img,
-            "alt": item.title
-        });
-    }
-
-    // 그리드 렌더링
-    function renderGrid(page) {
-        const pageItems = sliceByPage(page);
-
-        const html = pageItems.map((it) => `
-            <article class="card" 
-            data-id="${it.id}" 
-            tabindex="0" 
-            role="button" 
-            aria-label="${escapeHtml(it.title)} 상단에 표시">
-                <div class="thumb">
-                    <img src="${it.img}" alt="${escapeHtml(it.title)}" loading="lazy">
-                </div>
-            </article>
-        `).join("");
-
-        $grid.html(html);
-
-        // ✅ 클릭 및 엔터 이벤트 바인딩 (이벤트 위임 대신 개별 바인딩 방식 유지)
-        $grid.find(".card").on("click keydown", function(e) {
-            if (e.type === "keydown" && e.key !== "Enter") return;
-
-            const id = $(this).data("id");
-            const item = items.find(x => x.id === id);
-            
-            selectedId = id;
-            setHero(item);
-        });
-
-        // ✅ 페이지 이동 시 Hero 이미지 유지 로직
-        if (selectedId === null && pageItems.length) {
-            selectedId = pageItems[0].id;
-            setHero(pageItems[0]);
-        } else if (selectedId !== null) {
-            const selectedItem = items.find(x => x.id === selectedId);
-            if (selectedItem) setHero(selectedItem);
-        }
-    }
-
-    // 페이지네이션 렌더링
-    function renderPager(page) {
-        const total = getTotalPages();
-        const start = Math.floor((page - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
-        const end = Math.min(start + PAGE_WINDOW - 1, total);
-
-        let pagerHtml = `
-            <button type="button" data-action="first" ${page === 1 ? "disabled" : ""} aria-label="첫 페이지"><img src="images/sub_solu02_pagi_fst.png" alt="이전 페이지"></button>
-            <button type="button" data-action="prev" ${page === 1 ? "disabled" : ""} aria-label="이전 페이지"><img src="images/sub_solu02_pagi_prev.png" alt="이전 페이지"></button>
-        `;
-
-        for (let p = start; p <= end; p++) {
-            pagerHtml += `<button type="button" class="num ${p === page ? "active" : ""}" data-page="${p}" aria-label="${p}페이지">${p}</button>`;
-        }
-
-        pagerHtml += `
-            <button type="button" data-action="next" ${page === total ? "disabled" : ""} aria-label="다음 페이지"><img src="images/sub_solu02_pagi_next.png" alt="이전 페이지"></button>
-            <button type="button" data-action="last" ${page === total ? "disabled" : ""} aria-label="마지막 페이지"><img src="images/sub_solu02_pagi_last.png" alt="이전 페이지"></button>
-        `;
-
-        $pager.html(pagerHtml);
-    }
-
-    // 페이지 이동 처리
-    function goToPage(page) {
-        const total = getTotalPages();
-        currentPage = Math.min(Math.max(1, page), total);
-
-        renderGrid(currentPage);
-        renderPager(currentPage);
-    }
-
-    /************************************************************
-     * ✅ 이벤트 바인딩
-     ************************************************************/
-
-    // 페이지네이션 클릭 (이벤트 위임)
-    $pager.on("click", "button", function() {
-        const $btn = $(this);
-        const pageNum = $btn.data("page");
-        const action = $btn.data("action");
-
-        if (pageNum) {
-            goToPage(pageNum);
+    // 화살표 버튼 클릭 이벤트
+    $(".hero-arrow.prev").on("click", function() {
+        if (selectedId === null) return;
+        
+        const currentIndex = items.findIndex(x => x.id === selectedId);
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        const prevItem = items[prevIndex];
+        
+        selectedId = prevItem.id;
+        setHero(prevItem);
+        
+        // 현재 페이지에 해당 아이템이 있는지 확인
+        const itemPage = Math.ceil(prevItem.id / PER_PAGE);
+        if (itemPage !== currentPage) {
+            goToPage(itemPage);
         } else {
-            if (action === "first") goToPage(1);
-            if (action === "prev")  goToPage(currentPage - 1);
-            if (action === "next")  goToPage(currentPage + 1);
-            if (action === "last")  goToPage(getTotalPages());
+            // 같은 페이지면 selected 클래스만 업데이트
+            $grid.find(".card").removeClass("selected");
+            $grid.find(`.card[data-id="${selectedId}"]`).addClass("selected");
+        }
+    });
+    
+    $(".hero-arrow.next").on("click", function() {
+        if (selectedId === null) return;
+        
+        const currentIndex = items.findIndex(x => x.id === selectedId);
+        const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+        const nextItem = items[nextIndex];
+        
+        selectedId = nextItem.id;
+        setHero(nextItem);
+        
+        // 현재 페이지에 해당 아이템이 있는지 확인
+        const itemPage = Math.ceil(nextItem.id / PER_PAGE);
+        if (itemPage !== currentPage) {
+            goToPage(itemPage);
+        } else {
+            // 같은 페이지면 selected 클래스만 업데이트
+            $grid.find(".card").removeClass("selected");
+            $grid.find(`.card[data-id="${selectedId}"]`).addClass("selected");
         }
     });
 
-    function escapeHtml(str) {
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-    // 초기화 실행
+    // 초기 실행
     goToPage(1);
+    
+    // 첫 이미지 표시를 위해 active 클래스 추가
+    setTimeout(function() {
+        $heroImg.addClass('active');
+    }, 100);
 });
