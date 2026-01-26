@@ -33,7 +33,7 @@ body {overflow-x: visible !important;
 }
 /* 텍스트 */
 .hero-content {
-  padding: 80px 0 0 80px;
+  padding: 180px 0 180px 190px;
 }
 .hero-content p {
   font-size: 40px;   /* ✅ 밑에 문장 */
@@ -156,4 +156,165 @@ body {overflow-x: visible !important;
   font-size: 20px;
   font-weight: 600;
   margin-top: 40px;
+}
+
+/* ======================
+   반응형 - 태블릿
+====================== */
+@media screen and (max-width: 1024px) {
+    .hero {
+        height: 500px;
+    }
+
+    .hero-content {
+        padding: 60px 0 0 60px;
+    }
+
+    .hero-content strong {
+        font-size: 1.8rem;
+    }
+
+    .hero-text {
+        font-size: 32px;
+    }
+
+    .ceo-bg-content {
+        padding: 80px 60px;
+        gap: 60px;
+    }
+
+    .ceo-sub {
+        font-size: 28px;
+    }
+
+    .ceo-title {
+        font-size: 32px;
+    }
+
+    .ceo-text p {
+        font-size: 15px;
+    }
+
+    .ceo-inline-logo img {
+        width: 220px;
+    }
+}
+
+/* ======================
+   반응형 - 모바일
+====================== */
+@media screen and (max-width: 768px) {
+    .hero {
+        height: 400px;
+    }
+
+    .hero-image {
+        right: -100px;
+    }
+
+    .hero-content {
+        padding: 40px 20px;
+    }
+
+    .hero-content strong {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .hero-text {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .ceo-bg-content {
+        position: static;
+        padding: 40px 20px;
+        flex-direction: column;
+        gap: 40px;
+        color: #333;
+        background: #fff;
+    }
+
+    .ceo-bg img {
+        display: none;
+    }
+
+    .ceo-left,
+    .ceo-right {
+        flex: 1;
+    }
+
+    .ceo-sub {
+        font-size: 24px;
+    }
+
+    .ceo-title {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .ceo-text p {
+        font-size: 14px;
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+
+    .ceo-text p br {
+        display: none;
+    }
+
+    .ceo-inline-logo {
+        margin-bottom: 30px;
+    }
+
+    .ceo-inline-logo img {
+        width: 180px;
+    }
+
+    .ceo-sign {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+}
+
+/* ======================
+   반응형 - 작은 모바일
+====================== */
+@media screen and (max-width: 480px) {
+    .hero {
+        height: 350px;
+    }
+
+    .hero-content {
+        padding: 30px 16px;
+    }
+
+    .hero-content strong {
+        font-size: 1.3rem;
+    }
+
+    .hero-text {
+        font-size: 20px;
+    }
+
+    .ceo-bg-content {
+        padding: 30px 16px;
+        gap: 30px;
+    }
+
+    .ceo-sub {
+        font-size: 20px;
+    }
+
+    .ceo-title {
+        font-size: 22px;
+    }
+
+    .ceo-text p {
+        font-size: 13px;
+    }
+
+    .ceo-inline-logo img {
+        width: 150px;
+    }
 }
