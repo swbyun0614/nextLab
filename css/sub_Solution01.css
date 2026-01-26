@@ -1,0 +1,284 @@
+/* ========== sub_Solution01.css (FULL REPLACE) ========== */
+
+:root{
+--impact-max: 1920px;
+--impact-pad: 200px;
+
+--text: #111;
+--maincolor1: #F36A21;
+
+--ring-size: 16px;
+--ring-gap: 10px;
+--ring-orange: var(--maincolor1);
+--ring-green: #31C36A;
+
+--media: 260px;
+
+/* 간격(하단 3개가 너무 붙어서 늘림) */
+--gap-x: 100px;   /* 가로 간격 ↑ */
+--gap-y: 78px;   /* 세로 간격 ↑ (특히 위 2개 ↔ 아래 3개) */
+
+/* 카드 아래 텍스트 간격 */
+--media-bottom: 24px;
+}
+
+.impact{
+width: 100%;
+background:#fff;
+}
+
+.impact__wrap{
+width:min(100%, var(--impact-max));
+margin:0 auto;
+padding:150px var(--impact-pad) 140px;
+
+display:flex;
+align-items:flex-start;
+gap:10px;
+
+overflow:hidden;
+}
+
+/* 좌측 텍스트 */
+.impact__text{
+flex:0 0 520px;
+padding-top:40px;
+}
+
+.impact__eyebrow{
+font-size:35px;
+font-weight:600;
+color:var(--text);
+margin-bottom:18px;
+letter-spacing:-0.02em;
+}
+
+.impact__accent{
+color:var(--maincolor1);
+font-weight:700;
+}
+
+.impact__title{
+font-family: 'Isamanru';
+font-size:40px;
+line-height:1.35;
+font-weight:700;
+color:var(--text);
+letter-spacing:-0.03em;
+text-align: left;
+}
+
+/* 우측 카드 그룹 (2 + 3) */
+.impact__cards{
+margin-left:auto;
+width:min(980px, 100%);
+display:grid;
+
+grid-template-columns: repeat(6, 1fr);
+grid-template-areas:
+"c1 c1 c1 c2 c2 c2"
+"c3 c3 c4 c4 c5 c5";
+
+column-gap: var(--gap-x);
+row-gap: var(--gap-y);
+
+justify-items:center;
+align-items:start;
+min-width:0;
+}
+
+.impactCard{
+text-align:center;
+min-width:0;
+}
+
+.impactCard[data-card="1"]{ grid-area:c1; }
+.impactCard[data-card="2"]{ grid-area:c2; }
+.impactCard[data-card="3"]{ grid-area:c3; }
+.impactCard[data-card="4"]{ grid-area:c4; }
+.impactCard[data-card="5"]{ grid-area:c5; }
+
+/* 원형 */
+.impactCard__media{
+position:relative;
+width:var(--media);
+height:var(--media);
+margin:0 auto var(--media-bottom);
+border-radius:50%;
+overflow:visible;
+}
+
+.impactCard__media img{
+width:100%;
+height:100%;
+border-radius:50%;
+object-fit:cover;
+display:block;
+}
+
+/* 링(도넛) 레이어 */
+/* JS가 CSS 변수 --ringFill(각도) 를 프레임마다 갱신해서 “작게 시작→점점 채움”을 구현 */
+.impactCard__media::before{
+content:"";
+position:absolute;
+inset: calc(-1 * (var(--ring-size) + var(--ring-gap)));
+border-radius:50%;
+opacity:0;
+pointer-events:none;
+
+-webkit-mask: radial-gradient(
+farthest-side,
+transparent calc(100% - var(--ring-size)),
+#000 calc(100% - var(--ring-size) + 1px)
+);
+mask: radial-gradient(
+farthest-side,
+transparent calc(100% - var(--ring-size)),
+#000 calc(100% - var(--ring-size) + 1px)
+);
+
+/* 기본값(안보이게) */
+background: transparent;
+transform: rotate(var(--ringRotate, 0deg));
+}
+
+/* 오렌지 진행 중: 12시 시작(270deg)에서 --ringFill 만큼 채움 */
+.impactCard.is-animating .impactCard__media::before{
+opacity:1;
+background: conic-gradient(
+from 270deg,
+var(--ring-orange) 0deg var(--ringFill, 0deg),
+transparent var(--ringFill, 0deg) 360deg
+);
+}
+
+/* 완료 후: 초록 고정 */
+.impactCard.is-green .impactCard__media::before{
+opacity:1;
+transform: rotate(0deg);
+background: conic-gradient(var(--ring-green) 0deg 360deg);
+}
+
+/* 텍스트 */
+.impactCard__head{
+font-size:20px;
+font-weight:700;
+color:var(--text);
+margin-bottom:10px;
+margin-top: 40px;
+letter-spacing:-0.02em;
+line-height:1.3;
+max-width:320px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.impactCard__desc{
+font-size:15px;
+font-weight:500;
+color:#666;
+line-height:1.6;
+letter-spacing:-0.01em;
+max-width:320px;
+margin:0 auto;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1600px){
+:root{
+--impact-pad: 120px;
+--media: 240px;
+--gap-x: 46px;
+--gap-y: 70px;
+}
+.impact__wrap{
+padding:130px var(--impact-pad) 120px;
+gap:80px;
+}
+.impact__text{ flex-basis:480px; }
+.impact__title{ font-size:36px; }
+}
+
+@media screen and (max-width: 1280px){
+:root{
+--impact-pad: 80px;
+--media: 230px;
+--gap-x: 34px;
+--gap-y: 62px;
+}
+.impact__wrap{
+padding:120px var(--impact-pad) 110px;
+gap:64px;
+}
+.impact__text{
+flex-basis:420px;
+padding-top:20px;
+}
+}
+
+@media screen and (max-width: 1024px){
+:root{
+--impact-pad: 40px;
+--media: 220px;
+--gap-x: 24px;
+--gap-y: 54px;
+}
+.impact__wrap{
+padding:110px var(--impact-pad) 100px;
+flex-direction:column;
+align-items:center;
+gap:44px;
+}
+.impact__text{
+width:100%;
+max-width:760px;
+text-align:center;
+flex:none;
+padding-top:0;
+}
+.impact__cards{
+margin-left:0;
+width:100%;
+max-width:760px;
+
+grid-template-columns: repeat(2, minmax(0, 1fr));
+grid-template-areas:
+    "c1 c2"
+    "c3 c4"
+    "c5 c5";
+column-gap: 22px;
+row-gap: 52px;
+}
+}
+
+@media screen and (max-width: 768px){
+:root{
+--media: 210px;
+}
+.impact__wrap{
+padding:90px 20px 90px;
+gap:34px;
+}
+.impact__title{ font-size:28px; }
+.impact__cards{
+grid-template-columns: 1fr;
+grid-template-areas:
+    "c1"
+    "c2"
+    "c3"
+    "c4"
+    "c5";
+row-gap: 44px;
+}
+}
+
+
+/* ✅ PC 기본: 좌측 정렬 */
+.impact__text{ text-align: left; }
+.impact__title{ text-align: left; }
+
+/* ✅ 태블릿/모바일: 중앙 정렬로 전환 */
+@media screen and (max-width: 1024px){
+.impact__text{ text-align: center; }
+.impact__title{ text-align: center; }
+}
