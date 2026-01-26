@@ -1,0 +1,326 @@
+@charset "UTF-8";
+
+/* ===========================
+    솔루션 서브페이지 전용 CSS
+=========================== */
+
+:root {
+    --maincolor1: #f0620a;
+    --maincolor2: #04456f;
+    --dark-blue: #13384f;
+    --text: #1f1f1f;
+    --bg-light: #f8f8f8;
+}
+
+/* ===========================
+    Sub Hero Section
+=========================== */
+.sub-hero {
+}
+
+.sub-hero .container {
+    margin: 100px auto 0;
+}
+
+.sub-hero .hero-content {
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.sub-hero .hero-text {
+    flex: 1;
+}
+
+.sub-hero .hero-text h1 {
+    font-size: 3.5rem; font-weight: 500; line-height: 1.6; margin-bottom: 20px;
+}
+
+.sub-hero .hero-text .sub-title {
+    font-family: Isamanru; font-size: 4rem; line-height: 1.7;
+}
+.sub-hero .hero-text .sub-title span {
+    font-weight: 300;
+}
+
+.sub-hero .hero-image img {
+    max-width: 521px;
+}
+
+
+/* ===========================
+    Cases Section
+=========================== */
+.cases-section {
+}
+
+.cases-section .container {
+    position: relative;
+}
+
+.cases-section .section-title {
+    margin-bottom: 80px;
+}
+
+
+/* ===========================
+    Cases Swiper
+=========================== */
+/* Solution Swiper 커스텀 */
+#section3 {
+}
+/* Solution Swiper 컨테이너 */
+.solu02Swiper {
+    width: 100%;
+    overflow: hidden; /* 슬라이더 밖으로 나가는 이미지 숨김 */
+    padding: 50px 0 0px;
+}
+
+.solu02Swiper .swiper-wrapper {
+    /* 이미지가 잘리지 않도록 정렬 */
+    display: flex;
+    align-items: center;
+}
+
+.solu02Swiper .swiper-slide {
+    flex-direction: column;
+    max-width: 1046px; height: auto;
+    transition: .5s; /* 부드러운 전환 효과 */
+    
+    /* [핵심] 비활성화된 슬라이드 상태 (흐리고 밝게) */
+    opacity: 0.3;
+}
+
+/* [핵심] 활성화된(가운데) 슬라이드 상태 */
+.solu02Swiper .swiper-slide-active {
+    opacity: 1;
+    filter: brightness(1) grayscale(0);
+    transform: scale(1); /* 중앙 이미지는 100% 크기 */
+    z-index: 10;
+}
+
+.imgWrap {
+    position: relative;
+}
+.imgtext {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    display: block;
+    width: 100%; background: var(--dark-blue); color: #fff; line-height: 1.7; padding: 10px 0; border-radius: 0 0 50px 50px; text-align: center; font-weight: 600; font-size: 2.6rem;
+}
+.imgtext.co1 {
+    background: var(--maincolor1);
+}
+.solu02Swiper .swiper-slide img {
+    display: block;
+    width: 100%; border-radius: 50px;
+}
+.solu02Swiper .swiper-slide .slide-text {
+    font-size: 2rem; margin-top: 20px; font-weight: 500; line-height: 1.7; text-align: center;
+}
+
+
+/* 갤러리 슬라이드 */
+/* ===== 상단 대표 이미지 영역 ===== */
+.soluSlidehero {
+    overflow: hidden;
+}
+    .soluSlidehero img {
+    display: block;
+    width: 100%; height: auto;
+}
+    .hero-caption {
+    text-align: center; font-size: 2rem; padding: 30px 0px 0px; line-height: 1.6;
+}
+
+/* ===== 갤러리 그리드 ===== */
+.gallery {
+    width: 1264px; margin: 80px auto;
+}
+
+.grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(4, 1fr); /* 4열 */
+}
+
+.card {
+    overflow: hidden; cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.card:hover {
+    transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+
+.thumb {
+    position: relative;
+    width: 100%; aspect-ratio: 1 / 1; overflow: hidden;
+}
+.thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 갤러리 카드 메타 정보 */
+.meta {
+    padding: 10px 12px 12px;
+}
+    .title {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.25;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+/* ===== 페이지네이션 ===== */
+.pager {
+    display: flex; justify-content: center; align-items: center; gap: 6px;
+    margin-top: 60px; user-select: none;
+}
+    .pager button{
+        min-width: 38px; border: 1px solid #fff; background: #fff; color: #A7A7A7; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: background 120ms ease, border-color 120ms ease; font-size: 1.8rem;
+    }
+    .pager button:hover{
+    background: #f6f6f6;
+}
+    .pager button:disabled{
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+    .pager .num{
+    min-width: 38px;
+    padding: 8px 10px;
+}
+    .pager .active{
+    color: #5E5E5E;
+    font-weight: 700;
+}
+
+
+/* ===========================
+    Responsive - Tablet
+=========================== */
+@media screen and (max-width: 1200px) {
+    .sub-hero .hero-content {
+        gap: 50px;
+    }
+
+    .sub-hero .hero-text .sub-title {
+        font-size: 3.5rem;
+    }
+
+    .casesSwiper .swiper-slide {
+        width: 70vw;
+    }
+
+    .casesSwiper .case-text-box {
+        padding: 30px 40px;
+    }
+
+    .casesSwiper .case-text-box h3 {
+        font-size: 2.4rem;
+    }
+
+    .casesSwiper .case-text-box p {
+        font-size: 1.6rem;
+    }
+}
+
+
+/* ===========================
+    Responsive - Mobile
+=========================== */
+@media screen and (max-width: 768px) {
+    .sub-hero {
+        padding: 80px 0 60px;
+    }
+
+    .sub-hero .container {
+        margin-top: 40px;
+    }
+
+    .sub-hero .hero-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .sub-hero .hero-text h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .sub-hero .hero-text .sub-title {
+        font-size: 2.8rem;
+        text-align: center;
+    }
+
+    .sub-hero .hero-image {
+        justify-content: center;
+    }
+
+    .sub-hero .hero-image img {
+        max-width: 100%;
+    }
+
+    .cases-section {
+        padding: 60px 0;
+    }
+
+    .cases-section .section-title {
+        margin-bottom: 40px;
+    }
+
+    .casesSwiper {
+        padding: 0 0 60px 0;
+    }
+
+    .casesSwiper .swiper-slide {
+        width: 85vw;
+    }
+
+    .casesSwiper .case-card {
+        border-radius: 30px;
+    }
+
+    .casesSwiper .case-text-box {
+        padding: 25px 30px;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .casesSwiper .case-text-box h3 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .casesSwiper .case-text-box p {
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+
+    .casesSwiper .case-text-box p br {
+        display: none;
+    }
+
+    .casesSwiper .swiper-button-next,
+    .casesSwiper .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+    }
+
+    .casesSwiper .swiper-button-next::after,
+    .casesSwiper .swiper-button-prev::after {
+        font-size: 14px;
+    }
+
+    .casesSwiper .swiper-button-next {
+        right: 10px;
+    }
+
+    .casesSwiper .swiper-button-prev {
+        left: 10px;
+    }
+
+    .casesSwiper .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+}

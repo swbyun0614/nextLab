@@ -159,6 +159,27 @@ $(function() {
             }
         });
     }
+    if ($('.solu02Swiper').length > 0) {
+        solu02Swiper = new Swiper(".solu02Swiper", {
+            effect: "coverflow",
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false
+            },
+            coverflowEffect: {
+                rotate: 0,
+                stretch: -200,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false
+            }
+        });
+    }
 
     if ($('.sec1MobileSwiper').length > 0) {
         sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
@@ -206,24 +227,185 @@ $(function() {
 });
 
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
-        var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
-            spaceBetween: 15,
-            slidesPerView: 5,
-            watchSlidesProgress: true,
-            navigation: {
-                nextEl: '.prod-next',
-                prevEl: '.prod-prev',
-            },
-            breakpoints: {
-                320: { slidesPerView: 3, spaceBetween: 10 },
-                768: { slidesPerView: 4, spaceBetween: 12 },
-                1024: { slidesPerView: 5, spaceBetween: 15 }
-            }
+var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+    spaceBetween: 15,
+    slidesPerView: 5,
+    watchSlidesProgress: true,
+    navigation: {
+        nextEl: '.prod-next',
+        prevEl: '.prod-prev',
+    },
+    breakpoints: {
+        320: { slidesPerView: 3, spaceBetween: 10 },
+        768: { slidesPerView: 4, spaceBetween: 12 },
+        1024: { slidesPerView: 5, spaceBetween: 15 }
+    }
+});
+
+var prodMainSwiper = new Swiper('.prodMainSwiper', {
+    spaceBetween: 10,
+    thumbs: {
+        swiper: prodThumbSwiper,
+    },
+});
+
+
+
+// Solution 02 갤러리 페이지네이션 및 상단 이미지 변경 기능
+
+$(function() {
+    /************************************************************
+     * ✅ 갤러리 데이터
+     ************************************************************/
+    const items = Array.from({ length: 53 }, (_, i) => {
+        const n = i + 1;
+        return {
+            id: n,
+            title: `현장 스냅샷 ${String(n).padStart(2, "0")}`,
+            img: `images/sec3_img1.png`
+        };
+    });
+
+    /************************************************************
+     * ✅ 설정값 & 요소 선택
+     ************************************************************/
+    const PER_PAGE = 12;
+    const PAGE_WINDOW = 5;
+    let currentPage = 1;
+    let selectedId = null;
+
+    // 제이쿼리 객체 캐싱
+    const $grid = $("#grid");
+    const $pager = $("#pager");
+    const $heroImg = $("#heroImg");
+    const $heroCaption = $("#heroCaption");
+
+    /************************************************************
+     * ✅ 기능 함수
+     ************************************************************/
+
+    function getTotalPages() {
+        return Math.ceil(items.length / PER_PAGE);
+    }
+
+    function sliceByPage(page) {
+        const start = (page - 1) * PER_PAGE;
+        return items.slice(start, start + PER_PAGE);
+    }
+
+    // 상단 메인 이미지 변경
+    function setHero(item) {
+        if (!item) return;
+        $heroImg.attr({
+            "src": item.img,
+            "alt": item.title
+        });
+        $heroCaption.text(`▲ ${item.title}`);
+    }
+
+    // 그리드 렌더링
+    function renderGrid(page) {
+        const pageItems = sliceByPage(page);
+
+        const html = pageItems.map((it) => `
+            <article class="card" 
+            data-id="${it.id}" 
+            tabindex="0" 
+            role="button" 
+            aria-label="${escapeHtml(it.title)} 상단에 표시">
+                <div class="thumb">
+                    <img src="${it.img}" alt="${escapeHtml(it.title)}" loading="lazy">
+                </div>
+                <div class="meta">
+                    <div class="title">${escapeHtml(it.title)}</div>
+                </div>
+            </article>
+        `).join("");
+
+        $grid.html(html);
+
+        // ✅ 클릭 및 엔터 이벤트 바인딩 (이벤트 위임 대신 개별 바인딩 방식 유지)
+        $grid.find(".card").on("click keydown", function(e) {
+            if (e.type === "keydown" && e.key !== "Enter") return;
+
+            const id = $(this).data("id");
+            const item = items.find(x => x.id === id);
+            
+            selectedId = id;
+            setHero(item);
         });
 
-        var prodMainSwiper = new Swiper('.prodMainSwiper', {
-            spaceBetween: 10,
-            thumbs: {
-                swiper: prodThumbSwiper,
-            },
-        });
+        // ✅ 페이지 이동 시 Hero 이미지 유지 로직
+        if (selectedId === null && pageItems.length) {
+            selectedId = pageItems[0].id;
+            setHero(pageItems[0]);
+        } else if (selectedId !== null) {
+            const selectedItem = items.find(x => x.id === selectedId);
+            if (selectedItem) setHero(selectedItem);
+        }
+    }
+
+    // 페이지네이션 렌더링
+    function renderPager(page) {
+        const total = getTotalPages();
+        const start = Math.floor((page - 1) / PAGE_WINDOW) * PAGE_WINDOW + 1;
+        const end = Math.min(start + PAGE_WINDOW - 1, total);
+
+        let pagerHtml = `
+            <button type="button" data-action="first" ${page === 1 ? "disabled" : ""} aria-label="첫 페이지"><img src="images/sub_solu02_pagi_fst.png" alt="이전 페이지"></button>
+            <button type="button" data-action="prev" ${page === 1 ? "disabled" : ""} aria-label="이전 페이지"><img src="images/sub_solu02_pagi_prev.png" alt="이전 페이지"></button>
+        `;
+
+        for (let p = start; p <= end; p++) {
+            pagerHtml += `<button type="button" class="num ${p === page ? "active" : ""}" data-page="${p}" aria-label="${p}페이지">${p}</button>`;
+        }
+
+        pagerHtml += `
+            <button type="button" data-action="next" ${page === total ? "disabled" : ""} aria-label="다음 페이지"><img src="images/sub_solu02_pagi_next.png" alt="이전 페이지"></button>
+            <button type="button" data-action="last" ${page === total ? "disabled" : ""} aria-label="마지막 페이지"><img src="images/sub_solu02_pagi_last.png" alt="이전 페이지"></button>
+        `;
+
+        $pager.html(pagerHtml);
+    }
+
+    // 페이지 이동 처리
+    function goToPage(page) {
+        const total = getTotalPages();
+        currentPage = Math.min(Math.max(1, page), total);
+
+        renderGrid(currentPage);
+        renderPager(currentPage);
+    }
+
+    /************************************************************
+     * ✅ 이벤트 바인딩
+     ************************************************************/
+
+    // 페이지네이션 클릭 (이벤트 위임)
+    $pager.on("click", "button", function() {
+        const $btn = $(this);
+        const pageNum = $btn.data("page");
+        const action = $btn.data("action");
+
+        if (pageNum) {
+            goToPage(pageNum);
+        } else {
+            if (action === "first") goToPage(1);
+            if (action === "prev")  goToPage(currentPage - 1);
+            if (action === "next")  goToPage(currentPage + 1);
+            if (action === "last")  goToPage(getTotalPages());
+        }
+    });
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // 초기화 실행
+    goToPage(1);
+});

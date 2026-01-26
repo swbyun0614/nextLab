@@ -22,7 +22,7 @@ body {
 }
 .logo img {width: 190px;}
 
-.container {position: relative; max-width: 1720px; margin: 0 200px; margin-top: 200px;}
+.container {position: relative; max-width: 1520px; margin: 0 200px; margin-top: 200px;}
 
 .sideBar {position: fixed; right: 2.3vw; top: 90%; transform: translateY(-50%); z-index: 999;}
 .sideBar .btnKakao {transition: .3s;}
