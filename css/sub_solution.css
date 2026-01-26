@@ -143,9 +143,14 @@
 .card {
     overflow: hidden; cursor: pointer;
     transition: transform 120ms ease, box-shadow 120ms ease;
+    border: 3px solid transparent;
+    border-radius: 8px;
 }
 .card:hover {
     transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+.card.active {
+    border-color: var(--maincolor1);
 }
 
 .thumb {

@@ -330,18 +330,25 @@ $(function() {
 
             const id = $(this).data("id");
             const item = items.find(x => x.id === id);
-            
+
+            // 모든 카드에서 active 클래스 제거 후 현재 카드에 추가
+            $grid.find(".card").removeClass("active");
+            $(this).addClass("active");
+
             selectedId = id;
             setHero(item);
         });
 
-        // ✅ 페이지 이동 시 Hero 이미지 유지 로직
+        // ✅ 페이지 이동 시 Hero 이미지 유지 로직 및 선택 상태 표시
         if (selectedId === null && pageItems.length) {
             selectedId = pageItems[0].id;
             setHero(pageItems[0]);
+            $grid.find(`.card[data-id="${pageItems[0].id}"]`).addClass("active");
         } else if (selectedId !== null) {
             const selectedItem = items.find(x => x.id === selectedId);
             if (selectedItem) setHero(selectedItem);
+            // 현재 페이지에 선택된 아이템이 있으면 active 클래스 추가
+            $grid.find(`.card[data-id="${selectedId}"]`).addClass("active");
         }
     }
 
