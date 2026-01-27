@@ -413,7 +413,7 @@ header .topset {
 .sec3Swiper .swiper-slide {
     flex-direction: column;
     width: 80%; /* 화면에 보일 메인 이미지의 너비 (적절히 조절 가능) */
-    height: auto;
+    height: auto; cursor: grab;
     transition: .5s; /* 부드러운 전환 효과 */
     
     /* [핵심] 비활성화된 슬라이드 상태 (흐리고 밝게) */
