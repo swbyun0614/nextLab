@@ -163,13 +163,14 @@
 
 .card {
     overflow: hidden;
-    cursor: pointer; border: 3px solid transparent; transition: transform 120ms ease, box-shadow 120ms ease, border 120ms ease;
+    cursor: pointer; border: 3px solid transparent; transition: transform 120ms ease, box-shadow 120ms ease, border 120ms ease; opacity: 0.6;
 }
 .card:hover {
     transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.06);
 }
 .card.selected {
     border: 3px solid var(--maincolor1);
+    opacity: 1;
 }
 
 .thumb {

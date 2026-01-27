@@ -298,25 +298,16 @@ $(function() {
         // 같은 이미지면 변경하지 않음
         if (currentSrc === item.img) return;
         
-        // active 클래스 제거 (페이드 아웃 시작)
-        $heroImg.removeClass('active');
+        // 페이드 아웃
+        $heroImg.css('opacity', '0.3');
         
         // 이미지 변경 및 페이드 인
         setTimeout(function() {
             $heroImg.attr({ "src": item.img, "alt": `이미지 ${item.id}` });
             
-            // 이미지 로드 완료 후 active 추가 (페이드 인)
-            const img = new Image();
-            img.onload = function() {
-                $heroImg.addClass('active');
-            };
-            img.src = item.img;
-            
-            // 이미지가 이미 캐시되어 있으면 즉시 표시
-            if (img.complete) {
-                $heroImg.addClass('active');
-            }
-        }, 200);
+            // 이미지 로드 후 페이드 인
+            $heroImg.css('opacity', '1');
+        }, 100);
     }
 
     // 그리드 렌더링
@@ -454,8 +445,4 @@ $(function() {
     // 초기 실행
     goToPage(1);
     
-    // 첫 이미지 표시를 위해 active 클래스 추가
-    setTimeout(function() {
-        $heroImg.addClass('active');
-    }, 100);
 });
