@@ -1,5 +1,8 @@
 // 1. gnbAction 함수 정의 (CSS 클래스 제어 방식) - PC용
 function gnbAction() {
+    // 기존 이벤트 제거 후 재바인딩
+    $('header').off('mouseenter mouseleave');
+    
     // PC에서만 hover 효과 적용 (768px 초과)
     if ($(window).width() > 768) {
         $('header').on({
@@ -217,12 +220,98 @@ $(function() {
         $('html, body').stop().animate({ scrollTop: 0 }, 600);
     });
     
-    /* 10. 윈도우 리사이즈 시 메뉴 상태 초기화 */
+    /* 10. 윈도우 리사이즈 시 메뉴 상태 초기화 및 Swiper 업데이트 */
+    var resizeTimer;
     $(window).on('resize', function() {
         if ($(window).width() > 768) {
             $('header').removeClass('menu-open');
             $('header .topset .gnb > li').removeClass('active');
             $('body').css('overflow', '');
+        }
+        
+        // 디바운싱: 리사이즈가 끝난 후 실행
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // 헤더 호버 이벤트 재바인딩
+            gnbAction();
+            
+            // AOS 리프레시
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+            
+            // Swiper 완전 재계산
+            if (heroSwiper) {
+                heroSwiper.update();
+                heroSwiper.updateSlides();
+                heroSwiper.updateProgress();
+                heroSwiper.updateSlidesClasses();
+                // autoplay 재시작
+                if (heroSwiper.autoplay) {
+                    heroSwiper.autoplay.start();
+                }
+            }
+            if (sec3Swiper) {
+                sec3Swiper.update();
+                sec3Swiper.updateSlides();
+                sec3Swiper.updateProgress();
+                sec3Swiper.updateSlidesClasses();
+                // autoplay 재시작
+                if (sec3Swiper.autoplay) {
+                    sec3Swiper.autoplay.start();
+                }
+            }
+            if (sec1MobileSwiper) {
+                sec1MobileSwiper.update();
+                sec1MobileSwiper.updateSlides();
+                sec1MobileSwiper.updateProgress();
+                sec1MobileSwiper.updateSlidesClasses();
+                // centeredSlides 재계산
+                if (sec1MobileSwiper.params.centeredSlides) {
+                    sec1MobileSwiper.slideTo(sec1MobileSwiper.activeIndex, 0);
+                }
+            }
+        }, 250);
+    });
+    
+    // 페이지 로드 후 Swiper 재계산
+    $(window).on('load', function() {
+        setTimeout(function() {
+            if (heroSwiper) {
+                heroSwiper.update();
+                heroSwiper.updateSlides();
+                if (heroSwiper.autoplay) {
+                    heroSwiper.autoplay.start();
+                }
+            }
+            if (sec3Swiper) {
+                sec3Swiper.update();
+                sec3Swiper.updateSlides();
+                if (sec3Swiper.autoplay) {
+                    sec3Swiper.autoplay.start();
+                }
+            }
+            if (sec1MobileSwiper) {
+                sec1MobileSwiper.update();
+                sec1MobileSwiper.updateSlides();
+                if (sec1MobileSwiper.params.centeredSlides) {
+                    sec1MobileSwiper.slideTo(sec1MobileSwiper.activeIndex, 0);
+                }
+            }
+        }, 100);
+    });
+    
+    // 페이지 visibility 변경 시 autoplay 재시작 (탭 전환 등)
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            setTimeout(function() {
+                if (heroSwiper && heroSwiper.autoplay) {
+                    heroSwiper.autoplay.start();
+                }
+                if (sec3Swiper && sec3Swiper.autoplay) {
+                    sec3Swiper.autoplay.start();
+                }
+            }, 100);
         }
     });
 });
