@@ -22,26 +22,26 @@
     margin: 100px auto 0;
 }
 
-.sub-hero .hero-content {
+.sub-hero .solu02_hero-content {
     display: flex; justify-content: space-between; align-items: center;
 }
 
-.sub-hero .hero-text {
+.sub-hero .solu02_hero-text {
     flex: 1;
 }
 
-.sub-hero .hero-text h1 {
+.sub-hero .solu02_hero-text h1 {
     font-size: 3.5rem; font-weight: 500; line-height: 1.6; margin-bottom: 20px;
 }
 
-.sub-hero .hero-text .sub-title {
+.sub-hero .solu02_hero-text .sub-title {
     font-family: Isamanru; font-size: 4rem; line-height: 1.7;
 }
-.sub-hero .hero-text .sub-title span {
+.sub-hero .solu02_hero-text .sub-title span {
     font-weight: 300;
 }
 
-.sub-hero .hero-image img {
+.sub-hero .solu02_hero-image img {
     max-width: 521px;
 }
 
@@ -224,11 +224,11 @@
     Responsive - Tablet
 =========================== */
 @media screen and (max-width: 1200px) {
-    .sub-hero .hero-content {
+    .sub-hero .solu02_hero-content {
         gap: 50px;
     }
 
-    .sub-hero .hero-text .sub-title {
+    .sub-hero .solu02_hero-text .sub-title {
         font-size: 3.5rem;
     }
 
@@ -262,27 +262,27 @@
         margin-top: 40px;
     }
 
-    .sub-hero .hero-content {
+    .sub-hero .solu02_hero-content {
         flex-direction: column;
         gap: 30px;
     }
 
-    .sub-hero .hero-text h1 {
+    .sub-hero .solu02_hero-text h1 {
         font-size: 2rem;
         margin-bottom: 20px;
         text-align: center;
     }
 
-    .sub-hero .hero-text .sub-title {
+    .sub-hero .solu02_hero-text .sub-title {
         font-size: 2.8rem;
         text-align: center;
     }
 
-    .sub-hero .hero-image {
+    .sub-hero .solu02_hero-image {
         justify-content: center;
     }
 
-    .sub-hero .hero-image img {
+    .sub-hero .solu02_hero-image img {
         max-width: 100%;
     }
 

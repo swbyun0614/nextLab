@@ -4,6 +4,7 @@
 @import url(reset.css);
 @import url(sub_Product.css);
 @import url(sub_solution.css);
+@import url(sub_Company.css);
 
 /* --------------------------------------------------------------------------- */
 /* 기본 설정들 */
@@ -139,7 +140,7 @@ header .topset {
         }
         /* 헤더에 on 클래스가 붙으면 배경 표시 */
         header.on .lnb_bg {
-            height: 320px; opacity: 1;
+            height: 333px; opacity: 1;
         }
 
         /* 블로그 버튼 및 이미지 설정 */
