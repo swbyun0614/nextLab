@@ -183,8 +183,9 @@ $(function() {
 
     if ($('.sec1MobileSwiper').length > 0) {
         sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 15,
             loop: true,
             speed: 600,
             navigation: {
