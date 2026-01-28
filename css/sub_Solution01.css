@@ -1,0 +1,501 @@
+/* =========================================================
+    도입 효과 섹션 전용 스타일
+    
+    주의: 이 파일은 style.css에서 @import로 로드됩니다.
+    헤더, 푸터, 전역 스타일은 style.css에 있습니다.
+   ========================================================= */
+
+/* ======================
+    메인 섹션
+====================== */
+#impact {
+    background: #fff;
+    padding: 140px 0 0px;
+}
+
+#impact .impact__wrap {
+    display: flex; align-items: flex-start;
+    max-width: 1920px; margin: 0 auto; padding: 0 200px;
+    gap: 80px;
+}
+
+/* ======================
+    좌측 텍스트 영역
+====================== */
+#impact .impact__text {
+    flex: 0 0 500px;
+    min-width: 500px; margin-top: 76px;
+}
+
+#impact .impact__label {
+    font-family: 'Pretendard', sans-serif; font-size: 35px; font-weight: 500; line-height: 1.7; letter-spacing: -0.02em; margin-bottom: 20px;
+    color: #111;
+    text-align: left;
+}
+
+#impact .impact__label .accent {
+    font-weight: 700;
+    color: #ff6a00;
+}
+
+#impact .impact__headline {
+    font-family: 'Isamanru', sans-serif; font-size: 40px; font-weight: 500; line-height: 1.7; letter-spacing: -0.02em; margin: 0;
+    color: #111;
+    word-break: keep-all;
+    text-align: left;
+}
+
+#impact .impact__headline .light {
+    font-weight: 300;
+}
+
+/* ======================
+    우측 카드 영역
+====================== */
+#impact .impact__cardsWrap {
+    flex: 1;
+    min-width: 0;
+}
+
+#impact .impact__cards {
+    display: flex; flex-direction: column;
+    gap: 70px;
+}
+
+#impact .impact__cards__row1 {
+    display: flex; justify-content: flex-end;
+    gap: 35px; margin-right: 200px;
+}
+
+#impact .impact__cards__row2 {
+    display: flex; justify-content: flex-end;
+    gap: 35px;
+}
+
+/* ======================
+    카드 스타일
+====================== */
+#impact .impactCard {
+    flex-shrink: 0;
+    width: 360px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+#impact .impactCard__mediaWrap {
+    position: relative;
+    width: 360px; height: 360px; margin: 0 auto 20px;
+}
+
+#impact .impactCard__media {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    background: #f0f0f0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+#impact .impactCard__media img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+#impact .impactCard__head {
+    font-family: 'Pretendard', sans-serif; font-size: 2.8rem; font-weight: 700; line-height: 1.7; letter-spacing: -0.02em; color: #111;
+    white-space: nowrap;
+}
+
+#impact .impactCard__desc {
+    font-family: 'Pretendard', sans-serif; font-size: 2.1rem; font-weight: 500; line-height: 1.7; letter-spacing: -0.01em; margin: 0;
+    color: #555; white-space: nowrap;
+}
+
+/* ======================
+    SVG 링
+====================== */
+#impact .impactCard__ring {
+    position: absolute; inset: -10px;
+    width: calc(100% + 20px); height: calc(100% + 20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#impact .impactCard__ring svg {
+    width: 100%; height: 100%;
+    transform: rotate(-90deg);
+}
+
+/* SVG circle 요소에 부드러운 색상 전환 적용 */
+#impact .impactCard__ring svg circle {
+    transition: stroke 0.3s ease;
+}
+
+#impact .impactCard.is-idle .impactCard__ring {
+    opacity: 0;
+}
+
+#impact .impactCard.is-animating .impactCard__ring,
+#impact .impactCard.is-done .impactCard__ring {
+    opacity: 1;
+}
+
+/* ======================
+    반응형 - 1600px 이하
+====================== */
+@media (max-width: 1599px) {
+    #impact .impact__wrap {
+        padding: 0 150px;
+        gap: 60px;
+    }
+    
+    #impact .impact__text {
+        flex: 0 0 450px;
+        min-width: 450px;
+    }
+    
+    #impact .impact__cardsWrap {
+        margin-left: -80px;
+    }
+    
+    #impact .impactCard {
+        width: 340px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 340px; height: 340px;
+    }
+}
+
+/* ======================
+    반응형 - 1440px 이하
+====================== */
+@media (max-width: 1439px) {
+    #impact .impact__wrap {
+        padding: 0 100px;
+        gap: 50px;
+    }
+    
+    #impact .impact__text {
+        flex: 0 0 400px;
+        min-width: 400px;
+    }
+    
+    #impact .impact__cardsWrap {
+        margin-left: -60px;
+    }
+    
+    #impact .impact__label {
+        font-size: 32px;
+    }
+    
+    #impact .impact__headline {
+        font-size: 36px;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        gap: 30px;
+    }
+    
+    #impact .impactCard {
+        width: 300px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 300px; height: 300px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 24px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 19px;
+    }
+}
+
+/* ======================
+    반응형 - 1300px 이하
+====================== */
+@media (max-width: 1299px) {
+    #impact .impact__wrap {
+        padding: 0 80px;
+        gap: 50px;
+    }
+    
+    #impact .impact__text {
+        flex: 0 0 380px;
+        min-width: 380px;
+    }
+    
+    #impact .impact__cardsWrap {
+        margin-left: -50px;
+    }
+    
+    #impact .impact__label {
+        font-size: 30px;
+    }
+    
+    #impact .impact__headline {
+        font-size: 34px;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        gap: 25px;
+    }
+    
+    #impact .impactCard {
+        width: 280px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 280px; height: 280px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 23px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 18px;
+    }
+}
+
+/* ======================
+    반응형 - 1200px 이하
+====================== */
+@media (max-width: 1199px) {
+    #impact .impact__wrap {
+        padding: 0 60px;
+        gap: 40px;
+    }
+    
+    #impact .impact__text {
+        flex: 0 0 350px;
+        min-width: 350px;
+    }
+    
+    #impact .impact__cardsWrap {
+        margin-left: -40px;
+    }
+    
+    #impact .impact__label {
+        font-size: 30px;
+    }
+    
+    #impact .impact__headline {
+        font-size: 34px;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        gap: 25px;
+    }
+    
+    #impact .impactCard {
+        width: 260px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 260px; height: 260px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 22px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 17px;
+    }
+}
+
+/* ======================
+    반응형 - 1100px 이하
+====================== */
+@media (max-width: 1099px) {
+    #impact .impact__wrap {
+        padding: 0 60px;
+        gap: 40px;
+    }
+    
+    #impact .impact__text {
+        flex: 0 0 320px;
+        min-width: 320px;
+    }
+    
+    #impact .impact__cardsWrap {
+        margin-left: -30px;
+    }
+    
+    #impact .impact__label {
+        font-size: 28px;
+    }
+    
+    #impact .impact__headline {
+        font-size: 32px;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        gap: 20px;
+    }
+    
+    #impact .impactCard {
+        width: 240px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 240px; height: 240px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 20px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 16px;
+    }
+}
+
+/* ======================
+    반응형 - 태블릿 (1024px 이하)
+====================== */
+@media (max-width: 1024px) {
+    #impact {
+        padding: 110px 0 100px;
+    }
+    
+    #impact .impact__wrap {
+        flex-direction: column; align-items: center;
+        padding: 0 60px;
+        gap: 60px;
+    }
+    
+    #impact .impact__text {
+        flex: none;
+        width: 100%; max-width: 100%; min-width: 0;
+    }
+    
+    #impact .impact__label {
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    #impact .impact__headline {
+        font-size: 34px;
+        text-align: center;
+    }
+    
+    #impact .impact__cardsWrap {
+        width: 100%; max-width: 100%; margin-left: 0;
+    }
+    
+    #impact .impact__cards {
+        align-items: center;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        flex-wrap: wrap; justify-content: center;
+        max-width: 100%; margin-left: 0;
+        gap: 30px;
+    }
+    
+    #impact .impactCard {
+        width: 280px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 280px; height: 280px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 22px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 18px;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 (768px 이하)
+====================== */
+@media (max-width: 768px) {
+    #impact .impact__wrap {
+        padding: 0 40px;
+    }
+    
+    #impact .impactCard {
+        width: 260px;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 260px; height: 260px;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 20px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 16px;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 Small (640px 이하)
+====================== */
+@media (max-width: 640px) {
+    #impact {
+        padding: 90px 0 80px;
+    }
+    
+    #impact .impact__wrap {
+        padding: 0 20px;
+        gap: 50px;
+    }
+    
+    #impact .impact__label {
+        font-size: 26px; margin-bottom: 30px;
+    }
+    
+    #impact .impact__headline {
+        font-size: 30px;
+    }
+    
+    #impact .impact__cards {
+        align-items: center;
+        width: 100%;
+        gap: 50px;
+    }
+    
+    #impact .impact__cards__row1,
+    #impact .impact__cards__row2 {
+        flex-direction: column; align-items: center;
+        width: 100%;
+        gap: 50px;
+    }
+    
+    #impact .impactCard {
+        width: 100%; max-width: 300px; margin: 0 auto;
+    }
+    
+    #impact .impactCard__mediaWrap {
+        width: 100%; max-width: 300px; height: auto; margin-bottom: 18px;
+        aspect-ratio: 1;
+    }
+    
+    #impact .impactCard__head {
+        font-size: 20px;
+    }
+    
+    #impact .impactCard__desc {
+        font-size: 16px;
+    }
+}
