@@ -1,0 +1,825 @@
+@import url(font.css);
+@import url(reset.css);
+
+/* ======================
+   전역 스타일 리셋
+====================== */
+:root {
+  --tablet-square: 360px;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a,
+button,
+input,
+select,
+h1, h2, h3, h4, h5 {
+    border: none;
+    text-decoration: none;
+    background: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+menu, ol, ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+                 'Apple SD Gothic Neo', 'Noto Sans KR',
+                 'Malgun Gothic', Arial, sans-serif;
+    background: #ffffff;
+    overflow-x: visible;
+    color: var(--textcolor, #1f1f1f);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ======================
+   유틸리티 클래스
+====================== */
+.text-primary {
+    color: var(--textcolor, #1f1f1f);
+}
+
+.text-highlight {
+    color: var(--maincolor, #f55e12);
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+/* ======================
+   헤더 스타일
+====================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header-container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 20px 198px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    margin: 0;
+}
+
+.logo img {
+    width: 190px;
+    height: 46px;
+    object-fit: contain;
+}
+
+.gnb ul {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+}
+
+.gnb a {
+    font-family: 'Pretendard-Medium', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--textcolor, #1f1f1f);
+    transition: color 0.3s;
+}
+
+.gnb a:hover,
+.gnb a.active {
+    color: var(--maincolor, #f55e12);
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-weight: 700;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.blog-link {
+    font-size: 18px;
+    color: var(--maincolor2, #04456f);
+}
+
+.blog-link .bold {
+    font-family: 'Pretendard-SemiBold', sans-serif;
+    font-weight: 600;
+}
+
+.top-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--maincolor2, #04456f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.top-button:hover {
+    background: var(--maincolor, #f55e12);
+}
+
+.top-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--textcolor, #1f1f1f);
+    transition: all 0.3s;
+}
+
+.active-indicator {
+    width: 230px;
+    height: 2px;
+    background: var(--maincolor, #f55e12);
+    margin: 0 auto;
+    margin-left: 555px;
+}
+
+/* ======================
+   히어로 섹션
+====================== */
+.hero-section {
+    position: relative;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.hero-container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 80px 0 0 190px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 255px;
+}
+
+.hero-content {
+    flex: 0 0 388px;
+}
+
+.hero-title {
+    font-size: 35px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.hero-title .text-primary {
+    font-family: 'Pretendard-Medium', sans-serif;
+    font-weight: 500;
+}
+
+.hero-title .text-highlight {
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-weight: 700;
+}
+
+.hero-description {
+    font-size: 40px;
+    line-height: 1.7;
+}
+
+.hero-description strong {
+    font-family: 'Isamanru';
+    font-weight: 500;
+}
+
+.hero-image {
+  
+  
+}
+
+
+.hero-image img {
+ display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* 필요하면 cover */
+}
+
+
+/* ======================
+   CEO 섹션
+====================== */
+.ceo-section {
+    position: relative;
+    margin-top:0;
+}
+
+.ceo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.ceo-background img {
+    width: 100%;
+    height: auto;
+}
+
+.ceo-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 100px 200px;
+}
+
+.ceo-message {
+    color: #ffffff;
+}
+
+.ceo-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.ceo-box {
+}
+
+.section-title {
+    font-size: 35px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.section-title .text-white {
+    font-family: 'Pretendard-Medium', sans-serif;
+    font-weight: 500;
+}
+
+.section-title .text-highlight {
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-weight: 700;
+}
+
+.ceo-subtitle {
+    font-size: 40px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+
+.ceo-subtitle strong {
+    font-family: 'Isamanru';
+    font-weight: 500;
+}
+
+.ceo-logo {
+    transform: translateX(50%);
+
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-content img {
+    width: 100%;
+}
+
+.logo-text .company-prefix {
+    font-family: 'Pretendard-SemiBold', sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.logo-text .company-name {
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-size: 41px;
+    font-weight: 700;
+}
+
+.logo-text .company-slogan {
+    font-family: 'Inter-Medium', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.ceo-content {
+    display: flex;
+    gap: 95px;
+}
+
+.ceo-left,
+.ceo-right {
+    flex: 1;
+}
+
+.ceo-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-family: 'Pretendard-Medium', sans-serif;
+    font-weight: 500;
+}
+
+.ceo-signature {
+    font-size: 20px;
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-weight: 700;
+    margin-top: 40px;
+}
+
+/* ======================
+   푸터 스타일
+====================== */
+.main-footer {
+    background: var(--footer, #343434);
+    padding: 50px 0;
+    color: var(--footertext, #797979);
+}
+
+.footer-container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 198px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.footer-logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.footer-logo-text .company-prefix {
+    font-family: 'Pretendard-SemiBold', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.footer-logo-text .company-name {
+    font-family: 'Pretendard-Bold', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.footer-logo-text .company-slogan {
+    font-family: 'Inter-Medium', sans-serif;
+    font-size: 7.5px;
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+.footer-content {
+    display: flex;
+    gap: 100px;
+    margin-bottom: 30px;
+}
+
+.footer-info address,
+.footer-office p {
+    font-size: 16px;
+    line-height: 1.6;
+    font-style: normal;
+}
+
+.footer-contact dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px 10px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.footer-contact dt {
+    font-family: 'Pretendard-SemiBold', sans-serif;
+    font-weight: 600;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    font-family: 'Pretendard-SemiBold', sans-serif;
+    font-weight: 600;
+}
+
+/* ======================
+   반응형 - 태블릿
+====================== */
+@media screen and (max-width: 1440px) {
+    .header-container {
+        position: relative;
+    }
+
+    .gnb ul {
+        gap: 60px;
+    }
+
+    .active-indicator {
+        margin-left: 350px;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-container {
+        display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    gap: 255px;          /* ⭐ 요청한 정확한 간격 */
+    padding: 40px 60px;
+    }
+
+    
+
+    .ceo-logo {
+        display: none;
+    }
+
+    .footer-container {
+        padding: 0 100px;
+    }
+
+
+
+
+
+    .header-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 60px;
+    }
+
+    .gnb ul {
+        gap: 40px;
+    }
+
+    .gnb a {
+        font-size: 18px;
+    }
+
+    .active-indicator {
+        margin-left: 200px;
+        width: 180px;
+    }
+
+    .hero-container {
+       max-width: 1280px;      /* ⭐ 기준 폭 */
+    margin: 0 auto;         /* ⭐ 중앙 정렬 */
+    padding: 40px 0;        /* 좌우 padding 제거 */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 60px;
+    padding-right: 60px;
+    }
+
+    .hero-content {
+        flex: 0 0 388px;
+    
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-description {
+        font-size: 32px;
+    }
+
+    
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .ceo-subtitle {
+        font-size: 32px;
+    }
+
+    .ceo-content {
+        gap: 50px;
+    }
+
+    .ceo-content p {
+        font-size: 16px;
+    }
+    
+
+    .footer-container {
+        padding: 0 60px;
+    }
+
+    .footer-content {
+        gap: 50px;
+    }
+
+  .hero-image {
+   width: clamp(360px, 42vw, 560px); /* ⭐ 핵심 */
+    aspect-ratio: 600 / 323;
+
+    background-image: url("../images/Subtract_tabelet.png");
+    background-size: contain;        /* 절대 cover ❌ */
+    background-position: center;     /* right ❌ */
+    background-repeat: no-repeat;
+
+    flex-shrink: 0;                  /* ⭐ 줄어들지 않게 */
+    margin-right: 0;       /* ❌ 밀리지 않게 */
+    flex: 0 0 clamp(360px, 42vw, 560px);
+    background-position: center left;
+
+  }
+
+
+    .hero-image img {
+    display: none;
+  }
+}
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+/* ======================
+   반응형 - 모바일
+====================== */
+/* ======================
+   반응형 - 모바일 (FINAL)
+====================== */
+@media screen and (max-width: 768px) {
+
+  .hero-section {
+    padding-top: 80px;
+  }
+
+  .hero-container {
+    padding: 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .hero-image {
+    background-image: url("../sub_Company_images/sub_mobile_img1.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 260px;
+    margin: 0;
+  }
+
+  .hero-image img {
+    display: none;
+  }
+
+  /* 🔥 이미지랑 남색 붙이기 */
+  .ceo-section {
+    margin-top: 0;
+  }
+
+  .ceo-background {
+    display: none;
+  }
+
+  .ceo-container {
+    padding: 40px 30px;
+    background: var(--maincolor2, #04456f);
+  }
+
+  .ceo-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .ceo-content p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .ceo-signature {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+  .gnb {
+        position: fixed;
+        top: 70px;}
+    
+
+    .footer-container {
+        padding: 0 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-info address,
+    .footer-office p,
+    .footer-contact dl {
+        font-size: 14px;
+    }
+
+}
+
+ 
+
+
+/* ======================
+   반응형 - 작은 모바일
+====================== */
+@media screen and (max-width: 480px) {
+    .header-container {
+        padding: 12px 20px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .hero-container {
+        padding: 20px 20px;
+    }
+
+    .hero-title {
+        font-size: 20px;
+    }
+
+    .hero-description {
+        font-size: 22px;
+    }
+
+    .ceo-container {
+        padding: 30px 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .ceo-subtitle {
+        font-size: 22px;
+    }
+
+    .ceo-content p {
+        font-size: 13px;
+    }
+
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-info address,
+    .footer-office p,
+    .footer-contact dl {
+        font-size: 12px;
+    }
+
+    .footer-copyright {
+        font-size: 12px;
+    }
+}
+
+.hero-content,
+.hero-image,
+.ceo-message {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 🔥 SVG가 글 덮는 문제 해결 */
+
+.ceo-section {
+  position: relative;
+}
+
+
+.ceo-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 혹시 히어로도 가릴까봐 안전장치 */
+.hero-section {
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width: 1440px) {
+  .hero-image {
+    overflow: visible;   /* ⭐ 핵심 */
+  }
+}
+/* ======================
+   태블릿: CEO 영역 강제 사각형 덮개 (최종 해결)
+====================== */
+@media screen and (max-width: 1440px) {
+
+  .ceo-section {
+    position: relative;
+  }
+  .hero-container {
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+  }
+
+  /* 🔥 사각형 배경 덮개 */
+  .ceo-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #04456f;
+    z-index: 0;
+  }
+
+  /* 기존 말풍선 이미지 완전 무력화 */
+  .ceo-background {
+    display: none !important;
+  }
+
+  /* 글은 덮개 위로 */
+  .ceo-container {
+    position: relative;
+    z-index: 1;
+
+    max-width: none !important;
+    width: 100% !important;
+
+    padding: 80px 60px 120px !important;
+    background: transparent !important; /* 배경은 덮개가 담당 */
+  }
+}
+
+
+
+
+
+
+
+
