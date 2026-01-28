@@ -1,81 +1,114 @@
-(() => {
-    "use strict";
+/* =========================================================
+   NEXTLAB - Impact Ring Animation
+   ✅ 더 빠르고 부드러운 애니메이션
+   ========================================================= */
 
-    const section = document.querySelector(".impact");
+document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#impact");
     if (!section) return;
 
     const cards = Array.from(section.querySelectorAll(".impactCard"));
     if (!cards.length) return;
 
-    let played = false;
+    // ✅ 속도 조정: 더 빠르게
+    const RING_DURATION = 600;  // 600ms (이전 800ms)
+    const STEP_GAP = 80;        // 80ms (이전 100ms)
+    
+    const ORANGE = "#ff6a00";
+    const GREEN = "#28c36a";
 
-    const animateOneCard = (card, duration = 1200) => {
-        return new Promise((resolve) => {
-        const start = performance.now();
+    const radius = 46;
+    const circumference = 2 * Math.PI * radius;
 
-        card.classList.add("is-animating");
-        // 시작은 "아주 작게" (예: 8deg)
-        const minFill = 7; // 작게 시작하는 크기(원하면 4~15 사이로 조절)
+    // 초기 상태
+    cards.forEach(card => {
+        card.classList.add("is-idle");
+        const circle = card.querySelector(".ring-progress");
+        if (circle) {
+            circle.style.strokeDasharray = circumference;
+            circle.style.strokeDashoffset = circumference;
+            circle.style.stroke = ORANGE;
+        }
+    });
 
-        const tick = (now) => {
-            const t = Math.min(1, (now - start) / duration);
-
-            // 1) 링이 "점점 채워지게" (fill 증가)
-            const fill = minFill + (360 - minFill) * t;
-
-            // 2) 동시에 "시계방향으로 회전"하는 느낌 (rotate 증가)
-            //    회전이 너무 과하면 *0.8, 더 강하면 *1.2
-            const rotate = 360 * t;
-
-            card.style.setProperty("--ringFill", `${fill}deg`);
-            card.style.setProperty("--ringRotate", `${rotate}deg`);
-
-            if (t < 1) {
-            requestAnimationFrame(tick);
-            } else {
-            // 완료: 오렌지 제거 → 초록 고정
-            card.classList.remove("is-animating");
-            card.classList.add("is-green");
-
-            // 변수 정리
-            card.style.removeProperty("--ringFill");
-            card.style.removeProperty("--ringRotate");
-
-            resolve();
-            }
-        };
-
-        requestAnimationFrame(tick);
-        });
-    };
-
+    // 순차 실행
     const runSequence = async () => {
-        if (played) return;
-        played = true;
+        for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const circle = card.querySelector(".ring-progress");
+            if (!circle) continue;
 
-        // 초기 상태: 링 없음
-        cards.forEach((c) => {
-        c.classList.remove("is-animating", "is-green");
-        c.style.removeProperty("--ringFill");
-        c.style.removeProperty("--ringRotate");
-        });
+            // 진행 시작
+            card.classList.remove("is-idle", "is-done");
+            card.classList.add("is-animating");
+            circle.style.stroke = ORANGE;
 
-        for (const card of cards) {
-        await animateOneCard(card, 500);
-        // 카드 사이 텀
-        await new Promise((r) => setTimeout(r, -500));
+            // 링 채우기
+            await animateRing(circle, circumference, RING_DURATION);
+
+            // 완료 - 초록색
+            card.classList.remove("is-animating");
+            card.classList.add("is-done");
+            circle.style.stroke = GREEN;
+            circle.style.strokeDashoffset = 0;
+
+            // 다음 카드 대기
+            await wait(STEP_GAP);
         }
     };
 
-    const io = new IntersectionObserver(
-        (entries) => {
-        if (entries[0] && entries[0].isIntersecting) {
-            runSequence();
-            io.disconnect();
-        }
+    // 링 애니메이션 (requestAnimationFrame으로 부드럽게)
+    function animateRing(circle, circumference, duration) {
+        return new Promise(resolve => {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // easing 함수 적용 (부드러운 시작과 끝)
+                const eased = easeInOutCubic(progress);
+                const offset = circumference * (1 - eased);
+                
+                circle.style.strokeDashoffset = offset;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    resolve();
+                }
+            }
+            
+            requestAnimationFrame(update);
+        });
+    }
+
+    // easing 함수 (부드러운 가속/감속)
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    // 대기 함수
+    function wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // 스크롤 진입 감지 (1회 실행)
+    let played = false;
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (played) return;
+                if (entry.isIntersecting) {
+                    played = true;
+                    runSequence();
+                }
+            });
         },
-        { threshold: 0.4 }
+        { threshold: 0.25 }
     );
 
-    io.observe(section);
-})();
+    observer.observe(section);
+});
