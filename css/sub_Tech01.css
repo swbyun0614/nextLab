@@ -1,0 +1,414 @@
+@charset "UTF-8";
+
+/* =========================================================
+    기술 소개 페이지 전용 스타일 (sub_Tech01)
+    
+    주의: 이 파일은 style.css에서 @import로 로드됩니다.
+    헤더, 푸터, 전역 스타일은 style.css에 있습니다.
+    
+    Figma 기준: 1920px, 좌/우 200px 패딩 고정
+========================================================= */
+
+/* ======================
+    CSS 변수
+====================== */
+:root {
+    --maincolor1: #f0620a;
+    --maincolor2: #04456f;
+    --text: #1f1f1f;
+    --bg: #ffffff;
+}
+
+/* ======================
+    공통
+====================== */
+.page--tech .inner-200 {
+    width: 100%; margin: 0 auto; padding-left: 10.4vw; padding-right: 10.4vw;
+    box-sizing: border-box;
+}
+
+
+/* ======================
+    헤더 (서브페이지)
+====================== */
+.page--tech header.sub {
+    position: fixed; top: 0; left: 0; z-index: 2000;
+    width: 100%;
+    background: #fff !important;
+}
+
+.page--tech {
+    padding-top: 86px;
+}
+
+.page--tech header.sub .topset .gnb > li:hover > a {
+    color: var(--maincolor1) !important;
+    border-bottom-color: var(--maincolor1) !important;
+}
+
+.page--tech header.sub .topset .blog a {
+    color: var(--maincolor2) !important;
+}
+
+/* ======================
+    히어로 섹션
+====================== */
+.page--tech .tech-hero {
+    background: #fff;
+    overflow: hidden;
+}
+
+.page--tech .tech-hero__inner {
+    position: relative;
+    min-height: 500px;
+}
+
+.tech-hero__content {
+    position: absolute; bottom: 100px;
+}
+
+.page--tech .tech-hero__kicker {
+    font-size: 35px; line-height: 1.6; margin: 0 0 26px;
+}
+
+.page--tech .tech-hero__title {
+    font-size: 4rem; font-weight: 800; line-height: 1.7; margin: 0; font-family: 'Isamanru'; font-weight: 300;
+}
+.page--tech .tech-hero__title strong {
+    font-weight: normal;
+}
+
+/* 우측 이미지 */
+.page--tech .tech-hero__media {
+    position: absolute; right: 10.4vw; bottom: 0;
+    pointer-events: none;
+}
+
+.page--tech .tech-hero__media img {
+    display: block;
+    max-width: 462px; height: auto;
+}
+
+/* 우측 상단 글로우 */
+.page--tech .tech-hero__glow {
+    position: absolute; right: -180px; top: -120px;
+    display: none;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle at 35% 35%, rgba(4,69,111,.22), rgba(4,69,111,0) 62%);
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+/* ======================
+    인트로 섹션 (2컬럼)
+====================== */
+.page--tech .tech-intro {
+    padding-bottom: 100px;
+}
+
+.page--tech .tech-intro__inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+/* 카드 공통 */
+.page--tech .tech-card {
+    position: relative;
+    padding-top: 34px;
+}
+
+.page--tech .tech-card::before {
+    content: "";
+    position: absolute; left: 0; top: 0;
+    width: 100%; height: 2px;
+    background: var(--maincolor1);
+}
+
+.page--tech .tech-card__title {
+    font-size: 2.6rem; font-weight: 700; line-height: 1.55; margin: 0 0 22px;
+}
+.tech-card__title .tbo {
+    font-weight: 700;
+}
+
+.page--tech .tech-card__brand {
+    font-weight: 800;
+    color: var(--maincolor1);
+}
+
+.page--tech .tech-card__body p {
+    font-size: 1.8rem; line-height: 1.5; font-weight: 500; margin: 0 0 22px;
+}
+
+.page--tech .tech-card__body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ======================
+    프로세스 섹션
+====================== */
+.page--tech .tech-process {
+}
+
+.page--tech .tech-process__inner {
+    text-align: center;
+}
+
+.page--tech .tech-process__title {
+    font-size: 18px; font-weight: 800; margin: 0 0 70px;
+}
+
+.page--tech .tech-process__flow {
+    display: flex; justify-content: center; align-items: flex-end; gap: 2.76vw;
+    width: 100%;
+}
+
+.item_wrap {
+    display: flex; align-items: end; gap: 2.76vw;
+}
+
+/* 프로세스 아이템 */
+.page--tech .p-item {
+    position: relative;
+    width: 270px;
+}
+
+.page--tech .p-num {
+    font-size: 2.8rem; font-weight: 700; margin-bottom: 20px;
+    color: var(--maincolor1);
+}
+
+/* 카드 공통 */
+.page--tech .p-card {
+    position: relative;
+    width: 270px; border-radius: 200px;
+    background: linear-gradient(180deg, #f0620a 0%, #ffbb00 100%);
+    overflow: hidden;
+}
+
+/* 카드 높이 */
+.page--tech .p-card--1 {
+    height: 404px;
+}
+
+.page--tech .p-card--2 {
+    height: 484px;
+}
+
+.page--tech .p-card--3 {
+    height: 544px;
+}
+
+.page--tech .p-card--4 {
+    height: 624px;
+}
+
+/* 패턴 오버레이 */
+.page--tech .p-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    opacity: .18;
+    pointer-events: none;
+}
+
+.page--tech .p-card--1::after {
+    background-image: url("../images/sub_Tech01_images/sub_Tech01_patton1.svg");
+    background-repeat: repeat; background-size: 30px 30px; background-position: center;
+}
+
+.page--tech .p-card--2::after {
+    background-image: url("../images/sub_Tech01_images/sub_Tech01_patton2.png");
+    background-repeat: repeat; background-size: 180px auto; background-position: center;
+}
+
+.page--tech .p-card--3::after {
+    background-image: url("../images/sub_Tech01_images/sub_Tech01_patton3.png");
+    background-repeat: repeat; background-size: 200px auto; background-position: center;
+}
+
+.page--tech .p-card--4::after {
+    background-image: url("../images/sub_Tech01_images/sub_Tech01_patton4.png");
+    background-repeat: repeat; background-size: 220px auto; background-position: center;
+}
+
+/* 카드 내부 컨텐츠 */
+.page--tech .p-content {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+    width: 100%; height: 100%; padding: 0 18px; box-sizing: border-box; color: #fff; font-family: 'Isamanru'; font-weight: 300;
+}
+
+.page--tech .p-icon {
+    display: block;
+    width: 86px; height: auto;
+}
+
+.page--tech .p-text {
+    font-size: 2.4rem; line-height: 1.5; margin: 0;
+}
+.page--tech .p-text span {
+    font-weight: normal;
+}
+
+/* 화살표 */
+.page--tech .p-arrow {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 40px; margin-bottom: 162px;
+}
+
+.page--tech .p-arrow img {
+    display: block;
+    width: 100%; height: auto;
+}
+
+.flow_bg {
+    display: none;
+}
+
+/* 하단 라인 + 캡션 */
+.page--tech .tech-process__rule {
+    width: 100%; height: 2px; margin: 70px 0 30px;
+    background: var(--maincolor1);
+}
+
+.page--tech .tech-process__caption {
+    font-size: 2.4rem; font-weight: 700; line-height: 1.5;
+    color: var(--maincolor1);
+}
+
+/* ======================
+    반응형 - 중형 데스크톱
+====================== */
+@media (max-width: 1450px) {
+    .page--tech .inner-200 {
+        position: relative;
+        padding-left: 40px; padding-right: 40px;
+    }
+    
+    .page--tech .tech-hero__media {
+        right: 40px;
+    }
+
+    .p-num {
+        display: none;
+    }
+    .tech-process__flow {
+        position: relative;
+        display: flex; flex-direction: column; align-items: start !important;
+    }
+
+    .tech-process__flow .p-arrow {
+        display: none;
+    }
+
+    .tech-process__flow .item_wrap {
+        position: relative; left: 50%; transform: translateX(-50%);
+    }
+    .tech-process__flow .item_wrap.fst {
+        position: relative; z-index: 2;
+    }
+    .tech-process__flow .item_wrap.last {
+        align-items: start;
+    }
+
+    .tech-process__flow .p-item {
+        position: relative;
+    }
+    .tech-process__flow .p-item--1 {
+        padding-bottom: 83px;
+    }
+    .tech-process__flow .p-item--3 {
+        padding-top: 83px;
+    }
+
+    .tech-process__flow .p-item .p-card {
+        position: relative;
+        height: 404px !important;
+    }
+    
+    .flow_bg {
+        position: absolute; top: -310px; left: -150px; transform: translateX(-50%); z-index: -1;
+        display: block;
+        width: 100%; transform: scale(1.4);
+    }
+
+    .tech-process__rule {
+        display: none;
+    }
+    .tech-process__caption {
+        position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%);
+        width: 150px;
+    }
+    .tech-process__caption span {
+        color: var(--text);
+    }
+}
+
+/* ======================
+    반응형 - 태블릿
+====================== */
+@media (max-width: 1024px) {
+    .page--tech .tech-intro__inner {
+        grid-template-columns: 1fr;
+    }
+    
+    .page--tech .tech-process__flow {
+        flex-wrap: wrap; align-items: center;
+    }
+    
+    .page--tech .p-arrow {
+        display: none;
+    }
+
+    .tech-process__caption {
+        top: 49%; left: 36%;
+    }
+}
+
+/* ======================
+    반응형 - 모바일
+====================== */
+@media (max-width: 768px) {
+    .page--tech {
+        position: relative;
+        padding-top: 70px;
+    }
+    
+    .page--tech .tech-hero__inner {
+        position: relative; bottom: 0;
+        padding-top: 90px; min-height: 520px;
+        text-align: center;
+    }
+
+    .tech-hero__content {
+        position: relative;
+        margin-top: 60px;
+    }
+    
+    .page--tech .tech-hero__kicker {
+        justify-content: center;
+    }
+    
+    .page--tech .tech-hero__title {
+        font-size: 34px;
+        text-align: center;
+        margin-left: auto; margin-right: auto;
+    }
+    
+    .page--tech .tech-hero__media {
+        position: static; display: flex; justify-content: center;
+        width: 100%; max-width: 100%; margin-top: 0px;
+    }
+    
+    .page--tech .tech-hero__media img {
+        margin: 0 auto;
+    }
+
+    .flow_bg {
+        top: -290px; left: -150px;
+    }
+
+    .tech-process__caption {
+        top: 50%; left: 30%;
+    }
+}

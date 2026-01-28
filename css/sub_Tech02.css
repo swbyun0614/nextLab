@@ -1,0 +1,454 @@
+/* ======================
+    제품 안정성 페이지 전용 스타일
+    
+    주의: 이 파일은 style.css에서 @import로 로드됩니다.
+    헤더, 푸터, 전역 스타일은 style.css에 있습니다.
+====================== */
+
+/* ======================
+    메인 컨텐츠
+====================== */
+.tec_main {
+    max-width: 1920px; margin: 0 auto; margin-top: 100px;
+}
+
+/* ======================
+    컨테이너
+====================== */
+.tec_container {
+    max-width: 1520px; margin: 0 auto; padding: 0 200px; margin-top: 200px;
+}
+
+/* ======================
+    접근성 - 시각적 숨김
+====================== */
+.tec_visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ======================
+    히어로 섹션
+====================== */
+.tec_hero {
+    padding-top: 88px;
+    margin-bottom: 150px;
+}
+
+.tec_hero-wrapper {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1520px; margin: 0 auto;
+    gap: clamp(40px, 10vw, 315px);
+}
+
+.tec_hero-content {
+    flex: 0 0 auto;
+    width: clamp(280px, 25vw, 352px);
+}
+
+.tec_hero-title {
+    font-size: clamp(24px, 2.5vw, 35px); line-height: 1.6; font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.tec_text-highlight {
+    font-weight: 700;
+    color: #f55e12;
+}
+
+.tec_hero-description {
+    font-family: 'Isamanru', sans-serif;
+    font-size: clamp(28px, 3vw, 40px); line-height: 1.7;
+    white-space: nowrap;
+}
+
+.tec_text-light {
+    font-size: 40px; font-weight: 300;
+}
+
+.tec_text-emphasis {
+    font-size: 40px; font-weight: 500;
+}
+
+.tec_hero-image {
+    flex: 1 1 auto;
+    max-width: 853px; height: auto;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    aspect-ratio: 853 / 400;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tec_hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* ======================
+    사례 섹션
+====================== */
+.tec_use-cases {
+    margin-bottom: 100px;
+}
+
+.tec_cases-row {
+    display: flex;
+    max-width: 1520px; margin: 0 auto;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.tec_cases-row--full {
+    display: block;
+}
+
+.tec_case-card {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tec_case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.tec_case-div1, 
+.tec_case-div3, 
+.tec_case-div5,
+.tec_case-div7,
+.tec_case-div9 {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #04456f url(../images/sub_Tech02_images/sub_Tech02_img1.png); background-size: cover; background-position: center;
+    height: 94px; padding: 0 clamp(20px, 4vw, 50px);
+}
+
+.tec_case-div2, 
+.tec_case-div4, 
+.tec_case-div6,
+.tec_case-div8,
+.tec_case-div10 {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #04456f url(../images/sub_Tech02_images/sub_Tech02_img2.png); background-size: cover; background-position: center;
+    height: 94px; padding: 0 clamp(20px, 4vw, 50px);
+}
+
+.tec_case-title {
+    flex: 1;
+    font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; line-height: 1.5;
+    color: white;
+    margin: 0;
+}
+
+.tec_case-number {
+    flex-shrink: 0;
+    font-size: clamp(24px, 2.2vw, 32px); font-weight: 700; line-height: 1;
+    color: white;
+    margin: 0; margin-left: 20px;
+}
+
+.tec_case-image {
+    background: linear-gradient(to left, #f0620a, #f0620a);
+    height: 400px;
+    overflow: hidden;
+}
+
+.tec_case-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tec_case-card:hover .tec_case-image img {
+    transform: scale(1.05);
+}
+
+/* ======================
+    섹션 구분선
+====================== */
+.tec_section-divider {
+    width: 100%; max-width: 1520px; height: 2px; margin: 100px auto;
+    background: #d9d9d9;
+    border: 0;
+}
+
+/* ======================
+    반응형 - 대형 데스크톱
+====================== */
+@media (max-width: 1920px) {
+    .tec_container {
+        padding: 0 100px;
+    }
+}
+
+/* ======================
+    반응형 - 데스크톱
+====================== */
+@media (max-width: 1600px) {
+    .tec_container {
+        padding: 0 80px;
+    }
+    
+    .tec_hero-wrapper {
+        gap: clamp(100px, 15vw, 200px);
+    }
+}
+
+/* ======================
+    반응형 - 중형 데스크톱
+====================== */
+@media (max-width: 1400px) {
+    .tec_container {
+        padding: 0 50px;
+    }
+    
+    .tec_hero-wrapper {
+        gap: clamp(60px, 12vw, 150px);
+    }
+    
+    .tec_hero-content {
+        width: clamp(250px, 30vw, 320px);
+    }
+}
+
+/* ======================
+    반응형 - 태블릿
+====================== */
+@media (max-width: 1200px) {
+    .tec_container {
+        padding: 0 40px;
+    }
+    
+    .tec_hero-wrapper {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .tec_hero-content {
+        width: 100%; max-width: 600px;
+    }
+    
+    .tec_hero-description {
+        white-space: normal;
+    }
+    
+    .tec_hero-image {
+        width: 100%; max-width: 853px; margin: 0 auto;
+    }
+    
+    .tec_cases-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 Large
+====================== */
+@media (max-width: 992px) {
+    .tec_container {
+        padding: 0 30px;
+    }
+    
+    .tec_main {
+        margin-top: 80px;
+    }
+    
+    .tec_hero {
+        padding-top: 60px;
+        margin-bottom: 80px;
+    }
+    
+    .tec_hero-title {
+        font-size: clamp(22px, 5vw, 28px);
+    }
+    
+    .tec_hero-description {
+        font-size: clamp(26px, 5.5vw, 32px);
+    }
+    
+    .tec_case-title {
+        font-size: clamp(18px, 4vw, 24px); line-height: 1.4;
+    }
+    
+    .tec_case-number {
+        font-size: clamp(20px, 4vw, 24px);
+    }
+    
+    .tec_case-image {
+        height: clamp(250px, 40vw, 350px);
+    }
+    
+    .tec_use-cases {
+        margin-bottom: 80px;
+    }
+    
+    .tec_section-divider {
+        margin: 80px auto;
+    }
+    
+    .tec_cases-row {
+        margin-bottom: 30px;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 Medium
+====================== */
+@media (max-width: 768px) {
+    .tec_container {
+        padding: 0 20px;
+    }
+    
+    .tec_hero-title {
+        font-size: 24px;
+    }
+    
+    .tec_hero-description {
+        font-size: 28px;
+    }
+    
+    .tec_hero-image {
+        height: auto; min-height: 250px;
+    }
+    
+    .tec_case-div1,
+    .tec_case-div2,
+    .tec_case-div3,
+    .tec_case-div4,
+    .tec_case-div5,
+    .tec_case-div6,
+    .tec_case-div7,
+    .tec_case-div8,
+    .tec_case-div9,
+    .tec_case-div10 {
+        flex-direction: row; align-items: center; justify-content: space-between;
+        height: 94px; padding: 0 30px;
+        gap: 0;
+    }
+    
+    .tec_case-title {
+        font-size: 20px; line-height: 1.4;
+    }
+    
+    .tec_case-number {
+        font-size: 20px; margin-left: 0;
+    }
+    
+    .tec_case-image {
+        height: 250px;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 Small
+====================== */
+@media (max-width: 576px) {
+    .tec_container {
+        padding: 0 15px;
+    }
+    
+    .tec_hero {
+        padding-top: 40px;
+        margin-bottom: 60px;
+    }
+    
+    .tec_hero-title {
+        font-size: 22px;
+    }
+    
+    .tec_hero-description {
+        font-size: 24px;
+    }
+    
+    .tec_hero-image {
+        min-height: 200px;
+    }
+    
+    .tec_case-div1,
+    .tec_case-div2,
+    .tec_case-div3,
+    .tec_case-div4,
+    .tec_case-div5,
+    .tec_case-div6,
+    .tec_case-div7,
+    .tec_case-div8,
+    .tec_case-div9,
+    .tec_case-div10 {
+        padding: 15px 20px;
+    }
+    
+    .tec_case-title {
+        font-size: 18px;
+    }
+    
+    .tec_case-number {
+        font-size: 18px;
+    }
+    
+    .tec_case-image {
+        height: 200px;
+    }
+    
+    .tec_cases-row {
+        margin-bottom: 30px;
+    }
+    
+    .tec_use-cases {
+        margin-bottom: 60px;
+    }
+    
+    .tec_section-divider {
+        margin: 60px auto;
+    }
+}
+
+/* ======================
+    반응형 - 모바일 Extra Small
+====================== */
+@media (max-width: 400px) {
+    .tec_hero-title {
+        font-size: 20px;
+    }
+    
+    .tec_hero-description {
+        font-size: 22px;
+    }
+    
+    .tec_case-title {
+        font-size: 16px;
+    }
+    
+    .tec_case-number {
+        font-size: 16px;
+    }
+    
+    .tec_case-image {
+        height: 180px;
+    }
+}
+
+/* ======================
+    인쇄 스타일
+====================== */
+@media print {
+    .tec_case-card {
+        page-break-inside: avoid;
+    }
+    
+    .tec_case-card:hover {
+        transform: none;
+    }
+    
+    .tec_hero-wrapper {
+        flex-direction: row;
+        page-break-inside: avoid;
+    }
+}

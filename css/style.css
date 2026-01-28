@@ -5,6 +5,7 @@
 @import url(sub_Product.css);
 @import url(sub_solution.css);
 @import url(sub_Company.css);
+@import url(sub_Tech02.css);
 
 /* --------------------------------------------------------------------------- */
 /* 기본 설정들 */
@@ -24,7 +25,7 @@ body {
 }
 .logo img {width: 190px;}
 
-.container {position: relative; max-width: 1520px; margin: 0 200px; margin-top: 200px;}
+.container {position: relative; max-width: 1520px; margin: 0 10.4vw; margin-top: 200px;}
 
 .sideBar {position: fixed; right: 2.3vw; top: 90%; transform: translateY(-50%); z-index: 999;}
 .sideBar .btnKakao {transition: .3s;}
@@ -243,8 +244,10 @@ header .topset {
         }
 
 
-#section1 {}
-#section1 .container {}
+#section1 {
+}
+#section1 .container {
+}
     #section1 .container .productList {
         display: grid; grid-template-columns: repeat(3, 1fr); gap: 21px 19px;
         list-style: none; padding: 0; margin: 0;
@@ -301,7 +304,7 @@ header .topset {
                 display: flex; gap: 10px; justify-content: center;
             }
                 #section1 .container .productList li a .textBox .productTag li {
-                    width: 4.63vw; font-size: 1.5rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 0px; border-radius: 10px; transition: .3s; text-align: center;
+                    width: 4.63vw; height: 100%; font-size: 1.5rem; font-weight: 600; color: var(--text); background: #EFEFEF; padding: 5px 0px; border-radius: 10px; transition: .3s; text-align: center;
                 }
 
         /* 두 번째 li */
@@ -469,7 +472,7 @@ header .topset {
 }
     #section4 .container .support .sup {
         display: flex; justify-content: center; align-items: center; flex-direction: column;
-        border-radius: 30px; padding: 110px 130px 100px; box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+        border-radius: 30px; padding: 5.72vw 6.7vw 5.2vw; box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
     }
     #section4 .container .support .sup span {
         display: block;
@@ -514,17 +517,17 @@ header .topset {
 footer {
     width: 100%; background: #343434; padding: 70px auto;
 }
-footer .container {
+footer .tec_container {
     display: flex; gap: 1.8vw; align-items: center;
     padding: 70px;
 }
-footer .container .logoFoot {
+footer .tec_container .logoFoot {
     margin-right: 4.84vw;
 }
-    footer .container p {
+    footer .tec_container p {
         color: #797979; font-size: 1.6rem; line-height: 1.6;
     }
-    footer .container p span {
+    footer .tec_container p span {
         font-size: 1.4rem;
     }
 
@@ -581,7 +584,7 @@ header.sub {
 
 /* --------------------------------------------------------------------------- */
 /* 모바일 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1240px) {
     .pc {
         display: none !important;
     }
@@ -614,11 +617,6 @@ header.sub {
 
     h2 {
         font-size: 2.4rem; line-height: 1.5; margin-top: 0px; margin-bottom: 20px;
-    }
-    
-    .h2bg_left,
-    .h2bg_right {
-        display: none;
     }
 
     /* === HEADER 모바일 === */
@@ -975,10 +973,6 @@ header.sub {
     .sec1MobileSwiper .swiper-slide-active .textBox .productTag li {
         background: #fff;
     }
-
-    .sec1MobileSwiper .swiper-slide .textBox .productTag li:first-child {
-        display: none;
-    }
     
     /* Swiper 페이지네이션 */
     .sec1MobileSwiper .swiper-pagination {
@@ -1020,20 +1014,7 @@ header.sub {
     #section2 .container {
         margin-top: 60px;
     }
-    .h2bg_left {
-        content: "";
-        position: absolute; left: 0px; top: -35px; z-index: -1;
-        display: flex;
-        background: url(../images/title_bg_left_m.png) no-repeat center; width: 100%; height: 103px;
-        background-position: left;
-    }
-    .h2bg_right {
-        content: "";
-        position: absolute; right: 0px; top: -35px; z-index: -1;
-        display: flex;
-        background: url(../images/title_bg_right_m.png) no-repeat center; width: 100%; height: 103px;
-        background-position: right;
-    }
+    
     #section2 .container .h2bg_left,
     #section2 .container .h2bg_right {
         top: -25px;
@@ -1092,7 +1073,7 @@ header.sub {
     }
 
     .sec3Swiper {
-        padding: 30px 0 0px; order: 1;
+        padding: 50px 0 0px; order: 1;
     }
 
     .sec3Swiper .swiper-slide {
@@ -1173,26 +1154,48 @@ header.sub {
         padding: 40px 0; margin-top: 100px; padding-bottom: 80px;
     }
 
-    footer .container {
+    footer .tec_container {
         display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
         padding: 0 30px; margin-top: 0 !important;
     }
 
-    footer .container .logoFoot {
+    footer .tec_container .logoFoot {
         margin-right: 0; margin-bottom: 10px;
     }
 
-    footer .container .logoFoot img {
+    footer .tec_container .logoFoot img {
         width: 120px;
     }
 
-    footer .container p {
+    footer .tec_container p {
         position: relative;
         font-size: 1.4rem; line-height: 1.6;
     }
 
-    footer .container p span {
+    footer .tec_container p span {
         position: absolute; bottom: -105px;
         font-size: 1.4rem; font-weight: 600;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .h2bg_left,
+    .h2bg_right {
+        display: none;
+    }
+    .h2bg_left {
+        content: "";
+        position: absolute; left: 0px; top: -35px; z-index: -1;
+        display: flex;
+        background: url(../images/title_bg_left_m.png) no-repeat center; width: 100%; height: 103px;
+        background-position: left;
+    }
+    .h2bg_right {
+        content: "";
+        position: absolute; right: 0px; top: -35px; z-index: -1;
+        display: flex;
+        background: url(../images/title_bg_right_m.png) no-repeat center; width: 100%; height: 103px;
+        background-position: right;
     }
 }
