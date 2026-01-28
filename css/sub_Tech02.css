@@ -35,8 +35,10 @@
     히어로 섹션
 ====================== */
 .tec_hero {
-    padding-top: 88px;
-    margin-bottom: 150px;
+}
+
+.tec_hero .tec_container {
+    margin-top: 100px;
 }
 
 .tec_hero-wrapper {
@@ -94,6 +96,17 @@
 .tec_use-cases {
     margin-bottom: 100px;
 }
+.tec_use-cases.fst {
+    margin-bottom: 0;
+}
+
+.tec_use-cases .tec_container {
+    margin-top: 0;
+}
+
+.tec_container.thd {
+    margin-top: 0;
+}
 
 .tec_cases-row {
     display: flex;
@@ -104,6 +117,9 @@
 
 .tec_cases-row--full {
     display: block;
+}
+.tec_cases-row--full.fst {
+    margin-bottom: 0px;
 }
 
 .tec_case-card {
@@ -258,11 +274,10 @@
     }
     
     .tec_main {
-        margin-top: 80px;
+        margin-top: 0px;
     }
     
     .tec_hero {
-        padding-top: 60px;
         margin-bottom: 80px;
     }
     
@@ -356,7 +371,6 @@
     }
     
     .tec_hero {
-        padding-top: 40px;
         margin-bottom: 60px;
     }
     

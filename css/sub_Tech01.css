@@ -280,6 +280,10 @@
     반응형 - 중형 데스크톱
 ====================== */
 @media (max-width: 1450px) {
+    .page--tech .tech-hero__kicker {
+        font-size: 2.8rem;
+    }
+
     .page--tech .inner-200 {
         position: relative;
         padding-left: 40px; padding-right: 40px;
@@ -387,6 +391,7 @@
     
     .page--tech .tech-hero__kicker {
         justify-content: center;
+        font-size: 2.2rem;
     }
     
     .page--tech .tech-hero__title {
