@@ -154,6 +154,8 @@ $(function() {
 
     /* 6. 라이브러리 초기화 (AOS) */
     $(window).on('load', function () {
+        console.log('[Action.js] Window loaded');
+        
         if (typeof AOS !== 'undefined') {
             AOS.init({
                 duration: 800,
@@ -161,12 +163,19 @@ $(function() {
                 mirror: true,
                 offset: 120
             });
+            console.log('[Action.js] AOS initialized');
         }
+        
+        // Swiper 초기화도 window.load 후에 실행
+        initSwipers();
     });
-
-    /* 7. Swiper 슬라이더 제어 */
-    if ($('.mySwiper').length > 0) {
-        heroSwiper = new Swiper(".mySwiper", {
+    
+    /* 7. Swiper 슬라이더 초기화 함수 */
+    function initSwipers() {
+        console.log('[Action.js] Initializing Swipers');
+        
+        if ($('.mySwiper').length > 0) {
+            heroSwiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
             loop: true,
             speed: 1200,
@@ -189,6 +198,7 @@ $(function() {
                 }
             }
         });
+        console.log('[Action.js] heroSwiper initialized');
     }
 
     if ($('.sec3Swiper').length > 0) {
@@ -211,6 +221,7 @@ $(function() {
                 slideShadows: false
             }
         });
+        console.log('[Action.js] sec3Swiper initialized');
     }
     if ($('.solu02Swiper').length > 0) {
         solu02Swiper = new Swiper(".solu02Swiper", {
@@ -232,6 +243,7 @@ $(function() {
                 slideShadows: false
             }
         });
+        console.log('[Action.js] solu02Swiper initialized');
     }
 
     if ($('.sec1MobileSwiper').length > 0) {
@@ -250,6 +262,8 @@ $(function() {
                 clickable: true
             }
         });
+        console.log('[Action.js] sec1MobileSwiper initialized');
+    }
     }
 
     /* 8. Page Visibility API */
