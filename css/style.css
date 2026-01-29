@@ -256,6 +256,7 @@ header .topset {
 
 
 #section1 {
+    overflow-x: hidden;
 }
 #section1 .container {
 }
