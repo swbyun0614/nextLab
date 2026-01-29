@@ -136,13 +136,21 @@ var sec1MobileSwiper = null;
 
 // 5. 헤더 및 푸터 로드
 $(function() {
-    $('header').load('include/header.html', function() {
-        gnbAction();
-        mobileMenuAction();
-        setActiveGnb(); // 현재 페이지 GNB 활성화
+    $('header').load('header.html', function(response, status, xhr) {
+        if (status === "error") {
+            console.error("헤더 로드 실패:", xhr.status, xhr.statusText);
+        } else {
+            gnbAction();
+            mobileMenuAction();
+            setActiveGnb(); // 현재 페이지 GNB 활성화
+        }
     });
 
-    $('footer').load('include/footer.html');
+    $('footer').load('footer.html', function(response, status, xhr) {
+        if (status === "error") {
+            console.error("푸터 로드 실패:", xhr.status, xhr.statusText);
+        }
+    });
 
     /* 6. 라이브러리 초기화 (AOS) */
     $(window).on('load', function () {
