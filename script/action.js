@@ -3,8 +3,8 @@ function gnbAction() {
     // 기존 이벤트 제거 후 재바인딩
     $('header').off('mouseenter mouseleave');
     
-    // PC에서만 hover 효과 적용 (768px 초과)
-    if ($(window).width() > 768) {
+    // PC에서만 hover 효과 적용 (1240px 초과)
+    if ($(window).width() > 1240) {
         $('header').on({
             'mouseenter': function() {
                 $(this).addClass('on');
@@ -26,17 +26,44 @@ function mobileMenuAction() {
         // 메뉴 열릴 때 body 스크롤 방지
         if ($('header').hasClass('menu-open')) {
             $('body').css('overflow', 'hidden');
+            
+            // GNB 강제 표시 - 더 강력한 방법
+            $('header .topset .gnb').attr('style', 'display: flex !important; flex-direction: column !important; align-items: center !important; width: 100% !important;');
+            
+            // 서브페이지인 경우 현재 페이지의 GNB를 펼친 상태로 유지
+            // 모바일에서 current 클래스가 있는 GNB에 active 클래스 추가
+            if ($(window).width() <= 1240) {
+                var $currentGnb = $('header .topset .gnb > li.current');
+                if ($currentGnb.length > 0) {
+                    $currentGnb.addClass('active');
+                    console.log('Current GNB opened:', $currentGnb.find('> a').text());
+                }
+            }
+            
+            console.log('Menu opened: true');
+            console.log('Window width:', $(window).width());
+            console.log('GNB display after force:', $('.gnb').css('display'));
+            console.log('Current GNB has active:', $('header .topset .gnb > li.current').hasClass('active'));
         } else {
             $('body').css('overflow', '');
-            // 메뉴 닫힐 때 모든 GNB active 클래스 제거
-            $('header .topset .gnb > li').removeClass('active');
+            
+            // GNB 숨기기
+            if ($(window).width() <= 1240) {
+                $('header .topset .gnb').css('display', 'none');
+            }
+            
+            // 메뉴 닫힐 때 current가 아닌 GNB의 active 클래스만 제거
+            $('header .topset .gnb > li').not('.current').removeClass('active');
+            console.log('Menu opened: false');
         }
+        
+        console.log('GNB count:', $('.gnb > li').length);
     });
     
     // GNB 메뉴 클릭 시 LNB 토글 (모바일)
     $('header .topset .gnb > li > a').on('click', function(e) {
-        // 모바일에서만 동작 (768px 이하)
-        if ($(window).width() <= 768) {
+        // 모바일에서만 동작 (1240px 이하)
+        if ($(window).width() <= 1240) {
             e.preventDefault();
             
             var $parentLi = $(this).parent('li');
@@ -55,6 +82,11 @@ function setActiveGnb() {
     var currentPath = window.location.pathname;
     var currentPage = currentPath.split('/').pop(); // 현재 파일명 추출
     
+    // 메인 페이지인 경우 종료
+    if (!currentPage || currentPage === 'index.html' || currentPage === '') {
+        return;
+    }
+    
     // GNB와 매칭되는 페이지 패턴 정의
     var gnbPages = {
         0: ['sub_Company'], // 회사 소개
@@ -72,6 +104,15 @@ function setActiveGnb() {
         for (var i = 0; i < pages.length; i++) {
             if (currentPage.toLowerCase().indexOf(pages[i].toLowerCase()) !== -1) {
                 $gnbItem.addClass('current');
+                
+                // 해당 페이지의 LNB 링크에 current 클래스 추가
+                $gnbItem.find('.lnb a').each(function() {
+                    var linkHref = $(this).attr('href');
+                    if (linkHref && currentPage === linkHref) {
+                        $(this).addClass('current');
+                    }
+                });
+                
                 return false; // each 루프 종료
             }
         }
@@ -79,8 +120,9 @@ function setActiveGnb() {
         // LNB 링크의 href와 현재 페이지 비교
         $gnbItem.find('.lnb a').each(function() {
             var linkHref = $(this).attr('href');
-            if (linkHref && currentPath.indexOf(linkHref.replace('.html', '')) !== -1) {
+            if (linkHref && currentPage === linkHref) {
                 $gnbItem.addClass('current');
+                $(this).addClass('current');
                 return false;
             }
         });
@@ -223,10 +265,17 @@ $(function() {
     /* 10. 윈도우 리사이즈 시 메뉴 상태 초기화 및 Swiper 업데이트 */
     var resizeTimer;
     $(window).on('resize', function() {
-        if ($(window).width() > 768) {
+        if ($(window).width() > 1240) {
+            // PC 화면으로 돌아갈 때
             $('header').removeClass('menu-open');
-            $('header .topset .gnb > li').removeClass('active');
+            
+            // current가 아닌 GNB의 active 클래스만 제거
+            $('header .topset .gnb > li').not('.current').removeClass('active');
+            
             $('body').css('overflow', '');
+            
+            // 모바일에서 강제로 추가한 인라인 스타일 제거
+            $('header .topset .gnb').removeAttr('style');
         }
         
         // 디바운싱: 리사이즈가 끝난 후 실행

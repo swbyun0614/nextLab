@@ -134,6 +134,16 @@ header .topset {
         header .topset .gnb .lnb li a:hover {
             background-color: var(--maincolor1); color: #fff;
         }
+        
+        /* ✨ 현재 페이지 LNB 스타일 */
+        header .topset .gnb .lnb li a.current {
+            background-color: #fff; color: var(--maincolor1); font-weight: 500;
+        }
+        
+        /* ✨ 현재 페이지 LNB는 호버 효과 무시 */
+        header .topset .gnb .lnb li a.current:hover {
+            background-color: #fff; color: var(--maincolor1);
+        }
         header .lnb_bg {
             position: absolute; top: 86px; left: 0; z-index: 10;
             display: block;
@@ -679,6 +689,11 @@ header.sub {
         width: 100%; height: 3px; background: #fff; border-radius: 2px; transition: all 0.3s ease;
     }
 
+    /* 서브페이지 햄버거 버튼 색상 */
+    header.sub .hamburger span {
+        background: var(--maincolor1);
+    }
+
     /* 햄버거 라인 간격 5px (총 높이 22px = 3px*3 + 5px*2 + 여유 4px) */
     .hamburger span:nth-child(2) {
         margin: 6px 0;
@@ -711,32 +726,34 @@ header.sub {
         width: 100%; height: auto; margin-top: 30px;
     }
 
-    /* 메뉴 열렸을 때 GNB 표시 */
-    header.menu-open .topset .gnb {
-        display: flex;
+    /* 메뉴 열렸을 때 GNB 표시 - 강제 표시 */
+    header.menu-open .topset .gnb,
+    header.sub.menu-open .topset .gnb {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 50;
     }
 
     header .topset .gnb > li {
         position: relative;
         display: flex; flex-direction: column; align-items: center;
-        border-bottom: 2px solid #EFEFEF;
+        border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
     }
 
     /* 첫 번째 gnb 위쪽 라인 제거 */
     header .topset .gnb > li:first-child {
         border-top: none;
     }
-
-    /* GNB 활성화 시 보더 색상 변경 */
-    header .topset .gnb > li.active {
+    
+    /* GNB hover 시 회색 선 숨기고 주황색으로 (active가 아닐 때만) */
+    header .topset .gnb > li:not(.active):hover {
         border-bottom-color: var(--maincolor1);
     }
-
-    /* GNB 활성화 시 gnb와 lnb 사이 라인 (::after 사용) */
-    header .topset .gnb > li.active > a::after {
-        content: "";
-        position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-        width: 230px; height: 2px; background: var(--maincolor1);
+    
+    /* GNB 활성화(펼쳐짐) 시 회색 선 숨김 */
+    header .topset .gnb > li.active {
+        border-bottom: none;
     }
 
     header .topset .gnb > li > a {
@@ -750,26 +767,33 @@ header.sub {
         color: var(--maincolor1); font-weight: 600;
     }
 
-    /* GNB 호버 효과 제거 (모바일) */
-    header .topset .gnb > li:hover > a {
-        border-bottom: none; color: var(--text); font-weight: 500;
-    }
-
-    header .topset .gnb > li.active:hover > a {
-        color: var(--maincolor1); font-weight: 600;
-    }
-
     /* LNB 모바일 - 슬라이드 애니메이션 */
     header .topset .gnb .lnb {
         position: relative; top: auto; left: auto; transform: none;
         display: flex; flex-direction: column; align-items: center;
-        width: 100%; max-height: 0; padding: 0; opacity: 0; overflow: hidden;
+        width: 100%; max-height: 0; padding: 0; opacity: 0; overflow: visible;
+        pointer-events: none; /* 닫혀있을 때 클릭 방지 */
         transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    
+    /* LNB 위쪽에 주황색 선 추가 (GNB와 LNB 사이) */
+    header .topset .gnb > li.active .lnb::before {
+        content: "";
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 2px; background: var(--maincolor1);
+    }
+    
+    /* LNB 아래쪽에 주황색 선 추가 */
+    header .topset .gnb > li.active .lnb::after {
+        content: "";
+        position: absolute; bottom: 0; left: 0;
+        width: 100%; height: 2px; background: var(--maincolor1);
     }
 
     /* LNB 활성화 시 슬라이드로 표시 */
     header .topset .gnb > li.active .lnb {
         max-height: 300px; padding: 10px 0 15px; opacity: 1;
+        pointer-events: auto; /* 열렸을 때 클릭 허용 */
     }
 
     header .topset .gnb .lnb li {
@@ -784,6 +808,16 @@ header.sub {
     /* LNB 호버 효과 제거 (모바일) */
     header .topset .gnb .lnb li a:hover {
         background: transparent; color: var(--text);
+    }
+    
+    /* 모바일 - 현재 페이지 LNB 스타일 */
+    header .topset .gnb .lnb li a.current {
+        background: transparent; color: var(--maincolor1); font-weight: 500;
+    }
+    
+    /* 모바일 - 현재 페이지 LNB는 호버 효과 무시 */
+    header .topset .gnb .lnb li a.current:hover {
+        background: transparent; color: var(--maincolor1);
     }
 
     /* LNB 배경 숨기기 */

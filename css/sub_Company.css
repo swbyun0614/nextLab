@@ -58,97 +58,6 @@ img {
 }
 
 /* ======================
-    헤더 스타일
-====================== */
-.main-header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.header-container {
-    display: flex; align-items: center; justify-content: space-between;
-    max-width: 1920px; margin: 0 auto; padding: 20px 198px;
-}
-
-.logo {
-    margin: 0;
-}
-
-.logo img {
-    width: 190px; height: 46px;
-    object-fit: contain;
-}
-
-.gnb ul {
-    display: flex; align-items: center;
-    gap: 100px;
-}
-
-.gnb a {
-    font-family: 'Pretendard-Medium', sans-serif;
-    font-size: 22px; font-weight: 500;
-    color: var(--textcolor, #1f1f1f);
-    transition: color 0.3s;
-}
-
-.gnb a:hover,
-.gnb a.active {
-    font-family: 'Pretendard-Bold', sans-serif;
-    font-weight: 700;
-    color: var(--maincolor, #f55e12);
-}
-
-.header-actions {
-    display: flex; align-items: center;
-    gap: 20px;
-}
-
-.blog-link {
-    font-size: 18px;
-    color: var(--maincolor2, #04456f);
-}
-
-.blog-link .bold {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-weight: 600;
-}
-
-.top-button {
-    display: flex; justify-content: center; align-items: center;
-    width: 35px; height: 35px;
-    background: var(--maincolor2, #04456f);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.top-button:hover {
-    background: var(--maincolor, #f55e12);
-}
-
-.top-button img {
-    width: 20px; height: 20px;
-}
-
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.mobile-menu-toggle span {
-    width: 25px; height: 3px;
-    background: var(--textcolor, #1f1f1f);
-    transition: all 0.3s;
-}
-
-.active-indicator {
-    display: none;
-}
-
-/* ======================
     히어로 섹션
 ====================== */
 .company-hero-section {
@@ -372,18 +281,6 @@ img {
     반응형 - 태블릿
 ====================== */
 @media screen and (max-width: 1440px) {
-    .header-container {
-        padding: 20px 100px;
-    }
-
-    .gnb ul {
-        gap: 60px;
-    }
-
-    .active-indicator {
-        margin-left: 350px;
-    }
-
     .comp_hero-content {
         display: flex; flex-direction: column; align-items: center;
     }
@@ -418,23 +315,6 @@ img {
 }
 
 @media screen and (max-width: 1024px) {
-    .header-container {
-        padding: 20px 60px;
-    }
-
-    .gnb ul {
-        gap: 40px;
-    }
-
-    .gnb a {
-        font-size: 18px;
-    }
-
-    .active-indicator {
-        width: 180px;
-        margin-left: 200px;
-    }
-
     .comp_hero-container {
         padding: 40px 60px;
         gap: 80px;
@@ -489,44 +369,6 @@ img {
     반응형 - 모바일
 ====================== */
 @media screen and (max-width: 768px) {
-    .header-container {
-        padding: 15px 30px;
-    }
-
-    .logo img {
-        width: 140px; height: auto;
-    }
-
-    .gnb {
-        position: fixed; top: 70px; left: -100%; z-index: 999;
-        width: 100%;
-        background: #ffffff;
-        padding: 30px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transition: left 0.3s;
-    }
-
-    .gnb.active {
-        left: 0;
-    }
-
-    .gnb ul {
-        flex-direction: column; align-items: flex-start;
-        gap: 20px;
-    }
-
-    .header-actions {
-        display: none;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
-    }
-
-    .active-indicator {
-        display: none;
-    }
-
     .company-hero-section {
         padding-top: 80px;
     }
@@ -647,14 +489,6 @@ img {
     반응형 - 작은 모바일
 ====================== */
 @media screen and (max-width: 480px) {
-    .header-container {
-        padding: 12px 20px;
-    }
-
-    .logo img {
-        width: 120px;
-    }
-
     .comp_hero-container {
         padding: 20px 20px;
     }

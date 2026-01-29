@@ -440,6 +440,12 @@ body.prod05 .specs-table-wrap {
     Responsive - Tablet
 =========================== */
 @media screen and (max-width: 1200px) {
+    .sub_title_db {
+        font-size: 2rem;
+    }
+    .specs-table {
+        width: 80%; justify-self: center;
+    }
     .detail-wrap {
         gap: 40px;
     }
@@ -450,6 +456,10 @@ body.prod05 .specs-table-wrap {
     
     .prodThumbSwiper .swiper-slide {
         width: 75px; height: 75px;
+    }
+
+    .product-btn .label {
+        width: 100px; font-size: 1.5rem; margin-top: 10px; white-space: normal;
     }
 
     /* Features */
@@ -478,6 +488,10 @@ body.prod05 .specs-table-wrap {
     Responsive - Mobile
 =========================== */
 @media screen and (max-width: 768px) {
+    .prod .container {
+        margin-top: 70px!important;
+    }
+
     /* Product Picker */
     .container.sec1 {
         margin-top: 120px;
@@ -494,9 +508,25 @@ body.prod05 .specs-table-wrap {
     .product-btn .thumb {
         width: 100px;
     }
+
+    /* 선택(활성) 상태 */
+    .product-btn.is-active .thumb {
+        outline: 6px solid var(--maincolor1);
+    }
     
     .product-btn .label {
-        font-size: 1.4rem; margin-top: 10px;
+        width: 100px; font-size: 1.5rem; margin-top: 10px; white-space: normal;
+    }
+
+    h2.smalltext {
+        font-size: 1.8rem;
+    }
+    .prod_intro p {
+        font-size: 1.6rem;
+    }
+
+    .specs-table-wrap {
+        margin: 0 auto;
     }
     
     /* Product Detail */
@@ -505,15 +535,18 @@ body.prod05 .specs-table-wrap {
     }
     
     .detail-wrap {
-        flex-direction: column; gap: 30px;
+        flex-direction: column; gap: 30px; align-items: center;
     }
     
     .detail-gallery {
         width: 100%;
     }
     
+    .swiper {
+        width: 89vw; height: 20%;
+    }
     .prodMainSwiper .swiper-slide {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 1 / 1; 
     }
     
     .prodThumbSwiper .swiper-slide {
@@ -549,6 +582,10 @@ body.prod05 .specs-table-wrap {
     .features-section {
         padding: 60px 0;
     }
+
+    h2.section-title.smalltext {
+        font-size: 2.2rem; margin-bottom: 50px;
+    }
     
     .features-list {
         gap: 50px;
@@ -563,7 +600,7 @@ body.prod05 .specs-table-wrap {
     }
     
     .feature-item .feature-content {
-        padding-left: 15px;
+        width: 100%; padding-left: 15px;
     }
     
     .feature-item .feature-content h3 {
@@ -584,7 +621,7 @@ body.prod05 .specs-table-wrap {
     }
     
     .sub_title_db {
-        font-size: 1.4rem; padding: 8px 20px;
+        font-size: 1.6rem; padding: 8px 20px;
     }
     
     .diagram-wrap {
@@ -596,15 +633,60 @@ body.prod05 .specs-table-wrap {
     }
     
     .specs-table thead th {
-        font-size: 1.3rem; padding: 12px 15px;
+        font-size: 1.6rem; padding: 12px 15px;
     }
     
     .specs-table tbody th,
     .specs-table tbody td {
-        font-size: 1.2rem; padding: 12px 15px;
+        font-size: 1.6rem; padding: 12px 15px;
     }
     
     .specs-table tbody th {
         width: 110px;
     }
+
+    .option_tl .container .tl-content .tl01,
+    .option_tl .container .tl-content .tl02,
+    .option_tl .container .tl-content .tl03 {
+        margin-bottom: 100px;
+    }
+
+    .option_tl .container .tl-content .tl01 p {
+        font-size: 1.6rem;
+    }
+
+    .fst_li, .sec_li {
+        flex-direction: column; align-items: center; 
+    }
+
+    .option_tl .container .tl-content .tl02 > ul li .fst_li li p, .option_tl .container .tl-content .tl02 ul li .sec_li li p {
+        font-size: 1.8rem;
+    }
+
+    .option_tl .container .tl-content .tl02 > ul li .fst_li, .option_tl .container .tl-content .tl02 > ul li .sec_li {
+        padding-top: 3.33vw;
+    }
+
+    .tl03_text_wrap {
+        flex-direction: column;
+    }
+    .tl03_text_wrap p {
+        font-size: 1.6rem;
+    }
+
+    .tl03_notice_box {
+        width: 100%;
+    }
+
+    .tl03_notice_box .notice01, .tl03_notice_box .notice02, .tl03_notice_box .notice03, .tl03_notice_box .notice04 {
+        font-size: 1.8rem;
+    }
+
+    .tl03_notice_title {
+        justify-content: center;
+    }
+    .tl03_notice_title .notice_bar {
+        min-width: 54px;
+    }
+
 }
