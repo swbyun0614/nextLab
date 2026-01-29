@@ -136,19 +136,40 @@ var sec1MobileSwiper = null;
 
 // 5. 헤더 및 푸터 로드
 $(function() {
-    $('header').load('header.html', function(response, status, xhr) {
+    // 먼저 include/ 폴더 시도, 실패하면 루트 시도
+    $('header').load('include/header.html', function(response, status, xhr) {
         if (status === "error") {
-            console.error("헤더 로드 실패:", xhr.status, xhr.statusText);
+            console.log("include/header.html 로드 실패, header.html 시도...");
+            $('header').load('header.html', function(response2, status2, xhr2) {
+                if (status2 === "error") {
+                    console.error("헤더 로드 완전 실패:", xhr2.status, xhr2.statusText);
+                } else {
+                    console.log("header.html 로드 성공");
+                    gnbAction();
+                    mobileMenuAction();
+                    setActiveGnb();
+                }
+            });
         } else {
+            console.log("include/header.html 로드 성공");
             gnbAction();
             mobileMenuAction();
-            setActiveGnb(); // 현재 페이지 GNB 활성화
+            setActiveGnb();
         }
     });
 
-    $('footer').load('footer.html', function(response, status, xhr) {
+    $('footer').load('include/footer.html', function(response, status, xhr) {
         if (status === "error") {
-            console.error("푸터 로드 실패:", xhr.status, xhr.statusText);
+            console.log("include/footer.html 로드 실패, footer.html 시도...");
+            $('footer').load('footer.html', function(response2, status2, xhr2) {
+                if (status2 === "error") {
+                    console.error("푸터 로드 완전 실패:", xhr2.status, xhr2.statusText);
+                } else {
+                    console.log("footer.html 로드 성공");
+                }
+            });
+        } else {
+            console.log("include/footer.html 로드 성공");
         }
     });
 
