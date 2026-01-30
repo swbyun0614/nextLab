@@ -543,7 +543,7 @@ body.prod05 .specs-table-wrap {
     }
     
     .swiper {
-        width: 89vw; height: 20%;
+        width: 89vw; height: auto;
     }
     .prodMainSwiper .swiper-slide {
         aspect-ratio: 1 / 1; 

@@ -510,26 +510,30 @@ $(function() {
 });
 
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
-var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
-    spaceBetween: 15,
-    slidesPerView: 5,
-    watchSlidesProgress: true,
-    navigation: {
-        nextEl: '.prod-next',
-        prevEl: '.prod-prev',
-    },
-    breakpoints: {
-        320: { slidesPerView: 3, spaceBetween: 10 },
-        768: { slidesPerView: 4, spaceBetween: 12 },
-        1024: { slidesPerView: 5, spaceBetween: 15 }
-    }
-});
+$(function() {
+    if ($('.prodThumbSwiper').length > 0) {
+        var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+            spaceBetween: 15,
+            slidesPerView: 5,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.prod-next',
+                prevEl: '.prod-prev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 3, spaceBetween: 10 },
+                768: { slidesPerView: 4, spaceBetween: 12 },
+                1024: { slidesPerView: 5, spaceBetween: 15 }
+            }
+        });
 
-var prodMainSwiper = new Swiper('.prodMainSwiper', {
-    spaceBetween: 10,
-    thumbs: {
-        swiper: prodThumbSwiper,
-    },
+        var prodMainSwiper = new Swiper('.prodMainSwiper', {
+            spaceBetween: 10,
+            thumbs: {
+                swiper: prodThumbSwiper,
+            },
+        });
+    }
 });
 
 
