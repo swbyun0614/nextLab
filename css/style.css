@@ -723,8 +723,8 @@ header.sub {
 
     /* GNB 모바일 */
     header .topset .gnb {
-        display: none; flex-direction: column; align-items: center;
-        width: 100%; height: auto; margin-top: 30px;
+        display: none; flex-direction: column; align-items: center; justify-content: center !important;
+        width: 100%; height: auto;
     }
 
     /* 메뉴 열렸을 때 GNB 표시 - 강제 표시 */
@@ -760,7 +760,7 @@ header.sub {
     header .topset .gnb > li > a {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 230px; height: auto; padding: 25px 0; font-size: 2.2rem; font-weight: 500; color: var(--text); border-bottom: none;
+        width: 230px; height: auto; padding: 18px 0; font-size: 2rem; font-weight: 500; color: var(--text); border-bottom: none;
     }
 
     /* GNB 활성화 시 글씨 색상 변경 */
