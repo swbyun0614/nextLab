@@ -1095,7 +1095,11 @@ header.sub {
     }
 
     #section2 .container .sec2_contentBox .content_wrap:hover .tech img {
-        transform: scale(1); filter: brightness(100%);
+        transform: none !important; filter: none !important;
+    }
+
+    #section2 .container .sec2_contentBox .content_wrap:hover .tech img.longWidth {
+        transform: none !important;
     }
 
     /* === SECTION 3 === */

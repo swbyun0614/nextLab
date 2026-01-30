@@ -1,26 +1,4 @@
 // ===============================================
-// 모바일 디버그 패널 (임시) - v2
-// ===============================================
-(function() {
-    var VERSION = 'v2-hamburger-fix';
-    var debugDiv = document.createElement('div');
-    debugDiv.id = 'mobileDebug';
-    debugDiv.style.cssText = 'position:fixed; bottom:0; left:0; right:0; height:150px; background:rgba(0,0,0,0.85); color:#0f0; font-family:monospace; font-size:11px; overflow:auto; z-index:99999; padding:10px;';
-    document.addEventListener('DOMContentLoaded', function() {
-        document.body.appendChild(debugDiv);
-        console.log('=== DEBUG VERSION: ' + VERSION + ' ===');
-    });
-    var originalLog = console.log;
-    console.log = function() {
-        originalLog.apply(console, arguments);
-        if (document.getElementById('mobileDebug')) {
-            document.getElementById('mobileDebug').innerHTML += Array.from(arguments).join(' ') + '<br>';
-            document.getElementById('mobileDebug').scrollTop = document.getElementById('mobileDebug').scrollHeight;
-        }
-    };
-})();
-
-// ===============================================
 // 전역 변수
 // ===============================================
 var heroSwiper = null;
