@@ -393,6 +393,9 @@ $(function() {
         }, 100);
     }
 
+    // initSwipers를 전역으로 노출 (pageshow 이벤트에서 접근 가능하도록)
+    window.initSwipers = initSwipers;
+
     /* 9. Page Visibility API */
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'visible') {
@@ -510,26 +513,98 @@ $(function() {
 });
 
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
-var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
-    spaceBetween: 15,
-    slidesPerView: 5,
-    watchSlidesProgress: true,
-    navigation: {
-        nextEl: '.prod-next',
-        prevEl: '.prod-prev',
-    },
-    breakpoints: {
-        320: { slidesPerView: 3, spaceBetween: 10 },
-        768: { slidesPerView: 4, spaceBetween: 12 },
-        1024: { slidesPerView: 5, spaceBetween: 15 }
+var prodThumbSwiper = null;
+var prodMainSwiper = null;
+
+$(function() {
+    if ($('.prodThumbSwiper').length > 0) {
+        prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+            spaceBetween: 15,
+            slidesPerView: 5,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.prod-next',
+                prevEl: '.prod-prev',
+            },
+            breakpoints: {
+                320: { slidesPerView: 3, spaceBetween: 10 },
+                768: { slidesPerView: 4, spaceBetween: 12 },
+                1024: { slidesPerView: 5, spaceBetween: 15 }
+            },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
+        });
+
+        prodMainSwiper = new Swiper('.prodMainSwiper', {
+            spaceBetween: 10,
+            thumbs: {
+                swiper: prodThumbSwiper,
+            },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
+        });
     }
 });
 
-var prodMainSwiper = new Swiper('.prodMainSwiper', {
-    spaceBetween: 10,
-    thumbs: {
-        swiper: prodThumbSwiper,
-    },
+// bfcache 복원 및 모바일 새로고침 시 Swiper 재초기화
+window.addEventListener('pageshow', function(event) {
+    console.log('[Action.js] pageshow event fired, persisted:', event.persisted);
+
+    // DOM 및 스크립트 로드 완료 후 Swiper 초기화 시도 (500ms 지연)
+    setTimeout(function() {
+        console.log('[Action.js] Checking Swiper initialization after delay...');
+
+        // Swiper가 초기화되지 않았으면 초기화 시도 (모든 페이지의 Swiper 확인)
+        var needsInit = (!heroSwiper && $('.mySwiper').length > 0) ||
+                        (!solu02Swiper && $('.solu02Swiper').length > 0) ||
+                        (!sec3Swiper && $('.sec3Swiper').length > 0);
+
+        if (needsInit) {
+            console.log('[Action.js] Swipers not initialized, calling initSwipers()...');
+            if (typeof window.initSwipers === 'function') {
+                window.initSwipers();
+            }
+        }
+
+        // prodSwiper 초기화 확인
+        if (!prodThumbSwiper && $('.prodThumbSwiper').length > 0) {
+            console.log('[Action.js] prodSwiper not initialized, initializing...');
+            prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+                spaceBetween: 15,
+                slidesPerView: 5,
+                watchSlidesProgress: true,
+                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
+                breakpoints: {
+                    320: { slidesPerView: 3, spaceBetween: 10 },
+                    768: { slidesPerView: 4, spaceBetween: 12 },
+                    1024: { slidesPerView: 5, spaceBetween: 15 }
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true
+            });
+            prodMainSwiper = new Swiper('.prodMainSwiper', {
+                spaceBetween: 10,
+                thumbs: { swiper: prodThumbSwiper },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true
+            });
+        }
+
+        // 이미 초기화된 Swiper 업데이트
+        if (event.persisted) {
+            console.log('[Action.js] Page restored from bfcache, updating Swipers...');
+            if (prodThumbSwiper) prodThumbSwiper.update();
+            if (prodMainSwiper) prodMainSwiper.update();
+            if (heroSwiper) heroSwiper.update();
+            if (sec3Swiper) sec3Swiper.update();
+            if (sec1MobileSwiper) sec1MobileSwiper.update();
+            if (solu02Swiper) solu02Swiper.update();
+        }
+    }, 500);
 });
 
 
