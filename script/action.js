@@ -556,8 +556,12 @@ window.addEventListener('pageshow', function(event) {
     setTimeout(function() {
         console.log('[Action.js] Checking Swiper initialization after delay...');
 
-        // Swiper가 초기화되지 않았으면 초기화 시도
-        if (!heroSwiper && $('.mySwiper').length > 0) {
+        // Swiper가 초기화되지 않았으면 초기화 시도 (모든 페이지의 Swiper 확인)
+        var needsInit = (!heroSwiper && $('.mySwiper').length > 0) ||
+                        (!solu02Swiper && $('.solu02Swiper').length > 0) ||
+                        (!sec3Swiper && $('.sec3Swiper').length > 0);
+
+        if (needsInit) {
             console.log('[Action.js] Swipers not initialized, calling initSwipers()...');
             if (typeof window.initSwipers === 'function') {
                 window.initSwipers();
@@ -598,6 +602,7 @@ window.addEventListener('pageshow', function(event) {
             if (heroSwiper) heroSwiper.update();
             if (sec3Swiper) sec3Swiper.update();
             if (sec1MobileSwiper) sec1MobileSwiper.update();
+            if (solu02Swiper) solu02Swiper.update();
         }
     }, 500);
 });
