@@ -572,49 +572,54 @@ $(function() {
 window.addEventListener('pageshow', function(event) {
     console.log('[Action.js] pageshow event fired, persisted:', event.persisted);
 
-    // Swiper가 초기화되지 않았으면 초기화 시도
-    if (!heroSwiper && $('.mySwiper').length > 0) {
-        console.log('[Action.js] Swipers not initialized, calling initSwipers()...');
-        if (typeof initSwipers === 'function') {
-            initSwipers();
+    // DOM 및 스크립트 로드 완료 후 Swiper 초기화 시도 (500ms 지연)
+    setTimeout(function() {
+        console.log('[Action.js] Checking Swiper initialization after delay...');
+
+        // Swiper가 초기화되지 않았으면 초기화 시도
+        if (!heroSwiper && $('.mySwiper').length > 0) {
+            console.log('[Action.js] Swipers not initialized, calling initSwipers()...');
+            if (typeof window.initSwipers === 'function') {
+                window.initSwipers();
+            }
         }
-    }
 
-    // prodSwiper 초기화 확인
-    if (!prodThumbSwiper && $('.prodThumbSwiper').length > 0) {
-        console.log('[Action.js] prodSwiper not initialized, initializing...');
-        prodThumbSwiper = new Swiper('.prodThumbSwiper', {
-            spaceBetween: 15,
-            slidesPerView: 5,
-            watchSlidesProgress: true,
-            navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
-            breakpoints: {
-                320: { slidesPerView: 3, spaceBetween: 10 },
-                768: { slidesPerView: 4, spaceBetween: 12 },
-                1024: { slidesPerView: 5, spaceBetween: 15 }
-            },
-            observer: true,
-            observeParents: true,
-            observeSlideChildren: true
-        });
-        prodMainSwiper = new Swiper('.prodMainSwiper', {
-            spaceBetween: 10,
-            thumbs: { swiper: prodThumbSwiper },
-            observer: true,
-            observeParents: true,
-            observeSlideChildren: true
-        });
-    }
+        // prodSwiper 초기화 확인
+        if (!prodThumbSwiper && $('.prodThumbSwiper').length > 0) {
+            console.log('[Action.js] prodSwiper not initialized, initializing...');
+            prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+                spaceBetween: 15,
+                slidesPerView: 5,
+                watchSlidesProgress: true,
+                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
+                breakpoints: {
+                    320: { slidesPerView: 3, spaceBetween: 10 },
+                    768: { slidesPerView: 4, spaceBetween: 12 },
+                    1024: { slidesPerView: 5, spaceBetween: 15 }
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true
+            });
+            prodMainSwiper = new Swiper('.prodMainSwiper', {
+                spaceBetween: 10,
+                thumbs: { swiper: prodThumbSwiper },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true
+            });
+        }
 
-    // 이미 초기화된 Swiper 업데이트
-    if (event.persisted) {
-        console.log('[Action.js] Page restored from bfcache, updating Swipers...');
-        if (prodThumbSwiper) prodThumbSwiper.update();
-        if (prodMainSwiper) prodMainSwiper.update();
-        if (heroSwiper) heroSwiper.update();
-        if (sec3Swiper) sec3Swiper.update();
-        if (sec1MobileSwiper) sec1MobileSwiper.update();
-    }
+        // 이미 초기화된 Swiper 업데이트
+        if (event.persisted) {
+            console.log('[Action.js] Page restored from bfcache, updating Swipers...');
+            if (prodThumbSwiper) prodThumbSwiper.update();
+            if (prodMainSwiper) prodMainSwiper.update();
+            if (heroSwiper) heroSwiper.update();
+            if (sec3Swiper) sec3Swiper.update();
+            if (sec1MobileSwiper) sec1MobileSwiper.update();
+        }
+    }, 500);
 });
 
 
