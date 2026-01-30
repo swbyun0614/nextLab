@@ -180,9 +180,7 @@ $(function() {
         }
     });
 
-    /* 6. 라이브러리 초기화 (AOS) */
-    console.log('[Action.js] DOM Ready');
-    
+    /* 6. Swiper 슬라이더 초기화 */
     $(window).on('load', function () {
         console.log('[Action.js] Window loaded');
         console.log('[Action.js] jQuery version:', $.fn.jquery);
@@ -194,7 +192,7 @@ $(function() {
             section4: $('#section4').length
         });
         
-        // Swiper를 먼저 초기화
+        // Swiper 초기화
         try {
             initSwipers();
             console.log('[Action.js] Swipers initialized successfully');
@@ -202,30 +200,18 @@ $(function() {
             console.error('[Action.js] Swiper 초기화 에러:', error);
         }
         
-        // Swiper 초기화 후 약간의 지연을 두고 AOS 초기화
-        setTimeout(function() {
-            if (typeof AOS !== 'undefined') {
-                // Swiper 컨테이너와 슬라이드에서 data-aos 속성 제거
-                $('.swiper, .swiper-container, .swiper-wrapper, .swiper-slide').removeAttr('data-aos');
-                
-                AOS.init({
-                    duration: 800,
-                    once: false,
-                    mirror: true,
-                    offset: 120,
-                    disable: false,
-                    startEvent: 'load', // 페이지 로드 완료 후 시작
-                    // Swiper 관련 요소는 AOS에서 무시
-                    disableMutationObserver: false
-                });
-                console.log('[Action.js] AOS initialized');
-                
-                // AOS refresh는 Swiper 업데이트 후에만
-                setTimeout(function() {
-                    AOS.refresh();
-                }, 100);
-            }
-        }, 100);
+        // AOS는 모바일에서만 비활성화
+        if (typeof AOS !== 'undefined') {
+            var isMobile = $(window).width() <= 768;
+            AOS.init({
+                duration: 800,
+                once: true,
+                mirror: false,
+                offset: 50,
+                disable: isMobile // 모바일에서는 AOS 완전 비활성화
+            });
+            console.log('[Action.js] AOS initialized (disabled on mobile:', isMobile, ')');
+        }
     });
     
     /* 7. Swiper 슬라이더 초기화 함수 */
@@ -252,11 +238,7 @@ $(function() {
             },
             on: {
                 init: function() {
-                    // Swiper 초기화 직후 레이아웃 업데이트
                     this.update();
-                },
-                transitionEnd: function() {
-                    if (typeof AOS !== 'undefined') AOS.refresh();
                 }
             }
         });
@@ -344,14 +326,26 @@ $(function() {
         console.log('[Action.js] sec1MobileSwiper initialized (loop:', sec1Slides >= 3, ')');
     }
     
-    // 모든 Swiper 초기화 완료 후 레이아웃 강제 업데이트
+    // 모든 Swiper 초기화 완료 후 레이아웃 업데이트
+    console.log('[Action.js] All Swipers initialized, updating layouts...');
     setTimeout(function() {
-        if (heroSwiper) heroSwiper.update();
-        if (sec3Swiper) sec3Swiper.update();
-        if (solu02Swiper) solu02Swiper.update();
-        if (sec1MobileSwiper) sec1MobileSwiper.update();
-        console.log('[Action.js] All Swipers updated');
-    }, 50);
+        if (heroSwiper) {
+            heroSwiper.update();
+            console.log('[Action.js] heroSwiper updated');
+        }
+        if (sec3Swiper) {
+            sec3Swiper.update();
+            console.log('[Action.js] sec3Swiper updated');
+        }
+        if (solu02Swiper) {
+            solu02Swiper.update();
+            console.log('[Action.js] solu02Swiper updated');
+        }
+        if (sec1MobileSwiper) {
+            sec1MobileSwiper.update();
+            console.log('[Action.js] sec1MobileSwiper updated');
+        }
+    }, 100);
     }
 
     /* 8. Page Visibility API */
@@ -393,11 +387,6 @@ $(function() {
         resizeTimer = setTimeout(function() {
             // 헤더 호버 이벤트 재바인딩
             gnbAction();
-            
-            // AOS 리프레시
-            if (typeof AOS !== 'undefined') {
-                AOS.refresh();
-            }
             
             // Swiper 완전 재계산
             if (heroSwiper) {
