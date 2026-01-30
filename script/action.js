@@ -510,9 +510,12 @@ $(function() {
 });
 
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
+var prodThumbSwiper = null;
+var prodMainSwiper = null;
+
 $(function() {
     if ($('.prodThumbSwiper').length > 0) {
-        var prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+        prodThumbSwiper = new Swiper('.prodThumbSwiper', {
             spaceBetween: 15,
             slidesPerView: 5,
             watchSlidesProgress: true,
@@ -524,15 +527,33 @@ $(function() {
                 320: { slidesPerView: 3, spaceBetween: 10 },
                 768: { slidesPerView: 4, spaceBetween: 12 },
                 1024: { slidesPerView: 5, spaceBetween: 15 }
-            }
+            },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
         });
 
-        var prodMainSwiper = new Swiper('.prodMainSwiper', {
+        prodMainSwiper = new Swiper('.prodMainSwiper', {
             spaceBetween: 10,
             thumbs: {
                 swiper: prodThumbSwiper,
             },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
         });
+    }
+});
+
+// bfcache 복원 시 Swiper 재초기화 (모바일 새로고침 문제 해결)
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        console.log('[Action.js] Page restored from bfcache, updating Swipers...');
+        if (prodThumbSwiper) prodThumbSwiper.update();
+        if (prodMainSwiper) prodMainSwiper.update();
+        if (typeof heroSwiper !== 'undefined' && heroSwiper) heroSwiper.update();
+        if (typeof sec3Swiper !== 'undefined' && sec3Swiper) sec3Swiper.update();
+        if (typeof sec1MobileSwiper !== 'undefined' && sec1MobileSwiper) sec1MobileSwiper.update();
     }
 });
 
