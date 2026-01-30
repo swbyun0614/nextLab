@@ -200,21 +200,34 @@ $(function() {
             console.error('[Action.js] Swiper 초기화 에러:', error);
         }
         
-        // AOS는 모바일에서만 비활성화
-        if (typeof AOS !== 'undefined') {
-            var isMobile = $(window).width() <= 768;
-            AOS.init({
-                duration: 800,
-                once: true,
-                mirror: false,
-                offset: 50,
-                disable: isMobile // 모바일에서는 AOS 완전 비활성화
-            });
-            console.log('[Action.js] AOS initialized (disabled on mobile:', isMobile, ')');
-        }
+        // 스크롤 애니메이션 초기화
+        checkScrollAnimation();
     });
     
-    /* 7. Swiper 슬라이더 초기화 함수 */
+    /* 7. 스크롤 애니메이션 */
+    function checkScrollAnimation() {
+        var windowHeight = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        var triggerPoint = windowHeight * 4 / 5; // 화면의 2/3 지점
+        
+        $('#section1, #section2, #section3, #section4').each(function() {
+            var $section = $(this);
+            var sectionTop = $section.offset().top;
+            var sectionBottom = sectionTop + $section.outerHeight();
+            
+            // 섹션의 상단이 화면의 2/3 지점에 도달하면 애니메이션
+            if (scrollTop + triggerPoint >= sectionTop && scrollTop < sectionBottom) {
+                $section.addClass('animate');
+            }
+        });
+    }
+    
+    // 스크롤 이벤트 리스너
+    $(window).on('scroll', function() {
+        checkScrollAnimation();
+    });
+    
+    /* 8. Swiper 슬라이더 초기화 함수 */
     function initSwipers() {
         console.log('[Action.js] Initializing Swipers');
         
@@ -348,7 +361,7 @@ $(function() {
     }, 100);
     }
 
-    /* 8. Page Visibility API */
+    /* 9. Page Visibility API */
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'visible') {
             if (heroSwiper && heroSwiper.autoplay) {
@@ -360,7 +373,7 @@ $(function() {
         }
     });
 
-    /* 9. TOP 버튼 */
+    /* 10. TOP 버튼 */
     $('.btnTop').on('click', function(e) {
         e.preventDefault();
         $('html, body').stop().animate({ scrollTop: 0 }, 600);

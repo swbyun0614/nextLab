@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 스크롤 애니메이션 */
+        #section1, #section2, #section3, #section4 {
+            opacity: 0;
+            transform: translateY(80px);
+            transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+        }
+        
+        #section1.animate, #section2.animate, #section3.animate, #section4.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="sub_page">
     <div class="sideBar">
