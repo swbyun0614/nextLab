@@ -1,4 +1,14 @@
+// ===============================================
+// 전역 변수
+// ===============================================
+var heroSwiper = null;
+var sec3Swiper = null;
+var sec1MobileSwiper = null;
+var solu02Swiper = null;
+
+// ===============================================
 // 1. gnbAction 함수 정의 (CSS 클래스 제어 방식) - PC용
+// ===============================================
 function gnbAction() {
     // 기존 이벤트 제거 후 재바인딩
     $('header').off('mouseenter mouseleave');
@@ -129,12 +139,9 @@ function setActiveGnb() {
     });
 }
 
-// 4. Swiper 인스턴스 저장 변수 (전역)
-var heroSwiper = null;
-var sec3Swiper = null;
-var sec1MobileSwiper = null;
-
+// ===============================================
 // 5. 헤더 및 푸터 로드
+// ===============================================
 $(function() {
     // 먼저 include/ 폴더 시도, 실패하면 루트 시도
     $('header').load('include/header.html', function(response, status, xhr) {
@@ -174,8 +181,18 @@ $(function() {
     });
 
     /* 6. 라이브러리 초기화 (AOS) */
+    console.log('[Action.js] DOM Ready');
+    
     $(window).on('load', function () {
         console.log('[Action.js] Window loaded');
+        console.log('[Action.js] jQuery version:', $.fn.jquery);
+        console.log('[Action.js] Sections exist:', {
+            hero: $('#hero').length,
+            section1: $('#section1').length,
+            section2: $('#section2').length,
+            section3: $('#section3').length,
+            section4: $('#section4').length
+        });
         
         if (typeof AOS !== 'undefined') {
             AOS.init({
@@ -188,7 +205,11 @@ $(function() {
         }
         
         // Swiper 초기화도 window.load 후에 실행
-        initSwipers();
+        try {
+            initSwipers();
+        } catch(error) {
+            console.error('[Action.js] Swiper 초기화 에러:', error);
+        }
     });
     
     /* 7. Swiper 슬라이더 초기화 함수 */
@@ -223,17 +244,21 @@ $(function() {
     }
 
     if ($('.sec3Swiper').length > 0) {
+        var sec3Slides = $('.sec3Swiper .swiper-slide').length;
+        console.log('[Action.js] sec3Swiper slides count:', sec3Slides);
+        
         sec3Swiper = new Swiper(".sec3Swiper", {
             effect: "coverflow",
             centeredSlides: true,
             slidesPerView: "auto",
-            loop: true,
+            loop: sec3Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
+            loopedSlides: sec3Slides >= 3 ? sec3Slides : 0,
             speed: 1000,
-            autoplay: {
+            autoplay: sec3Slides >= 3 ? {
                 delay: 4500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: false
-            },
+            } : false,
             coverflowEffect: {
                 rotate: 0,
                 stretch: -200,
@@ -242,20 +267,25 @@ $(function() {
                 slideShadows: false
             }
         });
-        console.log('[Action.js] sec3Swiper initialized');
+        console.log('[Action.js] sec3Swiper initialized (loop:', sec3Slides >= 3, ')');
     }
+    
     if ($('.solu02Swiper').length > 0) {
+        var solu02Slides = $('.solu02Swiper .swiper-slide').length;
+        console.log('[Action.js] solu02Swiper slides count:', solu02Slides);
+        
         solu02Swiper = new Swiper(".solu02Swiper", {
             effect: "coverflow",
             centeredSlides: true,
             slidesPerView: "auto",
-            loop: true,
+            loop: solu02Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
+            loopedSlides: solu02Slides >= 3 ? solu02Slides : 0,
             speed: 1000,
-            autoplay: {
+            autoplay: solu02Slides >= 3 ? {
                 delay: 4500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: false
-            },
+            } : false,
             coverflowEffect: {
                 rotate: 0,
                 stretch: -200,
@@ -264,15 +294,19 @@ $(function() {
                 slideShadows: false
             }
         });
-        console.log('[Action.js] solu02Swiper initialized');
+        console.log('[Action.js] solu02Swiper initialized (loop:', solu02Slides >= 3, ')');
     }
 
     if ($('.sec1MobileSwiper').length > 0) {
+        var sec1Slides = $('.sec1MobileSwiper .swiper-slide').length;
+        console.log('[Action.js] sec1MobileSwiper slides count:', sec1Slides);
+        
         sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
             slidesPerView: 'auto',
             centeredSlides: true,
             spaceBetween: 15,
-            loop: true,
+            loop: sec1Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
+            loopedSlides: sec1Slides >= 3 ? sec1Slides : 0,
             speed: 600,
             navigation: {
                 nextEl: ".sec1-next",
@@ -283,7 +317,7 @@ $(function() {
                 clickable: true
             }
         });
-        console.log('[Action.js] sec1MobileSwiper initialized');
+        console.log('[Action.js] sec1MobileSwiper initialized (loop:', sec1Slides >= 3, ')');
     }
     }
 
