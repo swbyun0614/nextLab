@@ -231,134 +231,166 @@ $(function() {
     function initSwipers() {
         console.log('[Action.js] Initializing Swipers');
         
+        
         if ($('.mySwiper').length > 0) {
             heroSwiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            loop: true,
-            speed: 1200,
-            autoplay: {
-                delay: 4500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            on: {
-                init: function() {
-                    this.update();
+                slidesPerView: 1,
+                loop: true,
+                speed: 1200,
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true,
+                on: {
+                    init: function() {
+                        console.log('[heroSwiper] Initialized');
+                        this.update();
+                    }
                 }
+            });
+            
+            if (heroSwiper) {
+                heroSwiper.update();
             }
-        });
-        
-        if (heroSwiper) {
-            heroSwiper.update();
+            console.log('[Action.js] heroSwiper initialized');
         }
-        console.log('[Action.js] heroSwiper initialized');
-    }
 
-    if ($('.sec3Swiper').length > 0) {
-        var sec3Slides = $('.sec3Swiper .swiper-slide').length;
-        console.log('[Action.js] sec3Swiper slides count:', sec3Slides);
+        if ($('.sec3Swiper').length > 0) {
+            var sec3Slides = $('.sec3Swiper .swiper-slide').length;
+            console.log('[Action.js] sec3Swiper slides count:', sec3Slides);
+            
+            sec3Swiper = new Swiper(".sec3Swiper", {
+                effect: "coverflow",
+                centeredSlides: true,
+                slidesPerView: "auto",
+                loop: sec3Slides >= 3,
+                loopedSlides: sec3Slides >= 3 ? sec3Slides : 0,
+                speed: 1000,
+                autoplay: sec3Slides >= 3 ? {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false
+                } : false,
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: -200,
+                    depth: 200,
+                    modifier: 1,
+                    slideShadows: false
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true,
+                on: {
+                    init: function() {
+                        console.log('[sec3Swiper] Initialized');
+                        this.update();
+                    }
+                }
+            });
+            console.log('[Action.js] sec3Swiper initialized (loop:', sec3Slides >= 3, ')');
+        }
         
-        sec3Swiper = new Swiper(".sec3Swiper", {
-            effect: "coverflow",
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: sec3Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
-            loopedSlides: sec3Slides >= 3 ? sec3Slides : 0,
-            speed: 1000,
-            autoplay: sec3Slides >= 3 ? {
-                delay: 4500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false
-            } : false,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: -200,
-                depth: 200,
-                modifier: 1,
-                slideShadows: false
-            }
-        });
-        console.log('[Action.js] sec3Swiper initialized (loop:', sec3Slides >= 3, ')');
-    }
-    
-    if ($('.solu02Swiper').length > 0) {
-        var solu02Slides = $('.solu02Swiper .swiper-slide').length;
-        console.log('[Action.js] solu02Swiper slides count:', solu02Slides);
-        
-        solu02Swiper = new Swiper(".solu02Swiper", {
-            effect: "coverflow",
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: solu02Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
-            loopedSlides: solu02Slides >= 3 ? solu02Slides : 0,
-            speed: 1000,
-            autoplay: solu02Slides >= 3 ? {
-                delay: 4500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false
-            } : false,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: -200,
-                depth: 200,
-                modifier: 1,
-                slideShadows: false
-            }
-        });
-        console.log('[Action.js] solu02Swiper initialized (loop:', solu02Slides >= 3, ')');
-    }
+        if ($('.solu02Swiper').length > 0) {
+            var solu02Slides = $('.solu02Swiper .swiper-slide').length;
+            console.log('[Action.js] solu02Swiper slides count:', solu02Slides);
+            
+            solu02Swiper = new Swiper(".solu02Swiper", {
+                effect: "coverflow",
+                centeredSlides: true,
+                slidesPerView: "auto",
+                loop: solu02Slides >= 3,
+                loopedSlides: solu02Slides >= 3 ? solu02Slides : 0,
+                speed: 1000,
+                autoplay: solu02Slides >= 3 ? {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false
+                } : false,
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: -200,
+                    depth: 200,
+                    modifier: 1,
+                    slideShadows: false
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true,
+                on: {
+                    init: function() {
+                        console.log('[solu02Swiper] Initialized');
+                        this.update();
+                    }
+                }
+            });
+            console.log('[Action.js] solu02Swiper initialized (loop:', solu02Slides >= 3, ')');
+        }
 
-    if ($('.sec1MobileSwiper').length > 0) {
-        var sec1Slides = $('.sec1MobileSwiper .swiper-slide').length;
-        console.log('[Action.js] sec1MobileSwiper slides count:', sec1Slides);
+        if ($('.sec1MobileSwiper').length > 0) {
+            var sec1Slides = $('.sec1MobileSwiper .swiper-slide').length;
+            console.log('[Action.js] sec1MobileSwiper slides count:', sec1Slides);
+            
+            sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 15,
+                loop: sec1Slides >= 3,
+                loopedSlides: sec1Slides >= 3 ? sec1Slides : 0,
+                speed: 600,
+                navigation: {
+                    nextEl: ".sec1-next",
+                    prevEl: ".sec1-prev"
+                },
+                pagination: {
+                    el: ".sec1-pagination",
+                    clickable: true
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true,
+                on: {
+                    init: function() {
+                        console.log('[sec1MobileSwiper] Initialized');
+                        this.update();
+                    }
+                }
+            });
+            console.log('[Action.js] sec1MobileSwiper initialized (loop:', sec1Slides >= 3, ')');
+        }
         
-        sec1MobileSwiper = new Swiper(".sec1MobileSwiper", {
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            spaceBetween: 15,
-            loop: sec1Slides >= 3, // 슬라이드가 3개 이상일 때만 loop
-            loopedSlides: sec1Slides >= 3 ? sec1Slides : 0,
-            speed: 600,
-            navigation: {
-                nextEl: ".sec1-next",
-                prevEl: ".sec1-prev"
-            },
-            pagination: {
-                el: ".sec1-pagination",
-                clickable: true
+        // 모든 Swiper 초기화 완료 후 레이아웃 업데이트
+        console.log('[Action.js] All Swipers initialized, updating layouts...');
+        setTimeout(function() {
+            if (heroSwiper) {
+                heroSwiper.update();
+                console.log('[Action.js] heroSwiper updated');
             }
-        });
-        console.log('[Action.js] sec1MobileSwiper initialized (loop:', sec1Slides >= 3, ')');
-    }
-    
-    // 모든 Swiper 초기화 완료 후 레이아웃 업데이트
-    console.log('[Action.js] All Swipers initialized, updating layouts...');
-    setTimeout(function() {
-        if (heroSwiper) {
-            heroSwiper.update();
-            console.log('[Action.js] heroSwiper updated');
-        }
-        if (sec3Swiper) {
-            sec3Swiper.update();
-            console.log('[Action.js] sec3Swiper updated');
-        }
-        if (solu02Swiper) {
-            solu02Swiper.update();
-            console.log('[Action.js] solu02Swiper updated');
-        }
-        if (sec1MobileSwiper) {
-            sec1MobileSwiper.update();
-            console.log('[Action.js] sec1MobileSwiper updated');
-        }
-    }, 100);
+            if (sec3Swiper) {
+                sec3Swiper.update();
+                console.log('[Action.js] sec3Swiper updated');
+            }
+            if (solu02Swiper) {
+                solu02Swiper.update();
+                console.log('[Action.js] solu02Swiper updated');
+            }
+            if (sec1MobileSwiper) {
+                sec1MobileSwiper.update();
+                console.log('[Action.js] sec1MobileSwiper updated');
+            }
+        }, 100);
     }
 
     /* 9. Page Visibility API */
