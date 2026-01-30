@@ -413,6 +413,9 @@ $(function() {
         }, 100);
     }
 
+    // initSwipers를 전역으로 노출 (pageshow 이벤트에서 접근 가능하도록)
+    window.initSwipers = initSwipers;
+
     /* 9. Page Visibility API */
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'visible') {
