@@ -565,15 +565,52 @@ $(function() {
     }
 });
 
-// bfcache 복원 시 Swiper 재초기화 (모바일 새로고침 문제 해결)
+// bfcache 복원 및 모바일 새로고침 시 Swiper 재초기화
 window.addEventListener('pageshow', function(event) {
+    console.log('[Action.js] pageshow event fired, persisted:', event.persisted);
+
+    // Swiper가 초기화되지 않았으면 초기화 시도
+    if (!heroSwiper && $('.mySwiper').length > 0) {
+        console.log('[Action.js] Swipers not initialized, calling initSwipers()...');
+        if (typeof initSwipers === 'function') {
+            initSwipers();
+        }
+    }
+
+    // prodSwiper 초기화 확인
+    if (!prodThumbSwiper && $('.prodThumbSwiper').length > 0) {
+        console.log('[Action.js] prodSwiper not initialized, initializing...');
+        prodThumbSwiper = new Swiper('.prodThumbSwiper', {
+            spaceBetween: 15,
+            slidesPerView: 5,
+            watchSlidesProgress: true,
+            navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
+            breakpoints: {
+                320: { slidesPerView: 3, spaceBetween: 10 },
+                768: { slidesPerView: 4, spaceBetween: 12 },
+                1024: { slidesPerView: 5, spaceBetween: 15 }
+            },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
+        });
+        prodMainSwiper = new Swiper('.prodMainSwiper', {
+            spaceBetween: 10,
+            thumbs: { swiper: prodThumbSwiper },
+            observer: true,
+            observeParents: true,
+            observeSlideChildren: true
+        });
+    }
+
+    // 이미 초기화된 Swiper 업데이트
     if (event.persisted) {
         console.log('[Action.js] Page restored from bfcache, updating Swipers...');
         if (prodThumbSwiper) prodThumbSwiper.update();
         if (prodMainSwiper) prodMainSwiper.update();
-        if (typeof heroSwiper !== 'undefined' && heroSwiper) heroSwiper.update();
-        if (typeof sec3Swiper !== 'undefined' && sec3Swiper) sec3Swiper.update();
-        if (typeof sec1MobileSwiper !== 'undefined' && sec1MobileSwiper) sec1MobileSwiper.update();
+        if (heroSwiper) heroSwiper.update();
+        if (sec3Swiper) sec3Swiper.update();
+        if (sec1MobileSwiper) sec1MobileSwiper.update();
     }
 });
 
