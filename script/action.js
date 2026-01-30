@@ -194,22 +194,38 @@ $(function() {
             section4: $('#section4').length
         });
         
-        if (typeof AOS !== 'undefined') {
-            AOS.init({
-                duration: 800,
-                once: false,
-                mirror: true,
-                offset: 120
-            });
-            console.log('[Action.js] AOS initialized');
-        }
-        
-        // Swiper 초기화도 window.load 후에 실행
+        // Swiper를 먼저 초기화
         try {
             initSwipers();
+            console.log('[Action.js] Swipers initialized successfully');
         } catch(error) {
             console.error('[Action.js] Swiper 초기화 에러:', error);
         }
+        
+        // Swiper 초기화 후 약간의 지연을 두고 AOS 초기화
+        setTimeout(function() {
+            if (typeof AOS !== 'undefined') {
+                // Swiper 컨테이너와 슬라이드에서 data-aos 속성 제거
+                $('.swiper, .swiper-container, .swiper-wrapper, .swiper-slide').removeAttr('data-aos');
+                
+                AOS.init({
+                    duration: 800,
+                    once: false,
+                    mirror: true,
+                    offset: 120,
+                    disable: false,
+                    startEvent: 'load', // 페이지 로드 완료 후 시작
+                    // Swiper 관련 요소는 AOS에서 무시
+                    disableMutationObserver: false
+                });
+                console.log('[Action.js] AOS initialized');
+                
+                // AOS refresh는 Swiper 업데이트 후에만
+                setTimeout(function() {
+                    AOS.refresh();
+                }, 100);
+            }
+        }, 100);
     });
     
     /* 7. Swiper 슬라이더 초기화 함수 */
@@ -235,11 +251,19 @@ $(function() {
                 clickable: true
             },
             on: {
+                init: function() {
+                    // Swiper 초기화 직후 레이아웃 업데이트
+                    this.update();
+                },
                 transitionEnd: function() {
                     if (typeof AOS !== 'undefined') AOS.refresh();
                 }
             }
         });
+        
+        if (heroSwiper) {
+            heroSwiper.update();
+        }
         console.log('[Action.js] heroSwiper initialized');
     }
 
@@ -319,6 +343,15 @@ $(function() {
         });
         console.log('[Action.js] sec1MobileSwiper initialized (loop:', sec1Slides >= 3, ')');
     }
+    
+    // 모든 Swiper 초기화 완료 후 레이아웃 강제 업데이트
+    setTimeout(function() {
+        if (heroSwiper) heroSwiper.update();
+        if (sec3Swiper) sec3Swiper.update();
+        if (solu02Swiper) solu02Swiper.update();
+        if (sec1MobileSwiper) sec1MobileSwiper.update();
+        console.log('[Action.js] All Swipers updated');
+    }, 50);
     }
 
     /* 8. Page Visibility API */
