@@ -730,6 +730,11 @@ header.sub {
     /* 메뉴 열렸을 때 GNB 표시 - 강제 표시 */
     header.menu-open .topset .gnb,
     header.sub.menu-open .topset .gnb {
+        position: absolute;
+        top: 70px;
+        bottom: 133px;
+        left: 0;
+        right: 0;
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
