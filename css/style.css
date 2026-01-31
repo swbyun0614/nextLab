@@ -855,8 +855,12 @@ header.sub {
     }
 
     header .topset .blog a .blog_icon {
-        margin-left: 10px; width: 28px;
-        content: url('../images/btn_go2.png');
+        display: none;
+    }
+
+    header .topset .blog a .blog_icon_sub {
+        display: inline-block;
+        margin-left: 10px; width: 28px; height: auto;
     }
 
     /* 모바일 전화 버튼 */
