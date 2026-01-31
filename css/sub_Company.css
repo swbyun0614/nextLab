@@ -67,7 +67,7 @@ img {
 
 .comp_hero-container {
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 1920px; margin: 0 auto; padding: 0;
+    max-width: 1920px; margin: 0 auto; padding: 80px 0 80px 190px;
     gap: 255px;
 }
 
@@ -286,6 +286,7 @@ img {
     }
 
     .comp_hero-container {
+        padding: 60px 100px;
         gap: 150px;
     }
 
@@ -305,6 +306,7 @@ img {
 
 @media screen and (max-width: 1024px) {
     .comp_hero-container {
+        padding: 40px 60px;
         gap: 80px;
     }
 
