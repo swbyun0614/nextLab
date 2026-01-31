@@ -808,7 +808,7 @@ header.sub {
 
     header .topset .gnb .lnb li a {
         display: inline-block;
-        padding: 1.4vh 30px; font-size: 1.8rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
+        padding: 1.4vh 30px; font-size: 1.6rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
     }
 
     /* LNB 호버 효과 제거 (모바일) */
