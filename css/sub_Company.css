@@ -88,11 +88,11 @@ img {
     font-weight: 500;
 }
 
-.company-comp_hero-image {
+.comp_hero-image {
     overflow: hidden;
 }
 
-.company-comp_hero-image img {
+.comp_hero-image img {
     width: 100%; height: 100%;
     object-fit: cover;
 }
@@ -271,7 +271,7 @@ img {
     애니메이션 강제 적용
 ====================== */
 .comp_hero-content,
-.company-comp_hero-image,
+.comp_hero-image,
 .ceo-message {
     opacity: 1 !important;
     transform: none !important;
@@ -302,16 +302,6 @@ img {
         padding: 0 100px;
     }
 
-    .company-comp_hero-image {
-        background-image: url("../images/sub_Company_images/sub_mobile_img1.png");
-        background-position: center; background-size: cover; background-repeat: no-repeat;
-        width: 100%; height: 420px;
-        overflow: hidden;
-    }
-
-    .company-comp_hero-image img {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -360,8 +350,14 @@ img {
         gap: 50px;
     }
 
-    .company-comp_hero-image {
-        height: 300px;
+    .comp_hero-image {
+        background-image: url("../images/sub_Company_images/sub_mobile_img1.png");
+        background-position: center; background-size: cover; background-repeat: no-repeat;
+        width: 100%; height: 300px;
+    }
+
+    .comp_hero-image img {
+        display: none;
     }
 }
 
@@ -392,7 +388,7 @@ img {
         font-size: 26px;
     }
 
-    .company-comp_hero-image {
+    .comp_hero-image {
         height: 240px;
     }
 
