@@ -834,7 +834,7 @@ header.sub {
     /* 블로그 버튼 모바일 - 하단 박스로부터 30px 위 */
     header .topset .blog {
         position: absolute; bottom: 133px; left: 50%; transform: translateX(-50%);
-        display: none; margin-top: 0;
+        display: none; margin-top: 0; z-index: 60;
     }
 
     header.menu-open .topset .blog {
