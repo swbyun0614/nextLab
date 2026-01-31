@@ -108,10 +108,13 @@ img {
 .ceo-background {
     position: absolute; top: 0; left: 0; z-index: -1;
     margin-bottom: 110px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .ceo-background img {
-    width: 100%; height: auto;
+    display: block;
+    max-width: none;
 }
 
 .ceo-container {
@@ -373,6 +376,7 @@ img {
 
     .comp_hero-container {
         flex-direction: column;
+        padding: 0;
         gap: 40px;
     }
 
