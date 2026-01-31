@@ -417,3 +417,41 @@
         top: 50%; left: 30%;
     }
 }
+
+/* ======================
+    반응형 - 소형 모바일
+====================== */
+@media (max-width: 670px) {
+    .page--tech .p-text {
+        font-size: 2rem;
+    }
+
+    .page--tech .tech-process__caption {
+        font-size: 2rem;
+    }
+
+    .page--tech .p-item {
+        width: 38vw;
+    }
+
+    .page--tech .p-card {
+        width: 38vw;
+    }
+
+    .page--tech .p-icon {
+        width: 60px;
+    }
+
+    .item_wrap {
+        gap: 4vw;
+    }
+
+    .flow_bg {
+        top: -220px; left: -120px;
+        transform: scale(1.1);
+    }
+
+    .tech-process__caption {
+        left: 28%;
+    }
+}
