@@ -765,7 +765,7 @@ header.sub {
     header .topset .gnb > li > a {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 230px; height: auto; padding: 18px 0; font-size: 2rem; font-weight: 500; color: var(--text); border-bottom: none;
+        width: 230px; height: auto; padding: 2vh 0; font-size: 2rem; font-weight: 500; color: var(--text); border-bottom: none;
     }
 
     /* GNB 활성화 시 글씨 색상 변경 */
@@ -798,7 +798,7 @@ header.sub {
 
     /* LNB 활성화 시 슬라이드로 표시 */
     header .topset .gnb > li.active .lnb {
-        max-height: 300px; padding: 10px 0 15px; opacity: 1;
+        max-height: 300px; padding: 1.2vh 0 1.8vh; opacity: 1;
         pointer-events: auto; /* 열렸을 때 클릭 허용 */
     }
 
@@ -808,7 +808,7 @@ header.sub {
 
     header .topset .gnb .lnb li a {
         display: inline-block;
-        padding: 12px 30px; font-size: 1.8rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
+        padding: 1.4vh 30px; font-size: 1.8rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
     }
 
     /* LNB 호버 효과 제거 (모바일) */
