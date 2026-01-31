@@ -331,17 +331,25 @@
     }
     
     .flow_bg {
-        position: absolute; top: -310px; left: -150px; transform: translateX(-50%); z-index: -1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
         display: block;
-        width: 100%; transform: scale(1.4);
+        width: auto;
     }
 
     .tech-process__rule {
         display: none;
     }
     .tech-process__caption {
-        position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 150px;
+        text-align: center;
     }
     .tech-process__caption span {
         color: var(--text);
@@ -362,10 +370,6 @@
     
     .page--tech .p-arrow {
         display: none;
-    }
-
-    .tech-process__caption {
-        top: 49%; left: 36%;
     }
 }
 
@@ -408,14 +412,6 @@
     .page--tech .tech-hero__media img {
         margin: 0 auto;
     }
-
-    .flow_bg {
-        top: -290px; left: -150px;
-    }
-
-    .tech-process__caption {
-        top: 50%; left: 30%;
-    }
 }
 
 /* ======================
@@ -444,14 +440,5 @@
 
     .item_wrap {
         gap: 4vw;
-    }
-
-    .flow_bg {
-        top: -220px; left: -120px;
-        transform: scale(1.1);
-    }
-
-    .tech-process__caption {
-        left: 28%;
     }
 }
