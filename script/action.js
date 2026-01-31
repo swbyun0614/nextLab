@@ -515,6 +515,7 @@ $(function() {
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
 var prodThumbSwiper = null;
 var prodMainSwiper = null;
+var isProdNavClick = false;
 
 $(function() {
     if ($('.prodThumbSwiper').length > 0) {
@@ -542,16 +543,22 @@ $(function() {
                 swiper: prodThumbSwiper,
             },
             on: {
-                slideChange: function() {
-                    // 메인 슬라이더 변경 시 썸네일 슬라이더도 해당 위치로 스크롤
-                    if (prodThumbSwiper) {
+                slideChangeTransitionEnd: function() {
+                    // navigation 버튼 클릭으로 인한 변경 시에만 썸네일 슬라이더 이동
+                    if (prodThumbSwiper && isProdNavClick) {
                         prodThumbSwiper.slideTo(this.activeIndex);
+                        isProdNavClick = false;
                     }
                 }
             },
             observer: true,
             observeParents: true,
             observeSlideChildren: true
+        });
+
+        // navigation 버튼 클릭 시 플래그 설정
+        $('.prod-prev, .prod-next').on('click', function() {
+            isProdNavClick = true;
         });
     }
 });
@@ -597,15 +604,20 @@ window.addEventListener('pageshow', function(event) {
                 navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
                 thumbs: { swiper: prodThumbSwiper },
                 on: {
-                    slideChange: function() {
-                        if (prodThumbSwiper) {
+                    slideChangeTransitionEnd: function() {
+                        if (prodThumbSwiper && isProdNavClick) {
                             prodThumbSwiper.slideTo(this.activeIndex);
+                            isProdNavClick = false;
                         }
                     }
                 },
                 observer: true,
                 observeParents: true,
                 observeSlideChildren: true
+            });
+            // navigation 버튼 클릭 시 플래그 설정
+            $('.prod-prev, .prod-next').on('click', function() {
+                isProdNavClick = true;
             });
         }
 
