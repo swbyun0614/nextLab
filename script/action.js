@@ -522,10 +522,6 @@ $(function() {
             spaceBetween: 15,
             slidesPerView: 5,
             watchSlidesProgress: true,
-            navigation: {
-                nextEl: '.prod-next',
-                prevEl: '.prod-prev',
-            },
             breakpoints: {
                 320: { slidesPerView: 3, spaceBetween: 10 },
                 768: { slidesPerView: 4, spaceBetween: 12 },
@@ -538,8 +534,20 @@ $(function() {
 
         prodMainSwiper = new Swiper('.prodMainSwiper', {
             spaceBetween: 10,
+            navigation: {
+                nextEl: '.prod-next',
+                prevEl: '.prod-prev',
+            },
             thumbs: {
                 swiper: prodThumbSwiper,
+            },
+            on: {
+                slideChange: function() {
+                    // 메인 슬라이더 변경 시 썸네일 슬라이더도 해당 위치로 스크롤
+                    if (prodThumbSwiper) {
+                        prodThumbSwiper.slideTo(this.activeIndex);
+                    }
+                }
             },
             observer: true,
             observeParents: true,
@@ -575,7 +583,6 @@ window.addEventListener('pageshow', function(event) {
                 spaceBetween: 15,
                 slidesPerView: 5,
                 watchSlidesProgress: true,
-                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
                 breakpoints: {
                     320: { slidesPerView: 3, spaceBetween: 10 },
                     768: { slidesPerView: 4, spaceBetween: 12 },
@@ -587,7 +594,15 @@ window.addEventListener('pageshow', function(event) {
             });
             prodMainSwiper = new Swiper('.prodMainSwiper', {
                 spaceBetween: 10,
+                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
                 thumbs: { swiper: prodThumbSwiper },
+                on: {
+                    slideChange: function() {
+                        if (prodThumbSwiper) {
+                            prodThumbSwiper.slideTo(this.activeIndex);
+                        }
+                    }
+                },
                 observer: true,
                 observeParents: true,
                 observeSlideChildren: true
