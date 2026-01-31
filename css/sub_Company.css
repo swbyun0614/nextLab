@@ -146,7 +146,7 @@ img {
 }
 
 .ceo-subtitle strong {
-    font-weight: 500;
+    font-weight: normal;
 }
 
 .ceo-logo {
@@ -191,80 +191,12 @@ img {
 
 .ceo-content p {
     font-family: 'Pretendard', sans-serif;
-    font-size: 18px; font-weight: 400; line-height: 1.6; padding-bottom: 24px;
+    font-size: 18px; font-weight: 400; line-height: 1.6; padding-bottom: 16px;
 }
 
 .ceo-signature {
     font-family: 'Pretendard', sans-serif;
     font-size: 20px; font-weight: 700;
-}
-
-/* ======================
-    푸터 스타일
-====================== */
-.main-footer {
-    background: var(--footer, #343434);
-    padding: 50px 0;
-    color: var(--footertext, #797979);
-}
-
-.footer-container {
-    max-width: 1920px; margin: 0 auto; padding: 0 198px;
-}
-
-.footer-logo {
-    display: flex; align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.footer-logo img {
-    width: 32px; height: 32px;
-}
-
-.footer-logo-text .company-prefix {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-size: 14px; font-weight: 600;
-    margin-right: 5px;
-}
-
-.footer-logo-text .company-name {
-    font-family: 'Pretendard-Bold', sans-serif;
-    font-size: 18px; font-weight: 700;
-}
-
-.footer-logo-text .company-slogan {
-    font-family: 'Inter-Medium', sans-serif;
-    font-size: 7.5px; font-weight: 500;
-    margin-top: 3px;
-}
-
-.footer-content {
-    display: flex;
-    gap: 100px;
-    margin-bottom: 30px;
-}
-
-.footer-info address,
-.footer-office p {
-    font-size: 16px; line-height: 1.6;
-    font-style: normal;
-}
-
-.footer-contact dl {
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 5px 10px;
-    font-size: 16px; line-height: 1.6;
-}
-
-.footer-contact dt {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-weight: 600;
-}
-
-.footer-copyright {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-size: 14px; font-weight: 600;
 }
 
 /* ======================
@@ -281,6 +213,11 @@ img {
     반응형 - 태블릿
 ====================== */
 @media screen and (max-width: 1440px) {
+
+    .active-indicator {
+        margin-left: 350px;
+    }
+
     .comp_hero-content {
         display: flex; flex-direction: column; align-items: center;
     }
@@ -298,10 +235,6 @@ img {
         display: none;
     }
 
-    .footer-container {
-        padding: 0 100px;
-    }
-
     .company-comp_hero-image {
         background-image: url("../images/sub_Company_images/sub_mobile_img1.png");
         background-position: center; background-size: cover; background-repeat: no-repeat;
@@ -315,6 +248,11 @@ img {
 }
 
 @media screen and (max-width: 1024px) {
+    .active-indicator {
+        width: 180px;
+        margin-left: 200px;
+    }
+
     .comp_hero-container {
         padding: 40px 60px;
         gap: 80px;
@@ -352,14 +290,6 @@ img {
         display: none;
     }
 
-    .footer-container {
-        padding: 0 60px;
-    }
-
-    .footer-content {
-        gap: 50px;
-    }
-
     .company-comp_hero-image {
         height: 300px;
     }
@@ -369,14 +299,18 @@ img {
     반응형 - 모바일
 ====================== */
 @media screen and (max-width: 768px) {
+    .active-indicator {
+        display: none;
+    }
+
     .company-hero-section {
-        padding-top: 80px;
+        padding-top: 60px;
     }
 
     .comp_hero-container {
         flex-direction: column;
-        padding: 30px 30px;
-        gap: 40px;
+        padding: 0 30px;
+        gap: 50px;
     }
 
     .comp_hero-content {
@@ -385,7 +319,7 @@ img {
     }
 
     .comp_hero-title {
-        font-size: 24px;
+        font-size: 24px; margin-bottom: 55px;
     }
 
     .hero-description {
@@ -397,7 +331,7 @@ img {
     }
 
     .ceo-section {
-        margin-top: 50px;
+        margin-top: 0px;
     }
 
     .ceo-background {
@@ -405,7 +339,7 @@ img {
     }
 
     .ceo-container {
-        padding: 40px 30px;
+        padding: 70px 40px;
         background: var(--maincolor2, #04456f);
     }
 
@@ -414,12 +348,12 @@ img {
     }
 
     .section-title {
-        font-size: 22px;
+        display: none;
     }
 
     .ceo-subtitle {
         font-size: 26px;
-        margin-bottom: 30px;
+        margin-bottom: 30px; padding: 0 47px;
     }
 
     .ceo-subtitle br {
@@ -456,7 +390,7 @@ img {
     }
 
     .ceo-content p {
-        font-size: 14px;
+        font-size: 1.6rem;
         margin-bottom: 20px;
     }
 
@@ -469,69 +403,7 @@ img {
         margin-top: 30px;
     }
 
-    .footer-container {
-        padding: 0 30px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer-info address,
-    .footer-office p,
-    .footer-contact dl {
-        font-size: 14px;
-    }
-}
-
-/* ======================
-    반응형 - 작은 모바일
-====================== */
-@media screen and (max-width: 480px) {
-    .comp_hero-container {
-        padding: 20px 20px;
-    }
-
-    .comp_hero-title {
-        font-size: 20px;
-    }
-
-    .hero-description {
-        font-size: 22px;
-    }
-
-    .ceo-container {
-        padding: 30px 20px;
-    }
-
-    .section-title {
-        font-size: 20px;
-    }
-
-    .ceo-subtitle {
-        font-size: 22px;
-    }
-
-    .ceo-content p {
-        font-size: 13px;
-    }
-
-    .ceo-logo {
-        display: none;
-    }
-
-    .footer-container {
-        padding: 0 20px;
-    }
-
-    .footer-info address,
-    .footer-office p,
-    .footer-contact dl {
-        font-size: 12px;
-    }
-
-    .footer-copyright {
-        font-size: 12px;
+    body.company footer {
+        margin-top: 0;
     }
 }
