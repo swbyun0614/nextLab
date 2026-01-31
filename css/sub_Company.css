@@ -351,13 +351,15 @@ img {
     }
 
     .comp_hero-image {
-        background-image: url("../images/sub_Company_images/sub_mobile_img1.png");
-        background-position: center; background-size: cover; background-repeat: no-repeat;
-        width: 100%; height: 300px;
+        width: 100%;
     }
 
     .comp_hero-image img {
-        display: none;
+        width: 100%; height: auto;
+    }
+
+    .ceo-section {
+        margin-top: 0;
     }
 }
 
@@ -389,11 +391,15 @@ img {
     }
 
     .comp_hero-image {
-        height: 240px;
+        width: 100%;
+    }
+
+    .comp_hero-image img {
+        width: 100%; height: auto;
     }
 
     .ceo-section {
-        margin-top: 50px;
+        margin-top: 0;
     }
 
     .ceo-background {
