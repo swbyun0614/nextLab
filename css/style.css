@@ -732,7 +732,7 @@ header.sub {
     header.sub.menu-open .topset .gnb {
         position: absolute;
         top: 70px;
-        bottom: 133px;
+        bottom: 143px;
         left: 0;
         right: 0;
         display: flex !important;
