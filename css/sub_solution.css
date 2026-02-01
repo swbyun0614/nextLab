@@ -249,6 +249,14 @@
     Responsive - Tablet
 =========================== */
 @media screen and (max-width: 1200px) {
+    .cases-section .container {
+        margin-top: 0px !important;
+    }
+
+    .gallery-section .container {
+        margin-top: 100px !important;
+    }
+
     .sub-hero .solu02_hero-content {
         gap: 50px;
     }
