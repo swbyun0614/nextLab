@@ -348,4 +348,9 @@
         width: 8px;
         height: 8px;
     }
+
+    /* Solution02 Grid - 2열 3행 */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
