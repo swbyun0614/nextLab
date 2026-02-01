@@ -759,13 +759,20 @@ header.sub {
         border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
     }
 
-    /* GNB hover 시 주황색으로 */
-    header .topset .gnb > li:not(.active) > a:hover {
-        border-bottom-color: var(--maincolor1);
+    /* 모바일 GNB hover 효과 제거 (PC 스타일 덮어쓰기) */
+    header .topset .gnb > li:hover > a,
+    header .topset .gnb > li > a:hover,
+    header.sub .topset .gnb > li:hover > a {
+        color: var(--text); font-weight: 500;
+        border-bottom: 2px solid #EFEFEF;
     }
 
     /* GNB 활성화(펼쳐짐) 시 주황색으로 변경 */
-    header .topset .gnb > li.active > a {
+    header .topset .gnb > li.active > a,
+    header .topset .gnb > li.active:hover > a,
+    header .topset .gnb > li.active > a:hover,
+    header.sub .topset .gnb > li.active > a,
+    header.sub .topset .gnb > li.active:hover > a {
         color: var(--maincolor1); font-weight: 600;
         border-bottom: 2px solid var(--maincolor1);
     }
