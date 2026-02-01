@@ -15,7 +15,7 @@
 
 #impact .impact__wrap {
     display: flex; align-items: flex-start;
-    max-width: 1920px; margin: 0 auto; padding: 0 200px;
+    max-width: 1920px; margin: 0 auto; padding: 0 10.4vw;
     gap: 80px;
 }
 
@@ -23,6 +23,7 @@
     좌측 텍스트 영역
 ====================== */
 #impact .impact__text {
+    position: relative; z-index: 10;
     flex: 0 0 500px;
     min-width: 500px; margin-top: 76px;
 }
@@ -64,7 +65,7 @@
 
 #impact .impact__cards__row1 {
     display: flex; justify-content: flex-end;
-    gap: 35px; margin-right: 200px;
+    gap: 1.82vw; margin-right: 10.4vw;
 }
 
 #impact .impact__cards__row2 {
@@ -84,7 +85,7 @@
 
 #impact .impactCard__mediaWrap {
     position: relative;
-    width: 360px; height: 360px; margin: 0 auto 20px;
+    width: 18.7vw; height: 18.7vw; margin: 0 auto 20px;
 }
 
 #impact .impactCard__media {
@@ -104,13 +105,13 @@
 }
 
 #impact .impactCard__head {
-    font-family: 'Pretendard', sans-serif; font-size: 2.8rem; font-weight: 700; line-height: 1.7; letter-spacing: -0.02em; color: #111;
+    font-family: 'Pretendard', sans-serif; font-size: 1.45vw; font-weight: 700; line-height: 1.7; letter-spacing: -0.02em; color: #111;
     white-space: nowrap;
 }
 
 #impact .impactCard__desc {
-    font-family: 'Pretendard', sans-serif; font-size: 2.1rem; font-weight: 500; line-height: 1.7; letter-spacing: -0.01em; margin: 0;
-    color: #555; white-space: nowrap;
+    font-family: 'Pretendard', sans-serif; font-size: 1.1vw; font-weight: 500; line-height: 1.7; letter-spacing: -0.01em; margin: 0;
+    color: #555;
 }
 
 /* ======================
@@ -148,17 +149,28 @@
 ====================== */
 @media (max-width: 1599px) {
     #impact .impact__wrap {
-        padding: 0 150px;
-        gap: 60px;
+        flex-direction: column; align-items: center;
     }
-    
+
+    #impact .impact__cards__row1 {
+        margin-right: 0; justify-content: center;
+    }
+
     #impact .impact__text {
-        flex: 0 0 450px;
-        min-width: 450px;
+        flex: 0 0 200px;
+        min-width: 450px; margin-top: 0;
+    }
+
+    #impact .impact__label {
+        text-align: center;
+    }
+
+    #impact .impact__headline{
+        text-align: center;
     }
     
     #impact .impact__cardsWrap {
-        margin-left: -80px;
+        margin-left: 0px;
     }
     
     #impact .impactCard {
@@ -167,198 +179,6 @@
     
     #impact .impactCard__mediaWrap {
         width: 340px; height: 340px;
-    }
-}
-
-/* ======================
-    반응형 - 1440px 이하
-====================== */
-@media (max-width: 1439px) {
-    #impact .impact__wrap {
-        padding: 0 100px;
-        gap: 50px;
-    }
-    
-    #impact .impact__text {
-        flex: 0 0 400px;
-        min-width: 400px;
-    }
-    
-    #impact .impact__cardsWrap {
-        margin-left: -60px;
-    }
-    
-    #impact .impact__label {
-        font-size: 32px;
-    }
-    
-    #impact .impact__headline {
-        font-size: 36px;
-    }
-    
-    #impact .impact__cards__row1,
-    #impact .impact__cards__row2 {
-        gap: 30px;
-    }
-    
-    #impact .impactCard {
-        width: 300px;
-    }
-    
-    #impact .impactCard__mediaWrap {
-        width: 300px; height: 300px;
-    }
-    
-    #impact .impactCard__head {
-        font-size: 24px;
-    }
-    
-    #impact .impactCard__desc {
-        font-size: 19px;
-    }
-}
-
-/* ======================
-    반응형 - 1300px 이하
-====================== */
-@media (max-width: 1299px) {
-    #impact .impact__wrap {
-        padding: 0 80px;
-        gap: 50px;
-    }
-    
-    #impact .impact__text {
-        flex: 0 0 380px;
-        min-width: 380px;
-    }
-    
-    #impact .impact__cardsWrap {
-        margin-left: -50px;
-    }
-    
-    #impact .impact__label {
-        font-size: 30px;
-    }
-    
-    #impact .impact__headline {
-        font-size: 34px;
-    }
-    
-    #impact .impact__cards__row1,
-    #impact .impact__cards__row2 {
-        gap: 25px;
-    }
-    
-    #impact .impactCard {
-        width: 280px;
-    }
-    
-    #impact .impactCard__mediaWrap {
-        width: 280px; height: 280px;
-    }
-    
-    #impact .impactCard__head {
-        font-size: 23px;
-    }
-    
-    #impact .impactCard__desc {
-        font-size: 18px;
-    }
-}
-
-/* ======================
-    반응형 - 1200px 이하
-====================== */
-@media (max-width: 1199px) {
-    #impact .impact__wrap {
-        padding: 0 60px;
-        gap: 40px;
-    }
-    
-    #impact .impact__text {
-        flex: 0 0 350px;
-        min-width: 350px;
-    }
-    
-    #impact .impact__cardsWrap {
-        margin-left: -40px;
-    }
-    
-    #impact .impact__label {
-        font-size: 30px;
-    }
-    
-    #impact .impact__headline {
-        font-size: 34px;
-    }
-    
-    #impact .impact__cards__row1,
-    #impact .impact__cards__row2 {
-        gap: 25px;
-    }
-    
-    #impact .impactCard {
-        width: 260px;
-    }
-    
-    #impact .impactCard__mediaWrap {
-        width: 260px; height: 260px;
-    }
-    
-    #impact .impactCard__head {
-        font-size: 22px;
-    }
-    
-    #impact .impactCard__desc {
-        font-size: 17px;
-    }
-}
-
-/* ======================
-    반응형 - 1100px 이하
-====================== */
-@media (max-width: 1099px) {
-    #impact .impact__wrap {
-        padding: 0 60px;
-        gap: 40px;
-    }
-    
-    #impact .impact__text {
-        flex: 0 0 320px;
-        min-width: 320px;
-    }
-    
-    #impact .impact__cardsWrap {
-        margin-left: -30px;
-    }
-    
-    #impact .impact__label {
-        font-size: 28px;
-    }
-    
-    #impact .impact__headline {
-        font-size: 32px;
-    }
-    
-    #impact .impact__cards__row1,
-    #impact .impact__cards__row2 {
-        gap: 20px;
-    }
-    
-    #impact .impactCard {
-        width: 240px;
-    }
-    
-    #impact .impactCard__mediaWrap {
-        width: 240px; height: 240px;
-    }
-    
-    #impact .impactCard__head {
-        font-size: 20px;
-    }
-    
-    #impact .impactCard__desc {
-        font-size: 16px;
     }
 }
 
