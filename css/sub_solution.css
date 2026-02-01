@@ -125,14 +125,16 @@
 }
     .soluSlidehero img {
         display: block;
-        max-width: 1265px; height: auto; margin: 0 auto; transition: opacity 0.5s ease;
+        width: 100%; max-width: 1265px; height: auto; margin: 0 auto; transition: opacity 0.5s ease;
+        object-fit: contain;
     }
     
     /* 화살표 버튼 */
     .hero-arrow {
         position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
         display: flex; justify-content: center; align-items: center;
-        width: 60px; height: 60px; background: transparent; border: none; border-radius: 50%; cursor: pointer; transition: .3s ease;
+        width: 60px; height: 60px; background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; cursor: pointer; transition: .3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     .hero-arrow:hover {
         transform: translateY(-50%) scale(1.1);
@@ -153,7 +155,8 @@
 
 /* ===== 갤러리 그리드 ===== */
 .gallery {
-    width: 1264px; margin: 80px auto;
+    max-width: 1264px; width: 100%; margin: 80px auto;
+    box-sizing: border-box;
 }
 
 .grid {
