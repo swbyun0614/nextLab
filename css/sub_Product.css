@@ -520,6 +520,13 @@ body.prod05 .specs-table-wrap {
     h2.smalltext {
         font-size: 1.8rem;
     }
+
+    h2.section-title {
+        display: block !important;
+        visibility: visible !important;
+        position: relative;
+        z-index: 10;
+    }
     .prod_intro p {
         font-size: 1.6rem;
     }
