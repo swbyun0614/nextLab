@@ -16,6 +16,13 @@
 .features-section .container .h2bg_left,
 .features-section .container .h2bg_right {z-index: 0;}
 
+.h2bg_left.smalltext {
+    top: -33px;
+}
+.h2bg_right.smalltext {
+    top: -33px;
+}
+
 /* ===========================
     Product Picker Section
 =========================== */

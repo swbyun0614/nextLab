@@ -273,7 +273,7 @@
 ====================== */
 @media (max-width: 640px) {
     #impact {
-        padding: 90px 0 80px;
+        padding: 60px 0 80px;
     }
     
     #impact .impact__wrap {
@@ -282,11 +282,11 @@
     }
     
     #impact .impact__label {
-        font-size: 26px; margin-bottom: 30px;
+        font-size: 2.2rem; margin-bottom: 30px;
     }
     
     #impact .impact__headline {
-        font-size: 30px;
+        font-size: 2.2rem;
     }
     
     #impact .impact__cards {
