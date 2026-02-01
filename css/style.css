@@ -744,33 +744,30 @@ header.sub {
     header .topset .gnb > li {
         position: relative;
         display: flex; flex-direction: column; align-items: center;
-        border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
+        border-bottom: none; /* 모바일에서는 li 보더 제거, a에서 처리 */
     }
 
     /* 첫 번째 gnb 위쪽 라인 제거 */
     header .topset .gnb > li:first-child {
         border-top: none;
     }
-    
-    /* GNB hover 시 회색 선 숨기고 주황색으로 (active가 아닐 때만) */
-    header .topset .gnb > li:not(.active):hover {
-        border-bottom-color: var(--maincolor1);
-    }
-    
-    /* GNB 활성화(펼쳐짐) 시 회색 선 -> 주황색으로 변경 */
-    header .topset .gnb > li.active {
-        border-bottom: 2px solid var(--maincolor1);
-    }
 
     header .topset .gnb > li > a {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 230px; height: auto; padding: 2vh 0; font-size: 2rem; font-weight: 500; color: var(--text); border-bottom: none;
+        width: 230px; height: auto; padding: 2vh 0; font-size: 2rem; font-weight: 500; color: var(--text);
+        border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
     }
 
-    /* GNB 활성화 시 글씨 색상 변경 */
+    /* GNB hover 시 주황색으로 */
+    header .topset .gnb > li:not(.active) > a:hover {
+        border-bottom-color: var(--maincolor1);
+    }
+
+    /* GNB 활성화(펼쳐짐) 시 주황색으로 변경 */
     header .topset .gnb > li.active > a {
         color: var(--maincolor1); font-weight: 600;
+        border-bottom: 2px solid var(--maincolor1);
     }
 
     /* LNB 모바일 - 슬라이드 애니메이션 */
@@ -819,17 +816,15 @@ header.sub {
         background: transparent; color: var(--maincolor1);
     }
 
-    /* 모바일 - 서브페이지 현재 GNB 스타일 */
-    header .topset .gnb > li.current {
-        border-bottom: 2px solid var(--maincolor1);
+    /* 모바일 - 서브페이지 현재 GNB 기본 스타일 (PC 스타일 덮어쓰기) */
+    header.sub .topset .gnb > li.current > a {
+        color: var(--text); font-weight: 500;
+        border-bottom: 2px solid #EFEFEF;
     }
 
-    header .topset .gnb > li.current > a {
+    /* 모바일 - 서브페이지 현재 GNB 스타일 (메뉴 열렸을 때만) */
+    header.sub.menu-open .topset .gnb > li.current > a {
         color: var(--maincolor1); font-weight: 600;
-    }
-
-    /* 서브페이지 현재 GNB가 활성화(펼쳐짐)되었을 때 */
-    header .topset .gnb > li.current.active {
         border-bottom: 2px solid var(--maincolor1);
     }
 
