@@ -93,7 +93,7 @@ img {
 }
 
 .comp_hero-image img {
-    width: 100%; height: 100%;
+    width: 100%; height: 100%; min-width: 393px;
     object-fit: cover;
 }
 
@@ -184,7 +184,7 @@ img {
 
 .ceo-content {
     display: flex;
-    gap: 95px;
+    gap: 4.94vw;
 }
 
 .ceo-left,
@@ -203,74 +203,6 @@ img {
 }
 
 /* ======================
-    푸터 스타일
-====================== */
-.main-footer {
-    background: var(--footer, #343434);
-    padding: 50px 0;
-    color: var(--footertext, #797979);
-}
-
-.footer-container {
-    max-width: 1920px; margin: 0 auto; padding: 0 198px;
-}
-
-.footer-logo {
-    display: flex; align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.footer-logo img {
-    width: 32px; height: 32px;
-}
-
-.footer-logo-text .company-prefix {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-size: 14px; font-weight: 600;
-    margin-right: 5px;
-}
-
-.footer-logo-text .company-name {
-    font-family: 'Pretendard-Bold', sans-serif;
-    font-size: 18px; font-weight: 700;
-}
-
-.footer-logo-text .company-slogan {
-    font-family: 'Inter-Medium', sans-serif;
-    font-size: 7.5px; font-weight: 500;
-    margin-top: 3px;
-}
-
-.footer-content {
-    display: flex;
-    gap: 100px;
-    margin-bottom: 30px;
-}
-
-.footer-info address,
-.footer-office p {
-    font-size: 16px; line-height: 1.6;
-    font-style: normal;
-}
-
-.footer-contact dl {
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 5px 10px;
-    font-size: 16px; line-height: 1.6;
-}
-
-.footer-contact dt {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-weight: 600;
-}
-
-.footer-copyright {
-    font-family: 'Pretendard-SemiBold', sans-serif;
-    font-size: 14px; font-weight: 600;
-}
-
-/* ======================
     애니메이션 강제 적용
 ====================== */
 .comp_hero-content,
@@ -283,6 +215,12 @@ img {
 /* ======================
     반응형 - 태블릿
 ====================== */
+@media screen and (max-width: 1700px) {
+    .ceo-content p {
+        font-size: 1.6rem;
+    }
+}
+
 @media screen and (max-width: 1440px) {
     .comp_hero-content {
         display: flex; flex-direction: column; align-items: center;
@@ -300,11 +238,10 @@ img {
     .ceo-logo {
         display: none;
     }
+}
 
-    .footer-container {
-        padding: 0 100px;
-    }
-
+@media screen and (max-width: 1180px) {
+    
 }
 
 @media screen and (max-width: 1024px) {
@@ -337,20 +274,8 @@ img {
         gap: 50px;
     }
 
-    .ceo-content p {
-        font-size: 16px;
-    }
-
     .ceo-logo {
         display: none;
-    }
-
-    .footer-container {
-        padding: 0 60px;
-    }
-
-    .footer-content {
-        gap: 50px;
     }
 
     .comp_hero-image {
@@ -371,7 +296,7 @@ img {
 ====================== */
 @media screen and (max-width: 768px) {
     .company-hero-section {
-        padding-top: 80px;
+        padding-top: 60px;
     }
 
     .comp_hero-container {
@@ -414,8 +339,8 @@ img {
         background: var(--maincolor2, #04456f);
     }
 
-    .ceo-header {
-        margin-bottom: 40px;
+    .section-title {
+        display: none;
     }
 
     .section-title {
@@ -424,7 +349,7 @@ img {
 
     .ceo-subtitle {
         font-size: 26px;
-        margin-bottom: 30px;
+        margin-bottom: 30px; padding: 30px 67px;
     }
 
     .ceo-subtitle br {
@@ -460,11 +385,6 @@ img {
         gap: 30px;
     }
 
-    .ceo-content p {
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
     .ceo-content p br {
         display: none;
     }
@@ -474,19 +394,8 @@ img {
         margin-top: 30px;
     }
 
-    .footer-container {
-        padding: 0 30px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer-info address,
-    .footer-office p,
-    .footer-contact dl {
-        font-size: 14px;
+    body.company footer {
+        margin-top: 0;
     }
 }
 
@@ -494,16 +403,9 @@ img {
     반응형 - 작은 모바일
 ====================== */
 @media screen and (max-width: 480px) {
-    .comp_hero-title {
-        font-size: 20px;
-    }
-
-    .hero-description {
-        font-size: 22px;
-    }
 
     .ceo-container {
-        padding: 30px 20px;
+        padding: 30px 40px;
     }
 
     .section-title {
@@ -514,25 +416,7 @@ img {
         font-size: 22px;
     }
 
-    .ceo-content p {
-        font-size: 13px;
-    }
-
     .ceo-logo {
         display: none;
-    }
-
-    .footer-container {
-        padding: 0 20px;
-    }
-
-    .footer-info address,
-    .footer-office p,
-    .footer-contact dl {
-        font-size: 12px;
-    }
-
-    .footer-copyright {
-        font-size: 12px;
     }
 }
