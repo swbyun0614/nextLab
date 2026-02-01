@@ -757,9 +757,9 @@ header.sub {
         border-bottom-color: var(--maincolor1);
     }
     
-    /* GNB 활성화(펼쳐짐) 시 회색 선 숨김 */
+    /* GNB 활성화(펼쳐짐) 시 회색 선 -> 주황색으로 변경 */
     header .topset .gnb > li.active {
-        border-bottom: none;
+        border-bottom: 2px solid var(--maincolor1);
     }
 
     header .topset .gnb > li > a {
@@ -780,13 +780,6 @@ header.sub {
         width: 100%; max-height: 0; padding: 0; opacity: 0; overflow: visible;
         pointer-events: none; /* 닫혀있을 때 클릭 방지 */
         transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-    }
-    
-    /* LNB 위쪽에 주황색 선 추가 (GNB와 LNB 사이) */
-    header .topset .gnb > li.active .lnb::before {
-        content: "";
-        position: absolute; top: 0; left: 0;
-        width: 100%; height: 2px; background: var(--maincolor1);
     }
     
     /* LNB 아래쪽에 주황색 선 추가 */
@@ -824,6 +817,20 @@ header.sub {
     /* 모바일 - 현재 페이지 LNB는 호버 효과 무시 */
     header .topset .gnb .lnb li a.current:hover {
         background: transparent; color: var(--maincolor1);
+    }
+
+    /* 모바일 - 서브페이지 현재 GNB 스타일 */
+    header .topset .gnb > li.current {
+        border-bottom: 2px solid var(--maincolor1);
+    }
+
+    header .topset .gnb > li.current > a {
+        color: var(--maincolor1); font-weight: 600;
+    }
+
+    /* 서브페이지 현재 GNB가 활성화(펼쳐짐)되었을 때 */
+    header .topset .gnb > li.current.active {
+        border-bottom: 2px solid var(--maincolor1);
     }
 
     /* LNB 배경 숨기기 */
