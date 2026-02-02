@@ -12,6 +12,7 @@
 /* 기본 설정들 */
 html {
     font-size: 10px !important;
+    overflow-x: hidden;
 }
 body {
     position: relative;
