@@ -16,7 +16,7 @@
     컨테이너
 ====================== */
 .tec_container {
-    max-width: 1520px; margin: 0 auto; padding: 0 200px; margin-top: 200px;
+    max-width: 1520px; margin: 0 10.4vw; margin-top: 200px;
 }
 
 /* ======================
@@ -34,9 +34,6 @@
 /* ======================
     히어로 섹션
 ====================== */
-.tec_hero {
-}
-
 .tec_hero .tec_container {
     margin-top: 100px;
 }
@@ -64,16 +61,16 @@
 
 .tec_hero-description {
     font-family: 'Isamanru', sans-serif;
-    font-size: clamp(28px, 3vw, 40px); line-height: 1.7;
+    font-size: 4rem; line-height: 1.7;
     white-space: nowrap;
 }
 
 .tec_text-light {
-    font-size: 40px; font-weight: 300;
+    font-weight: 300;
 }
 
 .tec_text-emphasis {
-    font-size: 40px; font-weight: 500;
+    font-weight: 500;
 }
 
 .tec_hero-image {
@@ -157,7 +154,7 @@
 
 .tec_case-title {
     flex: 1;
-    font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; line-height: 1.5;
+    font-size: clamp(20px, 2.0vw, 28px); font-weight: 600; line-height: 1.5;
     color: white;
     margin: 0;
 }
@@ -198,18 +195,12 @@
     반응형 - 대형 데스크톱
 ====================== */
 @media (max-width: 1920px) {
-    .tec_container {
-        padding: 0 100px;
-    }
 }
 
 /* ======================
     반응형 - 데스크톱
 ====================== */
 @media (max-width: 1600px) {
-    .tec_container {
-        padding: 0 80px;
-    }
     
     .tec_hero-wrapper {
         gap: clamp(100px, 15vw, 200px);
@@ -220,9 +211,6 @@
     반응형 - 중형 데스크톱
 ====================== */
 @media (max-width: 1400px) {
-    .tec_container {
-        padding: 0 50px;
-    }
     
     .tec_hero-wrapper {
         gap: clamp(60px, 12vw, 150px);
@@ -236,9 +224,15 @@
 /* ======================
     반응형 - 태블릿
 ====================== */
-@media (max-width: 1200px) {
-    .tec_container {
-        padding: 0 40px;
+@media (max-width: 1024px) {
+    .tec_case-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tec_hero .tec_container {
+        margin: 0 20px;margin-top: 60px;
     }
     
     .tec_hero-wrapper {
@@ -269,10 +263,6 @@
     반응형 - 모바일 Large
 ====================== */
 @media (max-width: 992px) {
-    .tec_container {
-        padding: 0 30px;
-    }
-    
     .tec_main {
         margin-top: 0px;
     }
@@ -290,7 +280,7 @@
     }
     
     .tec_case-title {
-        font-size: clamp(18px, 4vw, 24px); line-height: 1.4;
+        line-height: 1.4;
     }
     
     .tec_case-number {
@@ -318,10 +308,6 @@
     반응형 - 모바일 Medium
 ====================== */
 @media (max-width: 768px) {
-    .tec_container {
-        padding: 0 20px;
-    }
-    
     .tec_hero-title {
         font-size: 24px;
     }
@@ -366,10 +352,6 @@
     반응형 - 모바일 Small
 ====================== */
 @media (max-width: 576px) {
-    .tec_container {
-        padding: 0 15px;
-    }
-    
     .tec_hero {
         margin-bottom: 60px;
     }

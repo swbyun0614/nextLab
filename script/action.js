@@ -515,6 +515,7 @@ $(function() {
 // 제품 상세 갤러리 슬라이더 (서브페이지 전용)
 var prodThumbSwiper = null;
 var prodMainSwiper = null;
+var isProdNavClick = false;
 
 $(function() {
     if ($('.prodThumbSwiper').length > 0) {
@@ -522,10 +523,6 @@ $(function() {
             spaceBetween: 15,
             slidesPerView: 5,
             watchSlidesProgress: true,
-            navigation: {
-                nextEl: '.prod-next',
-                prevEl: '.prod-prev',
-            },
             breakpoints: {
                 320: { slidesPerView: 3, spaceBetween: 10 },
                 768: { slidesPerView: 4, spaceBetween: 12 },
@@ -538,12 +535,30 @@ $(function() {
 
         prodMainSwiper = new Swiper('.prodMainSwiper', {
             spaceBetween: 10,
+            navigation: {
+                nextEl: '.prod-next',
+                prevEl: '.prod-prev',
+            },
             thumbs: {
                 swiper: prodThumbSwiper,
+            },
+            on: {
+                slideChangeTransitionEnd: function() {
+                    // navigation 버튼 클릭으로 인한 변경 시에만 썸네일 슬라이더 이동
+                    if (prodThumbSwiper && isProdNavClick) {
+                        prodThumbSwiper.slideTo(this.activeIndex);
+                        isProdNavClick = false;
+                    }
+                }
             },
             observer: true,
             observeParents: true,
             observeSlideChildren: true
+        });
+
+        // navigation 버튼 클릭 시 플래그 설정
+        $('.prod-prev, .prod-next').on('click', function() {
+            isProdNavClick = true;
         });
     }
 });
@@ -575,7 +590,6 @@ window.addEventListener('pageshow', function(event) {
                 spaceBetween: 15,
                 slidesPerView: 5,
                 watchSlidesProgress: true,
-                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
                 breakpoints: {
                     320: { slidesPerView: 3, spaceBetween: 10 },
                     768: { slidesPerView: 4, spaceBetween: 12 },
@@ -587,10 +601,23 @@ window.addEventListener('pageshow', function(event) {
             });
             prodMainSwiper = new Swiper('.prodMainSwiper', {
                 spaceBetween: 10,
+                navigation: { nextEl: '.prod-next', prevEl: '.prod-prev' },
                 thumbs: { swiper: prodThumbSwiper },
+                on: {
+                    slideChangeTransitionEnd: function() {
+                        if (prodThumbSwiper && isProdNavClick) {
+                            prodThumbSwiper.slideTo(this.activeIndex);
+                            isProdNavClick = false;
+                        }
+                    }
+                },
                 observer: true,
                 observeParents: true,
                 observeSlideChildren: true
+            });
+            // navigation 버튼 클릭 시 플래그 설정
+            $('.prod-prev, .prod-next').on('click', function() {
+                isProdNavClick = true;
             });
         }
 
@@ -618,8 +645,12 @@ $(function() {
     const TOTAL_IMAGES = 60;           // 전체 이미지 개수
     const IMG_PATH = "images/solution02_gridData/img_";    // 이미지 경로 및 앞부분 파일명
     const IMG_EXT = ".png";            // 이미지 확장자
-    const PER_PAGE = 12;               // 한 페이지당 보여줄 개수
     const PAGE_WINDOW = 5;             // 페이지네이션 범위
+
+    // 반응형 페이지당 개수 - 768px 이하에서는 6개 (2x3), 그 외에는 12개
+    function getPerPage() {
+        return window.innerWidth <= 768 ? 6 : 12;
+    }
 
     let currentPage = 1;
     let selectedId = null;
@@ -643,7 +674,7 @@ $(function() {
      ************************************************************/
 
     function getTotalPages() {
-        return Math.ceil(items.length / PER_PAGE);
+        return Math.ceil(items.length / getPerPage());
     }
 
     // 상단 메인 이미지 변경 (타이틀 제외, 파일명 등으로 대체 가능)
@@ -670,8 +701,8 @@ $(function() {
 
     // 그리드 렌더링
     function renderGrid(page) {
-        const start = (page - 1) * PER_PAGE;
-        const pageItems = items.slice(start, start + PER_PAGE);
+        const start = (page - 1) * getPerPage();
+        const pageItems = items.slice(start, start + getPerPage());
 
         const html = pageItems.map((it) => `
             <article class="card" data-id="${it.id}" tabindex="0" role="button">
@@ -769,7 +800,7 @@ $(function() {
         setHero(prevItem);
         
         // 현재 페이지에 해당 아이템이 있는지 확인
-        const itemPage = Math.ceil(prevItem.id / PER_PAGE);
+        const itemPage = Math.ceil(prevItem.id / getPerPage());
         if (itemPage !== currentPage) {
             goToPage(itemPage);
         } else {
@@ -790,7 +821,7 @@ $(function() {
         setHero(nextItem);
         
         // 현재 페이지에 해당 아이템이 있는지 확인
-        const itemPage = Math.ceil(nextItem.id / PER_PAGE);
+        const itemPage = Math.ceil(nextItem.id / getPerPage());
         if (itemPage !== currentPage) {
             goToPage(itemPage);
         } else {
@@ -802,5 +833,15 @@ $(function() {
 
     // 초기 실행
     goToPage(1);
-    
+
+    // 화면 크기 변경 시 그리드 업데이트
+    let lastPerPage = getPerPage();
+    $(window).on('resize', function() {
+        const currentPerPage = getPerPage();
+        if (currentPerPage !== lastPerPage) {
+            lastPerPage = currentPerPage;
+            goToPage(1);
+        }
+    });
+
 });

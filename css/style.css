@@ -42,13 +42,13 @@ h2.smalltext {font-size: 2.8rem;}
 .h2bg_left {
     position: absolute; left: -200px; top: -18px; z-index: -1;
     display: flex;
-    background: url(../images/title_bg_left.png); width: 36vw; height: 103px;
+    background: url(../images/title_bg_left.png) no-repeat; width: 36vw; height: 103px;
     background-position: right center;
 }
 .h2bg_right {
     position: absolute; right: -200px; top: -18px; z-index: -1;
     display: flex;
-    background: url(../images/title_bg_right.png); width: 36vw; height: 103px;
+    background: url(../images/title_bg_right.png) no-repeat; width: 36vw; height: 103px;
 }
 .h2bg_left.smalltext {
     top: -28px;
@@ -730,6 +730,11 @@ header.sub {
     /* 메뉴 열렸을 때 GNB 표시 - 강제 표시 */
     header.menu-open .topset .gnb,
     header.sub.menu-open .topset .gnb {
+        position: absolute;
+        top: 70px;
+        bottom: 143px;
+        left: 0;
+        right: 0;
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -739,33 +744,37 @@ header.sub {
     header .topset .gnb > li {
         position: relative;
         display: flex; flex-direction: column; align-items: center;
-        border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
+        border-bottom: none; /* 모바일에서는 li 보더 제거, a에서 처리 */
     }
 
     /* 첫 번째 gnb 위쪽 라인 제거 */
     header .topset .gnb > li:first-child {
         border-top: none;
     }
-    
-    /* GNB hover 시 회색 선 숨기고 주황색으로 (active가 아닐 때만) */
-    header .topset .gnb > li:not(.active):hover {
-        border-bottom-color: var(--maincolor1);
-    }
-    
-    /* GNB 활성화(펼쳐짐) 시 회색 선 숨김 */
-    header .topset .gnb > li.active {
-        border-bottom: none;
-    }
 
     header .topset .gnb > li > a {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 230px; height: auto; padding: 18px 0; font-size: 2rem; font-weight: 500; color: var(--text); border-bottom: none;
+        width: 230px; height: auto; padding: 2vh 0; font-size: 2rem; font-weight: 500; color: var(--text);
+        border-bottom: 2px solid #EFEFEF; /* 기본은 회색 선 */
     }
 
-    /* GNB 활성화 시 글씨 색상 변경 */
-    header .topset .gnb > li.active > a {
+    /* 모바일 GNB hover 효과 제거 (PC 스타일 덮어쓰기) */
+    header .topset .gnb > li:hover > a,
+    header .topset .gnb > li > a:hover,
+    header.sub .topset .gnb > li:hover > a {
+        color: var(--text); font-weight: 500;
+        border-bottom: 2px solid #EFEFEF;
+    }
+
+    /* GNB 활성화(펼쳐짐) 시 주황색으로 변경 */
+    header .topset .gnb > li.active > a,
+    header .topset .gnb > li.active:hover > a,
+    header .topset .gnb > li.active > a:hover,
+    header.sub .topset .gnb > li.active > a,
+    header.sub .topset .gnb > li.active:hover > a {
         color: var(--maincolor1); font-weight: 600;
+        border-bottom: 2px solid var(--maincolor1);
     }
 
     /* LNB 모바일 - 슬라이드 애니메이션 */
@@ -777,13 +786,6 @@ header.sub {
         transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
     }
     
-    /* LNB 위쪽에 주황색 선 추가 (GNB와 LNB 사이) */
-    header .topset .gnb > li.active .lnb::before {
-        content: "";
-        position: absolute; top: 0; left: 0;
-        width: 100%; height: 2px; background: var(--maincolor1);
-    }
-    
     /* LNB 아래쪽에 주황색 선 추가 */
     header .topset .gnb > li.active .lnb::after {
         content: "";
@@ -793,7 +795,7 @@ header.sub {
 
     /* LNB 활성화 시 슬라이드로 표시 */
     header .topset .gnb > li.active .lnb {
-        max-height: 300px; padding: 10px 0 15px; opacity: 1;
+        max-height: 300px; padding: 1.2vh 0 1.8vh; opacity: 1;
         pointer-events: auto; /* 열렸을 때 클릭 허용 */
     }
 
@@ -803,7 +805,7 @@ header.sub {
 
     header .topset .gnb .lnb li a {
         display: inline-block;
-        padding: 12px 30px; font-size: 1.8rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
+        padding: 1.4vh 30px; font-size: 1.6rem; font-weight: 400; color: var(--text); border-radius: 30px; transition: none;
     }
 
     /* LNB 호버 효과 제거 (모바일) */
@@ -821,6 +823,18 @@ header.sub {
         background: transparent; color: var(--maincolor1);
     }
 
+    /* 모바일 - 서브페이지 현재 GNB 기본 스타일 (PC 스타일 덮어쓰기) */
+    header.sub .topset .gnb > li.current > a {
+        color: var(--text); font-weight: 500;
+        border-bottom: 2px solid #EFEFEF;
+    }
+
+    /* 모바일 - 서브페이지 현재 GNB 스타일 (메뉴 열렸을 때만) */
+    header.sub.menu-open .topset .gnb > li.current > a {
+        color: var(--maincolor1); font-weight: 600;
+        border-bottom: 2px solid var(--maincolor1);
+    }
+
     /* LNB 배경 숨기기 */
     header .lnb_bg {
         display: none;
@@ -829,7 +843,7 @@ header.sub {
     /* 블로그 버튼 모바일 - 하단 박스로부터 30px 위 */
     header .topset .blog {
         position: absolute; bottom: 133px; left: 50%; transform: translateX(-50%);
-        display: none; margin-top: 0;
+        display: none; margin-top: 0; z-index: 60;
     }
 
     header.menu-open .topset .blog {
@@ -850,8 +864,12 @@ header.sub {
     }
 
     header .topset .blog a .blog_icon {
-        margin-left: 10px; width: 28px;
-        content: url('../images/btn_go2.png');
+        display: none;
+    }
+
+    header .topset .blog a .blog_icon_sub {
+        display: inline-block;
+        margin-left: 10px; width: 28px; height: auto;
     }
 
     /* 모바일 전화 버튼 */

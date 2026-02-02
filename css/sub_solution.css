@@ -12,6 +12,13 @@
     --bg-light: #f8f8f8;
 }
 
+.h2bg_left.smalltext {
+    top: -33px;
+}
+.h2bg_right.smalltext {
+    top: -33px;
+}
+
 /* ===========================
     Sub Hero Section
 =========================== */
@@ -19,7 +26,7 @@
 }
 
 .sub-hero .container {
-    margin: 100px auto 0;
+    margin: 100px auto 0; padding: 0 10.4vw;
 }
 
 .sub-hero .solu02_hero-content {
@@ -39,6 +46,10 @@
 }
 .sub-hero .solu02_hero-text .sub-title span {
     font-weight: 300;
+}
+
+.sub-hero .solu02_hero-image {
+    width: clamp(353px, 20.8vw, 521px);
 }
 
 .sub-hero .solu02_hero-image img {
@@ -121,27 +132,34 @@
 /* ===== 상단 대표 이미지 영역 ===== */
 .soluSlidehero {
     position: relative;
-    overflow: hidden;
+    max-width: 1265px; margin: 0 auto;
 }
     .soluSlidehero img {
         display: block;
-        max-width: 1265px; height: auto; margin: 0 auto; transition: opacity 0.5s ease;
+        width: 100%; max-width: 1265px; height: auto; margin: 0 auto; transition: opacity 0.5s ease;
+        object-fit: contain;
     }
     
     /* 화살표 버튼 */
     .hero-arrow {
         position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
         display: flex; justify-content: center; align-items: center;
-        width: 60px; height: 60px; background: transparent; border: none; border-radius: 50%; cursor: pointer; transition: .3s ease;
+        width: 2rem; height: 80px; border: none; cursor: pointer; transition: .3s ease;
+        
+    }
+    .hero-arrow::after {
+        content: "";
+        position: absolute; z-index: -1;
+        width: 3.1vw; height: 3.1vw; background: rgba(255, 255, 255, 0.9); border-radius: 50%;
     }
     .hero-arrow:hover {
         transform: translateY(-50%) scale(1.1);
     }
     .hero-arrow.prev {
-        left: 0px;
+        left: -4.68vw;
     }
     .hero-arrow.next {
-        right: 0px;
+        right: -4.68vw;
     }
     .hero-arrow img {
         margin: 0;
@@ -153,7 +171,8 @@
 
 /* ===== 갤러리 그리드 ===== */
 .gallery {
-    width: 1264px; margin: 80px auto;
+    max-width: 1264px; width: 100%; margin: 80px auto;
+    box-sizing: border-box;
 }
 
 .grid {
@@ -219,11 +238,25 @@
     font-weight: 700;
 }
 
+@media screen and (max-width: 1240px) {
+    .sub-hero .container {
+        margin-top: 0px !important;
+    }
+}
+
 
 /* ===========================
     Responsive - Tablet
 =========================== */
 @media screen and (max-width: 1200px) {
+    .cases-section .container {
+        margin-top: 0px !important;
+    }
+
+    .gallery-section .container {
+        margin-top: 100px !important;
+    }
+
     .sub-hero .solu02_hero-content {
         gap: 50px;
     }
@@ -255,11 +288,11 @@
 =========================== */
 @media screen and (max-width: 768px) {
     .sub-hero {
-        padding: 80px 0 60px;
+        padding: 0px 0 50px;
     }
 
     .sub-hero .container {
-        margin-top: 40px;
+        margin: 60px auto 0 !important;
     }
 
     .sub-hero .solu02_hero-content {
@@ -274,12 +307,13 @@
     }
 
     .sub-hero .solu02_hero-text .sub-title {
-        font-size: 2.8rem;
+        display: block;
+        font-size: 2.2rem;
         text-align: center;
     }
 
     .sub-hero .solu02_hero-image {
-        justify-content: center;
+        justify-content: center; margin: 0 20px;
     }
 
     .sub-hero .solu02_hero-image img {
@@ -287,7 +321,7 @@
     }
 
     .cases-section {
-        padding: 60px 0;
+        padding: 0px 0;
     }
 
     .cases-section .section-title {
@@ -298,8 +332,36 @@
         padding: 0 0 60px 0;
     }
 
+    .solu02Swiper {
+        padding: 0px 0 0px;
+    }
+
     .casesSwiper .swiper-slide {
         width: 85vw;
+    }
+
+    .imgtext {
+        font-size: 1.6rem; border-radius: 0 0 20px 20px;
+    }
+
+    .solu02Swiper .swiper-slide .slide-text {
+        font-size: 1.6rem;
+    }
+
+    .solu02Swiper .swiper-slide img {
+        border-radius: 20px;
+    }
+
+    .hero-arrow.prev {
+        left: 2vw;
+    }
+    .hero-arrow.next {
+        right: 2vw;
+    }
+    .hero-arrow::after {
+        content: "";
+        position: absolute; z-index: -1;
+        width: 7vw; height: 7vw; background: rgba(255, 255, 255, 0.9); border-radius: 50%;
     }
 
     .casesSwiper .case-card {
@@ -347,5 +409,14 @@
     .casesSwiper .swiper-pagination-bullet {
         width: 8px;
         height: 8px;
+    }
+
+    /* Solution02 Grid - 2열 3행 */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pager {
+        gap: 0;
     }
 }

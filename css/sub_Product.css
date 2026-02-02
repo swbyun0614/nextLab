@@ -16,6 +16,12 @@
 .features-section .container .h2bg_left,
 .features-section .container .h2bg_right {z-index: 0;}
 
+.h2bg_left.smalltext {
+    top: -33px;
+}
+.h2bg_right.smalltext {
+    top: -33px;
+}
 
 /* ===========================
     Product Picker Section
@@ -520,6 +526,13 @@ body.prod05 .specs-table-wrap {
 
     h2.smalltext {
         font-size: 1.8rem;
+    }
+
+    h2.section-title {
+        display: block !important;
+        visibility: visible !important;
+        position: relative;
+        z-index: 10;
     }
     .prod_intro p {
         font-size: 1.6rem;
