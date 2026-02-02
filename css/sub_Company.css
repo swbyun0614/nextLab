@@ -149,7 +149,7 @@ img {
 }
 
 .ceo-subtitle strong {
-    font-weight: 500;
+    font-weight: normal;
 }
 
 .ceo-logo {
@@ -194,7 +194,7 @@ img {
 
 .ceo-content p {
     font-family: 'Pretendard', sans-serif;
-    font-size: 18px; font-weight: 400; line-height: 1.6; padding-bottom: 24px;
+    font-size: 18px; font-weight: 400; line-height: 1.6; padding-bottom: 16px;
 }
 
 .ceo-signature {
@@ -222,6 +222,11 @@ img {
 }
 
 @media screen and (max-width: 1440px) {
+
+    .active-indicator {
+        margin-left: 350px;
+    }
+
     .comp_hero-content {
         display: flex; flex-direction: column; align-items: center;
     }
@@ -240,11 +245,24 @@ img {
     }
 }
 
-@media screen and (max-width: 1180px) {
-    
+    .company-comp_hero-image {
+        background-image: url("../images/sub_Company_images/sub_mobile_img1.png");
+        background-position: center; background-size: cover; background-repeat: no-repeat;
+        width: 100%; height: 420px;
+        overflow: hidden;
+    }
+
+    .company-comp_hero-image img {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) {
+    .active-indicator {
+        width: 180px;
+        margin-left: 200px;
+    }
+
     .comp_hero-container {
         padding: 40px 60px;
         gap: 80px;
@@ -278,16 +296,8 @@ img {
         display: none;
     }
 
-    .comp_hero-image {
-        width: 100%;
-    }
-
-    .comp_hero-image img {
-        width: 100%; height: auto;
-    }
-
-    .ceo-section {
-        margin-top: 0;
+    .company-comp_hero-image {
+        height: 300px;
     }
 }
 
@@ -295,14 +305,18 @@ img {
     반응형 - 모바일
 ====================== */
 @media screen and (max-width: 768px) {
+    .active-indicator {
+        display: none;
+    }
+
     .company-hero-section {
         padding-top: 60px;
     }
 
     .comp_hero-container {
         flex-direction: column;
-        padding: 0;
-        gap: 40px;
+        padding: 0 30px;
+        gap: 50px;
     }
 
     .comp_hero-content {
@@ -311,7 +325,7 @@ img {
     }
 
     .comp_hero-title {
-        font-size: 24px;
+        font-size: 24px; margin-bottom: 55px;
     }
 
     .hero-description {
@@ -327,7 +341,7 @@ img {
     }
 
     .ceo-section {
-        margin-top: 0;
+        margin-top: 0px;
     }
 
     .ceo-background {
@@ -335,7 +349,7 @@ img {
     }
 
     .ceo-container {
-        padding: 40px 30px;
+        padding: 70px 40px;
         background: var(--maincolor2, #04456f);
     }
 
@@ -344,12 +358,12 @@ img {
     }
 
     .section-title {
-        font-size: 22px;
+        display: none;
     }
 
     .ceo-subtitle {
         font-size: 26px;
-        margin-bottom: 30px; padding: 30px 67px;
+        margin-bottom: 30px; padding: 0 47px;
     }
 
     .ceo-subtitle br {
@@ -385,6 +399,11 @@ img {
         gap: 30px;
     }
 
+    .ceo-content p {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
     .ceo-content p br {
         display: none;
     }
@@ -397,11 +416,6 @@ img {
     body.company footer {
         margin-top: 0;
     }
-}
-
-/* ======================
-    반응형 - 작은 모바일
-====================== */
 @media screen and (max-width: 480px) {
 
     .ceo-container {
