@@ -12,11 +12,11 @@
 /* 기본 설정들 */
 html {
     font-size: 10px !important;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 body {
     position: relative;
-    font-family: 'Pretendard'; background: #ffffff; overflow-x: hidden;  word-break: keep-all;
+    font-family: 'Pretendard'; background: #ffffff; overflow-x: clip;  word-break: keep-all;
 }
 :root {
     --maincolor1: #f0620a;
