@@ -647,6 +647,8 @@ header.sub {
     /* 메뉴 열렸을 때 헤더 */
     header.menu-open {
         position: fixed;
+        top: 0; left: 0;
+        width: 100%;
         height: 100vh; height: 100dvh; background: #fff !important;
     }
 
