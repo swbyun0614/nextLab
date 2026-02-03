@@ -634,7 +634,10 @@ body.prod05 .specs-table-wrap {
     }
     
     .sub_title_db {
-        font-size: 1.6rem; padding: 8px 20px;
+        width: 60vw; font-size: 1.6rem; padding: 8px 20px;
+    }
+    .tl03 .sub_title_db {
+        width: 60vw;
     }
     
     .diagram-wrap {

@@ -58,7 +58,7 @@ h2.smalltext {font-size: 2.8rem;}
     top: -28px;
 }
 .sub_title_db {
-    width: 29.7vw; font-size: 2.8rem; font-weight: 600; color: #fff; background: var(--dark-blue); padding: 13px 0; border-radius: 30px; margin: 50px auto 40px;
+    width: 42vw; font-size: 2.8rem; font-weight: 600; color: #fff; background: var(--dark-blue); padding: 13px 0; border-radius: 30px; margin: 50px auto 40px;
 }
 
 /* PC/모바일 분기 기본 설정 */

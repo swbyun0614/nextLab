@@ -53,7 +53,7 @@
 }
 
 .sub-hero .solu02_hero-image img {
-    max-width: 521px;
+    max-width: 521px; justify-self: center;
 }
 
 
@@ -249,10 +249,6 @@
     Responsive - Tablet
 =========================== */
 @media screen and (max-width: 1200px) {
-    .cases-section .container {
-        margin-top: 0px !important;
-    }
-
     .gallery-section .container {
         margin-top: 100px !important;
     }
@@ -263,6 +259,10 @@
 
     .sub-hero .solu02_hero-text .sub-title {
         font-size: 3.5rem;
+    }
+
+    .sub-hero .solu02_hero-image img {
+        width: 20.8vw; min-width: 300px;
     }
 
     .casesSwiper .swiper-slide {
@@ -287,6 +287,10 @@
     Responsive - Mobile
 =========================== */
 @media screen and (max-width: 768px) {
+    .cases-section .container {
+        margin-top: 0px !important;
+    }
+
     .sub-hero {
         padding: 0px 0 50px;
     }
@@ -317,7 +321,7 @@
     }
 
     .sub-hero .solu02_hero-image img {
-        max-width: 100%;
+        width: 100%;
     }
 
     .cases-section {
