@@ -459,8 +459,12 @@
             var video = document.getElementById('intro-video');
             var skipCursor = container.querySelector('.skip-cursor');
 
+            // 영상 재생 중 스크롤 방지
+            document.body.style.overflow = 'hidden';
+
             function closeOpening() {
                 container.classList.add('hidden');
+                document.body.style.overflow = '';
                 setTimeout(function() { container.remove(); }, 600);
             }
 
@@ -477,6 +481,9 @@
 
             // 클릭 시 스킵
             container.addEventListener('click', closeOpening);
+
+            // 터치 시 스킵 (모바일)
+            container.addEventListener('touchend', closeOpening);
 
             // 영상 종료 시 페이드아웃
             video.addEventListener('ended', closeOpening);
