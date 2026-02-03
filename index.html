@@ -24,12 +24,14 @@
             transition: opacity 0.6s ease-out;
         }
         #opening-video.hidden { opacity: 0; pointer-events: none; }
-        /* iframe을 확대해서 상단/하단 YouTube UI를 화면 밖으로 밀어냄 */
+        /* 16:9 비율 유지하면서 화면 꽉 채움 + UI 숨김용 1.2배 확대 */
         #opening-video iframe {
             position: absolute;
             top: 50%; left: 50%;
-            width: 120%; height: 120%;
-            transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%;
+            width: 177.78vh; /* 100vh * 16/9 */
+            height: 56.25vw; /* 100vw * 9/16 */
+            transform: translate(-50%, -50%) scale(1.2);
             border: none; pointer-events: none;
         }
         #opening-video .skip-cursor {
@@ -44,6 +46,21 @@
             z-index: 1000000;
         }
         #opening-video .skip-cursor.visible { opacity: 1; }
+        #opening-video .touch-hint {
+            position: fixed; bottom: 50px; left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px; font-weight: 400;
+            letter-spacing: 0.5px;
+            z-index: 1000000;
+            opacity: 0; transition: opacity 0.5s ease-in;
+            pointer-events: none;
+            display: none;
+        }
+        #opening-video .touch-hint.visible { opacity: 1; }
+        @media (max-width: 1240px) {
+            #opening-video .touch-hint { display: block; }
+        }
 
         /* 스크롤 애니메이션 */
         #section1, #section2, #section3, #section4 {
@@ -63,6 +80,7 @@
     <div id="opening-video">
         <div id="yt-player"></div>
         <div class="skip-cursor">SKIP</div>
+        <div class="touch-hint">화면을 터치하면 넘어갑니다</div>
     </div>
 
     <div class="sideBar">
@@ -462,6 +480,7 @@
         (function() {
             var container = document.getElementById('opening-video');
             var skipCursor = container.querySelector('.skip-cursor');
+            var touchHint = container.querySelector('.touch-hint');
 
             // 영상 재생 중 스크롤 방지
             document.body.style.overflow = 'hidden';
@@ -474,6 +493,7 @@
 
             // YouTube Player 생성
             var closingTimer = null;
+            var hintTimer = null;
             window.onYouTubeIframeAPIReady = function() {
                 var player = new YT.Player('yt-player', {
                     videoId: 'I4Fdm5eCXow',
@@ -498,6 +518,12 @@
                                 var remaining = (duration - current - 1.5) * 1000;
                                 if (remaining > 0) {
                                     closingTimer = setTimeout(closeOpening, remaining);
+                                }
+                                // 재생 1초 후 터치 안내 문구 표시
+                                if (!hintTimer) {
+                                    hintTimer = setTimeout(function() {
+                                        touchHint.classList.add('visible');
+                                    }, 1000);
                                 }
                             }
                             if (e.data === YT.PlayerState.ENDED) closeOpening();
