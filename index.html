@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextLab - 산업용 스마트 관제 솔루션</title>
 
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" as="script">
+
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="css/style.css?v=20260202a">
     <style>
+        /* 로딩 오버레이 - 제거 시 이 블록과 #page-loader div 삭제 */
+        #page-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 999999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.4s ease-out;
+        }
+        #page-loader.hidden { opacity: 0; pointer-events: none; }
+        #page-loader img { width: 150px; margin-bottom: 20px; }
+        #page-loader .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #f0f0f0; border-top-color: #f0620a;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         /* 스크롤 애니메이션 */
         #section1, #section2, #section3, #section4 {
             opacity: 0;
             transform: translateY(80px);
             transition: opacity 0.8s ease-out, transform 0.5s ease-out;
         }
-        
+
         #section1.animate, #section2.animate, #section3.animate, #section4.animate {
             opacity: 1;
             transform: translateY(0);
@@ -24,6 +45,12 @@
     </style>
 </head>
 <body class="sub_page">
+    <!-- 로딩 오버레이 - 제거 시 이 div와 위 CSS, 하단 JS 삭제 -->
+    <div id="page-loader">
+        <img src="images/logo.png" alt="NextLab">
+        <div class="spinner"></div>
+    </div>
+
     <div class="sideBar">
         <div class="btnKakao">
             <a href="http://pf.kakao.com/_IWJUn" target="_blank"><img src="images/btn_kakao.png" alt=""></a>
@@ -298,37 +325,37 @@
                     <div class="content_wrap">
                         <div class="tech">
                             <span>고배율 PTZ & 야간 감시 강화</span>
-                            <img src="images/sec2_img1.png" class="longWidth" alt="">
+                            <img src="images/sec2_img1.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap bottom">
                         <div class="tech">
                             <span>실시간 LTE 고정IP 관제</span>
-                            <img src="images/sec2_img2.png" alt="">
+                            <img src="images/sec2_img2.png" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>AI 기반 지능형 안전관리</span>
-                            <img src="images/sec2_img3.png" class="longWidth" alt="">
+                            <img src="images/sec2_img3.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>전기 인프라 없는 지역 운영<br>전기 공사 불필요</span>
-                            <img src="images/sec2_img4.png" alt="">
+                            <img src="images/sec2_img4.png" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap bottom">
                         <div class="tech">
                             <span>태양광/배터리 조합으로<br>지속 관제</span>
-                            <img src="images/sec2_img5.png" class="longWidth" alt="">
+                            <img src="images/sec2_img5.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>모듈형 구성으로<br>다양한 현장 대응</span>
-                            <img src="images/sec2_img6.png" alt="">
+                            <img src="images/sec2_img6.png" alt="" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -347,27 +374,27 @@
             <div class="swiper sec3Swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="images/sec3_img1.png" alt="구축사례 1">
+                        <img src="images/sec3_img1.png" alt="구축사례 1" loading="lazy">
                         <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 (1/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img2.png" alt="구축사례 2">
+                        <img src="images/sec3_img2.png" alt="구축사례 2" loading="lazy">
                         <div class="slide-text">▲ 도로 공사 옆 줌대 이동식 CCTV 설치 현장 (2/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img3.png" alt="구축사례 3">
+                        <img src="images/sec3_img3.png" alt="구축사례 3" loading="lazy">
                         <div class="slide-text">▲ 고층 건설현장 타워크레인 설치 (3/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img4.png" alt="구축사례 4">
+                        <img src="images/sec3_img4.png" alt="구축사례 4" loading="lazy">
                         <div class="slide-text">▲ 건물 옥상 태양광 CCTV 설치 현장 (4/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img5.png" alt="구축사례 4">
+                        <img src="images/sec3_img5.png" alt="구축사례 4" loading="lazy">
                         <div class="slide-text">▲ 해양 주변 태양광 CCTV 설치 현장 (5/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img6.png" alt="구축사례 4">
+                        <img src="images/sec3_img6.png" alt="구축사례 4" loading="lazy">
                         <div class="slide-text">▲ 4배줌 이동식 CCTV 건설 현장 관제 (6/6)</div>
                     </div>
                 </div>
@@ -383,15 +410,15 @@
 
                 <div class="support">
                     <div class="sup">
-                        <img src="images/sec4_img1.png" alt="">
+                        <img src="images/sec4_img1.png" alt="" loading="lazy">
                         <span>현장 환경 분석</span>
                     </div>
                     <div class="sup">
-                        <img src="images/sec4_img2.png" alt="">
+                        <img src="images/sec4_img2.png" alt="" loading="lazy">
                         <span>현장 맞춤 설계</span>
                     </div>
                     <div class="sup">
-                        <img src="images/sec4_img3.png" alt="">
+                        <img src="images/sec4_img3.png" alt="" loading="lazy">
                         <span>최적의 시스템 제안</span>
                     </div>
                 </div>
@@ -414,5 +441,15 @@
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="script/action.js"></script>
+    <!-- 로딩 오버레이 제거 스크립트 - 제거 시 이 블록 삭제 -->
+    <script>
+        window.addEventListener('load', function() {
+            var loader = document.getElementById('page-loader');
+            if (loader) {
+                loader.classList.add('hidden');
+                setTimeout(function() { loader.remove(); }, 400);
+            }
+        });
+    </script>
 </body>
 </html>
