@@ -7,3 +7,4 @@ html, body {height: 100%;}
 html, body {overflow-x: clip;}
 table {border-collapse: collapse;}
 img {vertical-align: text-bottom; max-width: 100%;}
+address {font-style: normal;}
