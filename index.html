@@ -58,11 +58,6 @@
             display: none;
         }
         #opening-video .touch-hint.visible { opacity: 1; }
-        /* 모바일: 세로형 영상(9:16) 대응 */
-        #opening-video.mobile-video iframe {
-            width: 56.25vh;  /* 100vh * 9/16 */
-            height: 177.78vw; /* 100vw * 16/9 */
-        }
         @media (max-width: 1240px) {
             #opening-video .touch-hint { display: block; }
         }
@@ -503,7 +498,6 @@
                 // 모바일/태블릿에서는 세로형 영상, PC에서는 가로형 영상
                 var isMobile = window.innerWidth <= 1240;
                 var videoId = isMobile ? 'LXG8dk6ILZM' : 'I4Fdm5eCXow';
-                if (isMobile) container.classList.add('mobile-video');
                 var player = new YT.Player('yt-player', {
                     videoId: videoId,
                     playerVars: {
