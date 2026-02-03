@@ -15,21 +15,30 @@
 
     <link rel="stylesheet" href="css/style.css?v=20260202a">
     <style>
-        /* 로딩 오버레이 - 제거 시 이 블록과 #page-loader div 삭제 */
-        #page-loader {
+        /* 오프닝 영상 - 제거 시 이 블록과 #opening-video div, 하단 JS 삭제 */
+        #opening-video {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 999999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.4s ease-out;
+            background: #000; z-index: 999999;
+            display: flex; justify-content: center; align-items: center;
+            cursor: none;
+            transition: opacity 0.6s ease-out;
         }
-        #page-loader.hidden { opacity: 0; pointer-events: none; }
-        #page-loader img { width: 150px; margin-bottom: 20px; }
-        #page-loader .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid #f0f0f0; border-top-color: #f0620a;
-            border-radius: 50%; animation: spin 0.8s linear infinite;
+        #opening-video.hidden { opacity: 0; pointer-events: none; }
+        #opening-video video {
+            width: 100%; height: 100%; object-fit: cover;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        #opening-video .skip-cursor {
+            position: fixed; pointer-events: none;
+            width: 100px; height: 100px;
+            background: rgba(240, 98, 10, 0.9);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: #fff; font-size: 14px; font-weight: 600;
+            transform: translate(-50%, -50%);
+            opacity: 0; transition: opacity 0.2s;
+            z-index: 1000000;
+        }
+        #opening-video .skip-cursor.visible { opacity: 1; }
 
         /* 스크롤 애니메이션 */
         #section1, #section2, #section3, #section4 {
@@ -45,10 +54,12 @@
     </style>
 </head>
 <body class="sub_page">
-    <!-- 로딩 오버레이 - 제거 시 이 div와 위 CSS, 하단 JS 삭제 -->
-    <div id="page-loader">
-        <img src="images/logo.png" alt="NextLab">
-        <div class="spinner"></div>
+    <!-- 오프닝 영상 - 제거 시 이 div와 위 CSS, 하단 JS 삭제 -->
+    <div id="opening-video">
+        <video id="intro-video" muted playsinline>
+            <source src="images/nextlab_opening.mp4" type="video/mp4">
+        </video>
+        <div class="skip-cursor">SKIP</div>
     </div>
 
     <div class="sideBar">
@@ -441,15 +452,41 @@
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="script/action.js"></script>
-    <!-- 로딩 오버레이 제거 스크립트 - 제거 시 이 블록 삭제 -->
+    <!-- 오프닝 영상 스크립트 - 제거 시 이 블록 삭제 -->
     <script>
-        window.addEventListener('load', function() {
-            var loader = document.getElementById('page-loader');
-            if (loader) {
-                loader.classList.add('hidden');
-                setTimeout(function() { loader.remove(); }, 400);
+        (function() {
+            var container = document.getElementById('opening-video');
+            var video = document.getElementById('intro-video');
+            var skipCursor = container.querySelector('.skip-cursor');
+
+            function closeOpening() {
+                container.classList.add('hidden');
+                setTimeout(function() { container.remove(); }, 600);
             }
-        });
+
+            // 마우스 커서를 스킵 버튼으로 변경
+            container.addEventListener('mousemove', function(e) {
+                skipCursor.style.left = e.clientX + 'px';
+                skipCursor.style.top = e.clientY + 'px';
+                skipCursor.classList.add('visible');
+            });
+
+            container.addEventListener('mouseleave', function() {
+                skipCursor.classList.remove('visible');
+            });
+
+            // 클릭 시 스킵
+            container.addEventListener('click', closeOpening);
+
+            // 영상 종료 시 페이드아웃
+            video.addEventListener('ended', closeOpening);
+
+            // 영상 자동 재생
+            video.play().catch(function() {
+                // 자동재생 실패 시 바로 닫기
+                closeOpening();
+            });
+        })();
     </script>
 </body>
 </html>
