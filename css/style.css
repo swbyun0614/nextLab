@@ -257,7 +257,7 @@ header .topset {
 
 
 #section1 {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 #section1 .container {
 }
