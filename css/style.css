@@ -989,7 +989,7 @@ header.sub {
     .sec1MobileSwiper .swiper-slide .productImg {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 100%; height: 303px; margin-top: 25px; margin-bottom: 25px;
+        width: 100%; height: 303px;
     }
     
     .sec1MobileSwiper .swiper-slide .productImg img {
