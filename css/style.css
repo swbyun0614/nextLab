@@ -266,7 +266,7 @@ header .topset {
         list-style: none; padding: 0; margin: 0;
     }
     #section1 .container .productList > li {
-        width: 25.7vw; overflow: hidden; border: 1px solid var(--maincolor1); box-sizing: border-box; transition: .3s;
+        width: 25.7vw; overflow: visible; border: 1px solid var(--maincolor1); box-sizing: border-box; transition: .3s;
     }
     #section1 .container .productList > li:hover {
         transform: translateY(-15px);
@@ -299,7 +299,7 @@ header .topset {
         }
         #section1 .container .productList li a .textBox {
             position: relative;
-            height: 100%; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
+            height: auto; min-height: 100%; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
         }
             #section1 .container .productList li a .textBox strong {
                 display: block;
@@ -978,7 +978,7 @@ header.sub {
     
     .sec1MobileSwiper .swiper-slide {
         display: flex; flex-direction: column;
-        width: 85%; height: 550px; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: hidden;
+        width: 85%; min-height: 550px; height: auto; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: visible;
     }
 
     .sec1MobileSwiper .swiper-slide a {
