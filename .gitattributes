@@ -1,3 +1,1 @@
 * text=auto
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-images/nextlab_opening.mp4 filter=lfs diff=lfs merge=lfs -text
