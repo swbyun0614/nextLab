@@ -23,6 +23,7 @@
     Sub Hero Section
 =========================== */
 .sub-hero {
+    
 }
 
 .sub-hero .container {
@@ -30,11 +31,12 @@
 }
 
 .sub-hero .solu02_hero-content {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: space-between; align-items: end;
+    min-height: 400px;
 }
 
 .sub-hero .solu02_hero-text {
-    flex: 1;
+    flex: 1; margin-bottom: 50px;
 }
 
 .sub-hero .solu02_hero-text h1 {
@@ -257,12 +259,16 @@
         gap: 50px;
     }
 
+    .sub-hero .solu02_hero-text {
+        margin-bottom: 30px;
+    }
+
     .sub-hero .solu02_hero-text .sub-title {
         font-size: 3.5rem;
     }
 
     .sub-hero .solu02_hero-image img {
-        width: 20.8vw; min-width: 300px;
+        width: 20.8vw; min-width: 400px;
     }
 
     .casesSwiper .swiper-slide {
@@ -287,6 +293,9 @@
     Responsive - Mobile
 =========================== */
 @media screen and (max-width: 768px) {
+    .sub-hero .solu02_hero-content {
+        display: flex; justify-content: space-between; align-items: center;
+    }
     .cases-section .container {
         margin-top: 0px !important;
     }
