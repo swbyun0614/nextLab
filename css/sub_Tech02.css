@@ -231,6 +231,10 @@
 }
 
 @media (max-width: 768px) {
+    .tec_container {
+        margin: 0 20px;
+    }
+
     .tec_hero .tec_container {
         margin: 0 20px;margin-top: 60px;
     }

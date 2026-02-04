@@ -379,7 +379,11 @@
         left: 30%;
     }
 }
-
+@media (max-width: 920px) {
+    .page--tech .tech-hero__title {
+        width: 460px;
+    }
+}
 /* ======================
     반응형 - 모바일
 ====================== */
@@ -406,9 +410,7 @@
     }
     
     .page--tech .tech-hero__title {
-        font-size: 2.2rem;
-        text-align: center;
-        margin-left: auto; margin-right: auto;
+        width: 100%; font-size: 2.2rem; text-align: center; margin-left: auto; margin-right: auto;
     }
     
     .page--tech .tech-hero__media {

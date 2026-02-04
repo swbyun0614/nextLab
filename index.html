@@ -5,18 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextLab - 산업용 스마트 관제 솔루션</title>
 
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" as="script">
+
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260202a">
     <style>
+        /* 오프닝 영상 - 제거 시 이 블록과 #opening-video div, 하단 JS 삭제 */
+        #opening-video {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 999999;
+            cursor: none;
+            overflow: hidden;
+            transition: opacity 0.6s ease-out;
+        }
+        #opening-video.hidden { opacity: 0; pointer-events: none; }
+        /* 16:9 비율 유지하면서 화면 꽉 채움 + UI 숨김용 1.2배 확대 */
+        #opening-video iframe {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100% !important; min-height: 100% !important;
+            width: 177.78vh !important; /* 100vh * 16/9 */
+            height: 56.25vw !important; /* 100vw * 9/16 */
+            transform: translate(-50%, -50%) scale(1.2);
+            border: none; pointer-events: none;
+        }
+        #opening-video .skip-cursor {
+            position: fixed; pointer-events: none;
+            width: 100px; height: 100px;
+            background: rgba(240, 98, 10, 0.9);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: #fff; font-size: 14px; font-weight: 600;
+            transform: translate(-50%, -50%);
+            opacity: 0; transition: opacity 0.2s;
+            z-index: 1000000;
+        }
+        #opening-video .skip-cursor.visible { opacity: 1; }
+        #opening-video .touch-hint {
+            position: fixed; bottom: 50px; left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px; font-weight: 400;
+            letter-spacing: 0.5px;
+            z-index: 1000000;
+            opacity: 0; transition: opacity 0.5s ease-in;
+            pointer-events: none;
+            display: none;
+        }
+        #opening-video .touch-hint.visible { opacity: 1; }
+        @media (max-width: 1240px) {
+            #opening-video .touch-hint { display: block; }
+        }
+
         /* 스크롤 애니메이션 */
         #section1, #section2, #section3, #section4 {
             opacity: 0;
             transform: translateY(80px);
             transition: opacity 0.8s ease-out, transform 0.5s ease-out;
         }
-        
+
         #section1.animate, #section2.animate, #section3.animate, #section4.animate {
             opacity: 1;
             transform: translateY(0);
@@ -24,12 +76,19 @@
     </style>
 </head>
 <body class="sub_page">
+    <!-- 오프닝 영상 - 제거 시 이 div와 위 CSS, 하단 JS 삭제 -->
+    <div id="opening-video">
+        <div id="yt-player"></div>
+        <div class="skip-cursor">SKIP</div>
+        <div class="touch-hint">화면을 터치하면 넘어갑니다</div>
+    </div>
+
     <div class="sideBar">
         <div class="btnKakao">
-            <a href="http://pf.kakao.com/_IWJUn" target="_blank"><img src="images/btn_kakao.png" alt=""></a>
+            <a href="http://pf.kakao.com/_IWJUn" target="_blank"><img src="images/btn_kakao.png" alt="카카오톡 바로가기"></a>
         </div>
         <div class="btnTop">
-            <a href="#"><img src="images/btn_top.png" alt=""></a>
+            <a href="#"><img src="images/btn_top.png" alt="최상단 바로가기"></a>
         </div>
     </div>
 
@@ -43,24 +102,24 @@
             <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="images/hero_bg1.png" alt="">
-                <span>
+                <div>
                     <p>현장의 안전·품질·효율을 완성하는 <br>산업용 스마트 관제 솔루션</p>
                     <p>넥스트랩은 전기·통신 인프라 유무와 관계없이 <br>즉시 운영 가능한 가장 최적화된 스마트 감시 솔루션입니다.</p>
-                </span>
+                </div>
             </div>
             <div class="swiper-slide">
                 <img src="images/hero_bg2.png" alt="">
-                <span>
+                <div>
                     <p>산업 현장을 정밀하게 제어하는 <br>통합 관제 솔루션</p>
                     <p>실시간 모니터링을 통해 모든 현장을 파악하고 <br>데이터 기반 분석으로 안정적인 운영을 지원합니다.</p>
-                </span>
+                </div>
             </div>
             <div class="swiper-slide">
                 <img src="images/hero_bg3.png" alt="">
-                <span>
+                <div>
                     <p>해양·항만 환경에 최적화된 <br>산업용 스마트 관제 솔루션</p>
                     <p>전력·통신 인프라 제약 없이 <br>광범위한 해양 현장을 실시간으로 모니터링합니다.</p>
-                </span>
+                </div>
             </div>
             </div>
             <div class="swiper-button-next"></div>
@@ -76,7 +135,7 @@
                 <!-- PC 버전: 기존 productList -->
                 <ul class="productList pc">
                     <li><a href="sub_Product01.html">
-                        <div class="productImg"><img src="images/sec1_img1.png" alt=""></div>
+                        <div class="productImg"><img src="images/sec1_img1.png" alt="4배줌 이동식 CCTV"></div>
                         <div class="textBox">
                             <strong>4배줌 이동식 CCTV</strong>
                             <p>
@@ -102,7 +161,7 @@
                     </li>
     
                     <li><a href="sub_Product02.html">
-                        <div class="productImg"><img src="images/sec1_img2.png" alt=""></div>
+                        <div class="productImg"><img src="images/sec1_img2.png" alt="태양광 CCTV (독립형)"></div>
                         <div class="textBox">
                             <strong>태양광 CCTV (독립형)</strong>
                             <p>
@@ -120,7 +179,7 @@
                     </a></li>
     
                     <li><a href="sub_Product03.html">
-                        <div class="productImg"><img src="images/sec1_img4.png" alt=""></div>
+                        <div class="productImg"><img src="images/sec1_img4.png" alt="이동식 태양광 CCTV (바퀴형)"></div>
                         <div class="textBox">
                             <strong>이동식 태양광 CCTV (바퀴형)</strong>
                             <p>
@@ -138,7 +197,7 @@
                     </a></li>
     
                     <li><a href="sub_Product04.html">
-                        <div class="productImg"><img src="images/sec1_img3.png" alt=""></div>
+                        <div class="productImg"><img src="images/sec1_img3.png" alt="줌대 이동식 CCTV (독립형)"></div>
                         <div class="textBox">
                             <strong>줌대 이동식 CCTV (독립형)</strong>
                             <p>
@@ -156,7 +215,7 @@
                     </a></li>
     
                     <li><a href="sub_Product05.html">
-                        <div class="productImg"><img src="images/sec1_img5.png" alt=""></div>
+                        <div class="productImg"><img src="images/sec1_img5.png" alt="타워크레인 CCTV"></div>
                         <div class="textBox">
                             <strong>타워크레인 CCTV</strong>
                             <p>
@@ -189,7 +248,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <a href="sub_Product01.html">
-                                    <div class="productImg"><img src="images/sec1_img1.png" alt=""></div>
+                                    <div class="productImg"><img src="images/sec1_img1.png" alt="4배줌 이동식 CCTV"></div>
                                     <div class="textBox">
                                         <strong>4배줌 이동식 CCTV</strong>
                                         <p>
@@ -207,7 +266,7 @@
                             </div>
                             <div class="swiper-slide">
                                 <a href="sub_Product02.html">
-                                    <div class="productImg"><img src="images/sec1_img2.png" alt=""></div>
+                                    <div class="productImg"><img src="images/sec1_img2.png" alt="태양광 CCTV (독립형)"></div>
                                     <div class="textBox">
                                         <strong>태양광 CCTV (독립형)</strong>
                                         <p>
@@ -225,7 +284,7 @@
                             </div>
                             <div class="swiper-slide">
                                 <a href="sub_Product03.html">
-                                    <div class="productImg"><img src="images/sec1_img4.png" alt=""></div>
+                                    <div class="productImg"><img src="images/sec1_img4.png" alt="이동식 태양광 CCTV (바퀴형)"></div>
                                     <div class="textBox">
                                         <strong>이동식 태양광 CCTV (바퀴형)</strong>
                                         <p>
@@ -243,7 +302,7 @@
                             </div>
                             <div class="swiper-slide">
                                 <a href="sub_Product04.html">
-                                    <div class="productImg"><img src="images/sec1_img3.png" alt=""></div>
+                                    <div class="productImg"><img src="images/sec1_img3.png" alt="줌대 이동식 CCTV (독립형)"></div>
                                     <div class="textBox">
                                         <strong>줌대 이동식 CCTV (독립형)</strong>
                                         <p>
@@ -261,7 +320,7 @@
                             </div>
                             <div class="swiper-slide">
                                 <a href="sub_Product05.html">
-                                    <div class="productImg"><img src="images/sec1_img5.png" alt=""></div>
+                                    <div class="productImg"><img src="images/sec1_img5.png" alt="타워크레인 CCTV"></div>
                                     <div class="textBox">
                                         <strong>타워크레인 CCTV</strong>
                                         <p>
@@ -298,37 +357,37 @@
                     <div class="content_wrap">
                         <div class="tech">
                             <span>고배율 PTZ & 야간 감시 강화</span>
-                            <img src="images/sec2_img1.png" class="longWidth" alt="">
+                            <img src="images/sec2_img1.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap bottom">
                         <div class="tech">
                             <span>실시간 LTE 고정IP 관제</span>
-                            <img src="images/sec2_img2.png" alt="">
+                            <img src="images/sec2_img2.png" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>AI 기반 지능형 안전관리</span>
-                            <img src="images/sec2_img3.png" class="longWidth" alt="">
+                            <img src="images/sec2_img3.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>전기 인프라 없는 지역 운영<br>전기 공사 불필요</span>
-                            <img src="images/sec2_img4.png" alt="">
+                            <img src="images/sec2_img4.png" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap bottom">
                         <div class="tech">
                             <span>태양광/배터리 조합으로<br>지속 관제</span>
-                            <img src="images/sec2_img5.png" class="longWidth" alt="">
+                            <img src="images/sec2_img5.png" class="longWidth" alt="" loading="lazy">
                         </div>
                     </div>
                     <div class="content_wrap">
                         <div class="tech">
                             <span>모듈형 구성으로<br>다양한 현장 대응</span>
-                            <img src="images/sec2_img6.png" alt="">
+                            <img src="images/sec2_img6.png" alt="" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -347,27 +406,27 @@
             <div class="swiper sec3Swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="images/sec3_img1.png" alt="구축사례 1">
+                        <img src="images/sec3_img1.png" alt="구축사례 1" loading="lazy">
                         <div class="slide-text">▲ 고층 건설현장 타워크레인 관제 (1/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img2.png" alt="구축사례 2">
+                        <img src="images/sec3_img2.png" alt="구축사례 2" loading="lazy">
                         <div class="slide-text">▲ 도로 공사 옆 줌대 이동식 CCTV 설치 현장 (2/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img3.png" alt="구축사례 3">
+                        <img src="images/sec3_img3.png" alt="구축사례 3" loading="lazy">
                         <div class="slide-text">▲ 고층 건설현장 타워크레인 설치 (3/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img4.png" alt="구축사례 4">
+                        <img src="images/sec3_img4.png" alt="구축사례 4" loading="lazy">
                         <div class="slide-text">▲ 건물 옥상 태양광 CCTV 설치 현장 (4/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img5.png" alt="구축사례 4">
+                        <img src="images/sec3_img5.png" alt="구축사례 5" loading="lazy">
                         <div class="slide-text">▲ 해양 주변 태양광 CCTV 설치 현장 (5/6)</div>
                     </div>
                     <div class="swiper-slide">
-                        <img src="images/sec3_img6.png" alt="구축사례 4">
+                        <img src="images/sec3_img6.png" alt="구축사례 6" loading="lazy">
                         <div class="slide-text">▲ 4배줌 이동식 CCTV 건설 현장 관제 (6/6)</div>
                     </div>
                 </div>
@@ -383,15 +442,15 @@
 
                 <div class="support">
                     <div class="sup">
-                        <img src="images/sec4_img1.png" alt="">
+                        <img src="images/sec4_img1.png" alt="" loading="lazy">
                         <span>현장 환경 분석</span>
                     </div>
                     <div class="sup">
-                        <img src="images/sec4_img2.png" alt="">
+                        <img src="images/sec4_img2.png" alt="" loading="lazy">
                         <span>현장 맞춤 설계</span>
                     </div>
                     <div class="sup">
-                        <img src="images/sec4_img3.png" alt="">
+                        <img src="images/sec4_img3.png" alt="" loading="lazy">
                         <span>최적의 시스템 제안</span>
                     </div>
                 </div>
@@ -399,10 +458,10 @@
                     현장 환경 분석부터 맞춤 설계까지 <strong>One-Stop 지원</strong><br>
                     넥스트랩은 <strong>현장별 환경</strong>을 정밀하게 분석해 카메라 스펙, 배터리 용량, AI 옵션, 설치 위치까지 <strong>최적의 시스템을 제안</strong>드립니다.
                 </p>
-                <div class="btn_wrap">
+                <address class="btn_wrap">
                     <a href="tel:15220577" class="tel"><img src="images/icon_call.png" alt=""><span>도입 문의</span>1522-0577</a>
                     <a href="mailto:s1korea86@gmail.com" class="email"><img src="images/icon_email.png" alt=""><span>문의 메일</span>s1korea86@gmail.com</a>
-                </div>
+                </address>
             </div>
         </div>
     </section>
@@ -414,5 +473,107 @@
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="script/action.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- 오프닝 영상 스크립트 - 제거 시 이 블록과 위 YouTube API 스크립트도 삭제 -->
+    <script>
+        (function($) {
+            var $container = $('#opening-video');
+            var $skipCursor = $container.find('.skip-cursor');
+            var $touchHint = $container.find('.touch-hint');
+
+            // 영상 재생 중 스크롤 방지
+            $('body').css('overflow', 'hidden');
+
+            function closeOpening() {
+                $container.addClass('hidden');
+                $('body').css('overflow', '');
+                setTimeout(function() { $container.remove(); }, 600);
+            }
+
+            // YouTube Player 생성
+            var closingTimer = null;
+            var hintTimer = null;
+            window.onYouTubeIframeAPIReady = function() {
+                // 모바일/태블릿에서는 세로형 영상, PC에서는 가로형 영상
+                var isMobile = $(window).width() <= 1240;
+                var videoId = isMobile ? '3RHTzDpFQzI' : 'I4Fdm5eCXow';
+                var player = new YT.Player('yt-player', {
+                    width: '100%',
+                    height: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        autoplay: 1,
+                        mute: 1,
+                        controls: 0,
+                        showinfo: 0,
+                        rel: 0,
+                        modestbranding: 1,
+                        iv_load_policy: 3,
+                        playsinline: 1,
+                        disablekb: 1,
+                        fs: 0
+                    },
+                    events: {
+                        onReady: function(e) {
+                            // 최고 화질 요청 (hd2160 > hd1080 > hd720 순서로 시도)
+                            var qualities = e.target.getAvailableQualityLevels();
+                            if (qualities.indexOf('hd2160') !== -1) {
+                                e.target.setPlaybackQuality('hd2160');
+                            } else if (qualities.indexOf('hd1080') !== -1) {
+                                e.target.setPlaybackQuality('hd1080');
+                            } else if (qualities.indexOf('hd720') !== -1) {
+                                e.target.setPlaybackQuality('hd720');
+                            }
+                        },
+                        onStateChange: function(e) {
+                            // 재생 시작 시 화질 재확인
+                            if (e.data === YT.PlayerState.PLAYING) {
+                                var qualities = player.getAvailableQualityLevels();
+                                if (qualities.indexOf('hd1080') !== -1) {
+                                    player.setPlaybackQuality('hd1080');
+                                }
+                            }
+                            // 재생 시작되면 종료 1.5초 전에 페이드아웃 예약
+                            if (e.data === YT.PlayerState.PLAYING && !closingTimer) {
+                                var duration = player.getDuration();
+                                var current = player.getCurrentTime();
+                                var remaining = (duration - current - 1.5) * 1000;
+                                if (remaining > 0) {
+                                    closingTimer = setTimeout(closeOpening, remaining);
+                                }
+                                // 재생 1초 후 터치 안내 문구 표시
+                                if (!hintTimer) {
+                                    hintTimer = setTimeout(function() {
+                                        $touchHint.addClass('visible');
+                                    }, 1000);
+                                }
+                            }
+                            if (e.data === YT.PlayerState.ENDED) closeOpening();
+                        },
+                        onError: function() {
+                            closeOpening();
+                        }
+                    }
+                });
+            };
+
+            // 마우스 커서를 스킵 버튼으로 변경
+            $container.on('mousemove', function(e) {
+                $skipCursor.css({ left: e.clientX + 'px', top: e.clientY + 'px' });
+                $skipCursor.addClass('visible');
+            });
+
+            $container.on('mouseleave', function() {
+                $skipCursor.removeClass('visible');
+            });
+
+            // 클릭 시 스킵
+            $container.on('click', closeOpening);
+
+            // 터치 시 스킵 (모바일)
+            $container.on('touchend', closeOpening);
+        })(jQuery);
+    </script>
 </body>
 </html>

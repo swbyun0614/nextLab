@@ -12,10 +12,11 @@
 /* 기본 설정들 */
 html {
     font-size: 10px !important;
+    overflow-x: clip;
 }
 body {
     position: relative;
-    font-family: 'Pretendard'; background: #ffffff; overflow-x: hidden;  word-break: keep-all;
+    font-family: 'Pretendard'; background: #ffffff; overflow-x: clip;  word-break: keep-all;
 }
 :root {
     --maincolor1: #f0620a;
@@ -57,7 +58,7 @@ h2.smalltext {font-size: 2.8rem;}
     top: -28px;
 }
 .sub_title_db {
-    width: 29.7vw; font-size: 2.8rem; font-weight: 600; color: #fff; background: var(--dark-blue); padding: 13px 0; border-radius: 30px; margin: 50px auto 40px;
+    width: 42vw; font-size: 2.8rem; font-weight: 600; color: #fff; background: var(--dark-blue); padding: 13px 0; border-radius: 30px; margin: 50px auto 40px;
 }
 
 /* PC/모바일 분기 기본 설정 */
@@ -240,23 +241,23 @@ header .topset {
             display: none;
         }
 
-        #hero .swiper-slide > span {
+        #hero .swiper-slide > div {
             position: absolute; top: 50%; left: 195px; transform: translateY(-50%);
             width: 535px;
         }
-        #hero .swiper-slide > span p {
+        #hero .swiper-slide > div p {
             color: #fff;
         }
-        #hero .swiper-slide > span p:first-child {
+        #hero .swiper-slide > div p:first-child {
             font-size: 4rem; font-weight: 600; line-height: 140%;
         }
-        #hero .swiper-slide > span p:last-child {
+        #hero .swiper-slide > div p:last-child {
             font-size: 1.8rem; line-height: 160%; margin-top: 25px;
         }
 
 
 #section1 {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 #section1 .container {
 }
@@ -265,7 +266,7 @@ header .topset {
         list-style: none; padding: 0; margin: 0;
     }
     #section1 .container .productList > li {
-        width: 25.7vw; overflow: hidden; border: 1px solid var(--maincolor1); box-sizing: border-box; transition: .3s;
+        width: 25.7vw; overflow: visible; border: 1px solid var(--maincolor1); box-sizing: border-box; transition: .3s;
     }
     #section1 .container .productList > li:hover {
         transform: translateY(-15px);
@@ -298,7 +299,7 @@ header .topset {
         }
         #section1 .container .productList li a .textBox {
             position: relative;
-            height: 100%; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
+            height: auto; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
         }
             #section1 .container .productList li a .textBox strong {
                 display: block;
@@ -631,6 +632,13 @@ header.sub {
         font-size: 2.4rem; line-height: 1.5; margin-top: 0px; margin-bottom: 20px;
     }
 
+    h2.section-title {
+        display: block !important;
+        visibility: visible !important;
+        position: relative;
+        z-index: 10;
+    }
+
     /* === HEADER 모바일 === */
     header {
         position: absolute; top: 0; left: 0; z-index: 1000;
@@ -646,6 +654,8 @@ header.sub {
     /* 메뉴 열렸을 때 헤더 */
     header.menu-open {
         position: fixed;
+        top: 0; left: 0;
+        width: 100%;
         height: 100vh; height: 100dvh; background: #fff !important;
     }
 
@@ -730,15 +740,17 @@ header.sub {
     /* 메뉴 열렸을 때 GNB 표시 - 강제 표시 */
     header.menu-open .topset .gnb,
     header.sub.menu-open .topset .gnb {
-        position: absolute;
-        top: 70px;
-        bottom: 143px;
-        left: 0;
-        right: 0;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        flex: 1;
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
         z-index: 50;
+        padding: 20px 0;
     }
 
     header .topset .gnb > li {
@@ -840,14 +852,17 @@ header.sub {
         display: none;
     }
 
-    /* 블로그 버튼 모바일 - 하단 박스로부터 30px 위 */
+    /* 블로그 버튼 모바일 */
     header .topset .blog {
-        position: absolute; bottom: 133px; left: 50%; transform: translateX(-50%);
+        position: relative; bottom: auto; left: auto; transform: none;
         display: none; margin-top: 0; z-index: 60;
+        flex-shrink: 0;
+        padding: 15px 0;
     }
 
     header.menu-open .topset .blog {
-        display: block;
+        display: flex;
+        justify-content: center;
     }
 
     header .topset .blog a {
@@ -874,9 +889,11 @@ header.sub {
 
     /* 모바일 전화 버튼 */
     .mobileCall {
-        position: absolute; bottom: 0; left: 0;
+        position: relative; bottom: auto; left: auto;
         display: none !important; justify-content: center; align-items: center; gap: 8px;
-        width: 100%; height: 103px; background: var(--maincolor2); font-size: 1.8rem; font-weight: 400; color: #fff; border-radius: 30px 30px 0 0; text-decoration: none;
+        width: 100%; height: 73px; background: var(--maincolor2); font-size: 1.8rem; font-weight: 400; color: #fff; border-radius: 30px 30px 0 0; text-decoration: none;
+        flex-shrink: 0;
+        margin-top: auto;
     }
 
     header.menu-open .mobileCall {
@@ -909,16 +926,16 @@ header.sub {
         width: 100%; height: 100%; object-fit: cover; object-position: center center;
     }
 
-    #hero .swiper-slide > span {
+    #hero .swiper-slide > div {
         position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%);
         width: 75%;
     }
 
-    #hero .swiper-slide > span p:first-child {
+    #hero .swiper-slide > div p:first-child {
         font-size: 2.2rem; line-height: 1.4;
     }
 
-    #hero .swiper-slide > span p:last-child {
+    #hero .swiper-slide > div p:last-child {
         font-size: 1.4rem; line-height: 1.5; margin-top: 12px;
     }
 
@@ -968,7 +985,7 @@ header.sub {
     
     .sec1MobileSwiper .swiper-slide {
         display: flex; flex-direction: column;
-        width: 85%; height: 550px; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: hidden;
+        width: 85%; min-height: 550px; height: auto; background: #fff; border-radius: 30px 30px 0 0; border: 1px solid var(--maincolor1); overflow: visible;
     }
 
     .sec1MobileSwiper .swiper-slide a {
@@ -979,7 +996,7 @@ header.sub {
     .sec1MobileSwiper .swiper-slide .productImg {
         position: relative;
         display: flex; justify-content: center; align-items: center;
-        width: 100%; height: 303px; margin-top: 25px; margin-bottom: 25px;
+        width: 100%; height: 303px;
     }
     
     .sec1MobileSwiper .swiper-slide .productImg img {
@@ -1258,5 +1275,17 @@ header.sub {
         display: flex;
         background: url(../images/title_bg_right_m.png) no-repeat center; width: 100%; height: 103px;
         background-position: right;
+    }
+
+    header.menu-open .topset .gnb, header.sub.menu-open .topset .gnb {
+        padding: 0;
+    }
+
+    header .topset .gnb > li > a {
+        font-size: 1.8rem;
+    }
+
+    header .topset .blog {
+        padding: 0;
     }
 }
