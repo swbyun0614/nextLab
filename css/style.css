@@ -632,6 +632,13 @@ header.sub {
         font-size: 2.4rem; line-height: 1.5; margin-top: 0px; margin-bottom: 20px;
     }
 
+    h2.section-title {
+        display: block !important;
+        visibility: visible !important;
+        position: relative;
+        z-index: 10;
+    }
+
     /* === HEADER 모바일 === */
     header {
         position: absolute; top: 0; left: 0; z-index: 1000;
