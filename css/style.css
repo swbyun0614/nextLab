@@ -299,7 +299,11 @@ header .topset {
         }
         #section1 .container .productList li a .textBox {
             position: relative;
-            height: auto; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s;
+            height: auto; padding: 40px 2.6vw; background: #ffffff; transition: background 0.2s; border-radius: 0 0 20px 20px;
+        }
+        #section1 .container .productList > li:first-child a .textBox,
+        #section1 .container .productList > li:nth-child(3) a .textBox {
+            border-radius: 0;
         }
             #section1 .container .productList li a .textBox strong {
                 display: block;
