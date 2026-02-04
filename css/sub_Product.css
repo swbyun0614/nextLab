@@ -722,7 +722,7 @@ body.prod05 .specs-table-wrap {
 .inquiry-modal-overlay.active { display: flex; }
 
 .inquiry-modal {
-    position: relative; background: #fff; border-radius: 50px;
+    position: relative; background: #fff; border-radius: 20px;
     padding: 50px 45px 45px; width: 440px; max-width: 90vw;
     box-sizing: border-box; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
