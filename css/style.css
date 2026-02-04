@@ -530,6 +530,25 @@ header .topset {
             transform: scale(1.1);
         }
 
+        /* 이메일 복사 툴팁 */
+        #section4 .container .email {
+            position: relative;
+        }
+        .email-copy-tooltip {
+            position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.85); color: #fff; padding: 6px 14px;
+            font-size: 1.3rem; white-space: nowrap; border-radius: 4px;
+            pointer-events: none; opacity: 0; transition: opacity 0.3s;
+            z-index: 100;
+        }
+        .email-copy-tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            border: 5px solid transparent; border-top-color: rgba(0,0,0,0.85);
+        }
+        .email-copy-tooltip.show {
+            opacity: 1;
+        }
+
 
 footer {
     width: 100%; background: #343434; padding: 70px auto;
