@@ -479,6 +479,13 @@
     <script>
         (function($) {
             var $container = $('#opening-video');
+
+            // 세션 내 재방문 시 인트로 영상 스킵 (탭/브라우저 닫으면 초기화)
+            if (sessionStorage.getItem('introPlayed')) {
+                $container.remove();
+                return;
+            }
+
             var $skipCursor = $container.find('.skip-cursor');
             var $touchHint = $container.find('.touch-hint');
 
@@ -486,6 +493,7 @@
             $('body').css('overflow', 'hidden');
 
             function closeOpening() {
+                sessionStorage.setItem('introPlayed', '1');
                 $container.addClass('hidden');
                 $('body').css('overflow', '');
                 setTimeout(function() { $container.remove(); }, 600);
