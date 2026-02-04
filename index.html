@@ -477,18 +477,18 @@
     <script src="https://www.youtube.com/iframe_api"></script>
     <!-- 오프닝 영상 스크립트 - 제거 시 이 블록과 위 YouTube API 스크립트도 삭제 -->
     <script>
-        (function() {
-            var container = document.getElementById('opening-video');
-            var skipCursor = container.querySelector('.skip-cursor');
-            var touchHint = container.querySelector('.touch-hint');
+        (function($) {
+            var $container = $('#opening-video');
+            var $skipCursor = $container.find('.skip-cursor');
+            var $touchHint = $container.find('.touch-hint');
 
             // 영상 재생 중 스크롤 방지
-            document.body.style.overflow = 'hidden';
+            $('body').css('overflow', 'hidden');
 
             function closeOpening() {
-                container.classList.add('hidden');
-                document.body.style.overflow = '';
-                setTimeout(function() { container.remove(); }, 600);
+                $container.addClass('hidden');
+                $('body').css('overflow', '');
+                setTimeout(function() { $container.remove(); }, 600);
             }
 
             // YouTube Player 생성
@@ -496,8 +496,8 @@
             var hintTimer = null;
             window.onYouTubeIframeAPIReady = function() {
                 // 모바일/태블릿에서는 세로형 영상, PC에서는 가로형 영상
-                var isMobile = window.innerWidth <= 1240;
-                var videoId = isMobile ? 'LXG8dk6ILZM' : 'I4Fdm5eCXow';
+                var isMobile = $(window).width() <= 1240;
+                var videoId = isMobile ? 'Blb8vihemBo' : '6VwtZopuzMY';
                 var player = new YT.Player('yt-player', {
                     width: '100%',
                     height: '100%',
@@ -527,7 +527,7 @@
                                 // 재생 1초 후 터치 안내 문구 표시
                                 if (!hintTimer) {
                                     hintTimer = setTimeout(function() {
-                                        touchHint.classList.add('visible');
+                                        $touchHint.addClass('visible');
                                     }, 1000);
                                 }
                             }
@@ -541,22 +541,21 @@
             };
 
             // 마우스 커서를 스킵 버튼으로 변경
-            container.addEventListener('mousemove', function(e) {
-                skipCursor.style.left = e.clientX + 'px';
-                skipCursor.style.top = e.clientY + 'px';
-                skipCursor.classList.add('visible');
+            $container.on('mousemove', function(e) {
+                $skipCursor.css({ left: e.clientX + 'px', top: e.clientY + 'px' });
+                $skipCursor.addClass('visible');
             });
 
-            container.addEventListener('mouseleave', function() {
-                skipCursor.classList.remove('visible');
+            $container.on('mouseleave', function() {
+                $skipCursor.removeClass('visible');
             });
 
             // 클릭 시 스킵
-            container.addEventListener('click', closeOpening);
+            $container.on('click', closeOpening);
 
             // 터치 시 스킵 (모바일)
-            container.addEventListener('touchend', closeOpening);
-        })();
+            $container.on('touchend', closeOpening);
+        })(jQuery);
     </script>
 </body>
 </html>
