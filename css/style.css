@@ -41,13 +41,13 @@ h2 {z-index: 10;
 strong {font-weight: 600;}
 h2.smalltext {font-size: 2.8rem;}
 .h2bg_left {
-    position: absolute; left: -200px; top: -18px; z-index: -1;
+    position: absolute; left: -200px; top: -20px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_left.png) no-repeat; width: 36vw; height: 103px;
     background-position: right center;
 }
 .h2bg_right {
-    position: absolute; right: -200px; top: -18px; z-index: -1;
+    position: absolute; right: -200px; top: -20px; z-index: -1;
     display: flex;
     background: url(../images/title_bg_right.png) no-repeat; width: 36vw; height: 103px;
 }
@@ -638,6 +638,13 @@ header.sub {
         position: relative;
         z-index: 10;
     }
+    .h2bg_left {
+        top: -35px;
+    }
+    .h2bg_right {
+        top: -35px;
+    }
+
 
     /* === HEADER 모바일 === */
     header {
