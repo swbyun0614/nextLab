@@ -497,7 +497,7 @@
             window.onYouTubeIframeAPIReady = function() {
                 // 모바일/태블릿에서는 세로형 영상, PC에서는 가로형 영상
                 var isMobile = $(window).width() <= 1240;
-                var videoId = isMobile ? 'Blb8vihemBo' : '6VwtZopuzMY';
+                var videoId = isMobile ? 'LXG8dk6ILZM' : 'I4Fdm5eCXow';
                 var player = new YT.Player('yt-player', {
                     width: '100%',
                     height: '100%',
@@ -515,7 +515,25 @@
                         fs: 0
                     },
                     events: {
+                        onReady: function(e) {
+                            // 최고 화질 요청 (hd2160 > hd1080 > hd720 순서로 시도)
+                            var qualities = e.target.getAvailableQualityLevels();
+                            if (qualities.indexOf('hd2160') !== -1) {
+                                e.target.setPlaybackQuality('hd2160');
+                            } else if (qualities.indexOf('hd1080') !== -1) {
+                                e.target.setPlaybackQuality('hd1080');
+                            } else if (qualities.indexOf('hd720') !== -1) {
+                                e.target.setPlaybackQuality('hd720');
+                            }
+                        },
                         onStateChange: function(e) {
+                            // 재생 시작 시 화질 재확인
+                            if (e.data === YT.PlayerState.PLAYING) {
+                                var qualities = player.getAvailableQualityLevels();
+                                if (qualities.indexOf('hd1080') !== -1) {
+                                    player.setPlaybackQuality('hd1080');
+                                }
+                            }
                             // 재생 시작되면 종료 1.5초 전에 페이드아웃 예약
                             if (e.data === YT.PlayerState.PLAYING && !closingTimer) {
                                 var duration = player.getDuration();
