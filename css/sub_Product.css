@@ -450,7 +450,7 @@ body.prod05 .specs-table-wrap {
         font-size: 2rem;
     }
     .specs-table {
-        width: 80%; justify-self: center;
+        width: 80%; margin: 0 auto;
     }
     .detail-wrap {
         gap: 40px;
@@ -657,6 +657,10 @@ body.prod05 .specs-table-wrap {
         font-size: 1.6rem; padding: 12px 15px;
     }
     
+    .specs-table {
+        width: 100%;
+    }
+
     .specs-table tbody th {
         width: 110px;
     }
