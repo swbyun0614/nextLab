@@ -536,14 +536,10 @@ header .topset {
         }
         .email-copy-tooltip {
             position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.85); color: #fff; padding: 6px 14px;
-            font-size: 1.3rem; white-space: nowrap; border-radius: 4px;
+            background: #fff; color: #1f1f1f; padding: 6px 14px;
+            font-size: 1.5rem; white-space: nowrap; border-radius: 10px; font-weight: 600; border: 2px solid var(--maincolor1);
             pointer-events: none; opacity: 0; transition: opacity 0.3s;
             z-index: 100;
-        }
-        .email-copy-tooltip::after {
-            content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-            border: 5px solid transparent; border-top-color: rgba(0,0,0,0.85);
         }
         .email-copy-tooltip.show {
             opacity: 1;
