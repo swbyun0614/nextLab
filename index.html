@@ -530,6 +530,8 @@
                     },
                     events: {
                         onReady: function(e) {
+                            // iOS 자동재생: mute() 명시적 호출 후 playVideo()
+                            e.target.mute();
                             e.target.playVideo();
                             // 최고 화질 요청 (hd2160 > hd1080 > hd720 순서로 시도)
                             var qualities = e.target.getAvailableQualityLevels();
