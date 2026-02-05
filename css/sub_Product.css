@@ -742,24 +742,25 @@ body.prod05 .specs-table-wrap {
 .inquiry-modal .modal-buttons a {
     display: flex; justify-content: center; align-items: center;
     height: 52px; border-radius: 10px; font-size: 1.6rem; font-weight: 500;
-    color: #fff; text-decoration: none; transition: opacity .2s;
+    color: #fff; text-decoration: none; transition: .2s;
     position: relative;
 }
-.inquiry-modal .modal-buttons a:hover { opacity: 0.85; }
+.inquiry-modal .modal-buttons a:hover {
+    transform: translateY(-5px);
+}
 .inquiry-modal .modal-buttons .tel   { background: var(--maincolor2); }
 .inquiry-modal .modal-buttons .email { background: var(--maincolor1); }
 .inquiry-modal .modal-buttons .kakao { background: #f9e000; color: #3c1e1e; }
 
 /* 이메일 복사 툴팁 (모달 내) */
 .inquiry-modal .email-copy-tooltip {
-    position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
-    background: rgba(0,0,0,0.85); color: #fff; padding: 6px 14px;
-    font-size: 1.3rem; white-space: nowrap; border-radius: 4px;
-    pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translate(-50%, 20px);
+    background: #fff; color: #1f1f1f; padding: 6px 14px;
+    font-size: 1.5rem; white-space: nowrap; border-radius: 10px; font-weight: 600; border: 2px solid var(--maincolor1);
+    pointer-events: none; opacity: 0; transition: .3s;
     z-index: 100;
 }
-.inquiry-modal .email-copy-tooltip::after {
-    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-    border: 5px solid transparent; border-top-color: rgba(0,0,0,0.85);
+
+.inquiry-modal .email-copy-tooltip.show {
+    opacity: 1; transform: translate(-50%, 0);
 }
-.inquiry-modal .email-copy-tooltip.show { opacity: 1; }
