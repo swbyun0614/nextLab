@@ -502,11 +502,13 @@
         $('.btn-inquiry').on('click', function(e) {
             e.preventDefault();
             $overlay.addClass('active');
+            $('body').css('overflow', 'hidden');
         });
         // 닫기: X 버튼 또는 오버레이 클릭
         $overlay.on('click', function(e) {
             if ($(e.target).is('.inquiry-modal-overlay') || $(e.target).closest('.modal-close').length) {
                 $overlay.removeClass('active');
+                $('body').css('overflow', '');
             }
         });
         // 이메일 버튼: PC에서 클립보드 복사, 태블릿 이하에서는 mailto

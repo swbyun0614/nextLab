@@ -524,6 +524,8 @@
                     },
                     events: {
                         onReady: function(e) {
+                            // iOS Safari 자동재생을 위해 명시적 playVideo 호출
+                            e.target.playVideo();
                             // 최고 화질 요청 (hd2160 > hd1080 > hd720 순서로 시도)
                             var qualities = e.target.getAvailableQualityLevels();
                             if (qualities.indexOf('hd2160') !== -1) {

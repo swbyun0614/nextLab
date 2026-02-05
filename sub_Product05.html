@@ -464,10 +464,12 @@
         $('.btn-inquiry').on('click', function(e) {
             e.preventDefault();
             $overlay.addClass('active');
+            $('body').css('overflow', 'hidden');
         });
         $overlay.on('click', function(e) {
             if ($(e.target).is('.inquiry-modal-overlay') || $(e.target).closest('.modal-close').length) {
                 $overlay.removeClass('active');
+                $('body').css('overflow', '');
             }
         });
         $overlay.find('.email').on('click', function(e) {
