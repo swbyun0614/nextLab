@@ -461,28 +461,15 @@
     <script>
     $(function() {
         var $overlay = $('.inquiry-modal-overlay');
-        var scrollY = 0;
         $('.btn-inquiry').on('click', function(e) {
             e.preventDefault();
-            scrollY = window.scrollY;
-            $('body').css({
-                position: 'fixed',
-                top: -scrollY + 'px',
-                width: '100%',
-                overflow: 'hidden'
-            });
+            $('html').css('overflow', 'hidden');
             $overlay.addClass('active');
         });
         $overlay.on('click', function(e) {
             if ($(e.target).is('.inquiry-modal-overlay') || $(e.target).closest('.modal-close').length) {
                 $overlay.removeClass('active');
-                $('body').css({
-                    position: '',
-                    top: '',
-                    width: '',
-                    overflow: ''
-                });
-                window.scrollTo(0, scrollY);
+                $('html').css('overflow', '');
             }
         });
         $overlay.find('.email').on('click', function(e) {

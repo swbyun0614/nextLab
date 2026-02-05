@@ -498,30 +498,17 @@
     <script>
     $(function() {
         var $overlay = $('.inquiry-modal-overlay');
-        var scrollY = 0;
         // 견적 문의 버튼 클릭 → 모달 열기
         $('.btn-inquiry').on('click', function(e) {
             e.preventDefault();
-            scrollY = window.scrollY;
-            $('body').css({
-                position: 'fixed',
-                top: -scrollY + 'px',
-                width: '100%',
-                overflow: 'hidden'
-            });
+            $('html').css('overflow', 'hidden');
             $overlay.addClass('active');
         });
         // 닫기: X 버튼 또는 오버레이 클릭
         $overlay.on('click', function(e) {
             if ($(e.target).is('.inquiry-modal-overlay') || $(e.target).closest('.modal-close').length) {
                 $overlay.removeClass('active');
-                $('body').css({
-                    position: '',
-                    top: '',
-                    width: '',
-                    overflow: ''
-                });
-                window.scrollTo(0, scrollY);
+                $('html').css('overflow', '');
             }
         });
         // 이메일 버튼: PC에서 클립보드 복사, 태블릿 이하에서는 mailto
