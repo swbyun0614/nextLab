@@ -40,7 +40,7 @@
             background: rgba(240, 98, 10, 0.9);
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            color: #fff; font-size: 14px; font-weight: 600;
+            color: #fff; font-size: 18px; font-weight: 600;
             transform: translate(-50%, -50%);
             opacity: 0; transition: opacity 0.2s;
             z-index: 1000000;
@@ -459,7 +459,7 @@
                     넥스트랩은 <strong>현장별 환경</strong>을 정밀하게 분석해 카메라 스펙, 배터리 용량, AI 옵션, 설치 위치까지 <strong>최적의 시스템을 제안</strong>드립니다.
                 </p>
                 <address class="btn_wrap">
-                    <a href="tel:15220577" class="tel"><img src="images/icon_call.png" alt=""><span>도입 문의</span>1522-0577</a>
+                    <a href="tel:15225077" class="tel"><img src="images/icon_call.png" alt=""><span>도입 문의</span>1522-5077</a>
                     <a href="mailto:s1korea86@gmail.com" class="email"><img src="images/icon_email.png" alt=""><span>문의 메일</span>s1korea86@gmail.com</a>
                 </address>
             </div>
@@ -479,13 +479,24 @@
     <script>
         (function($) {
             var $container = $('#opening-video');
+
+            // 세션 내 재방문 시 인트로 영상 스킵 (탭/브라우저 닫으면 초기화)
+            if (sessionStorage.getItem('introPlayed')) {
+                $container.remove();
+                return;
+            }
+
             var $skipCursor = $container.find('.skip-cursor');
             var $touchHint = $container.find('.touch-hint');
+
+            // iOS 감지
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
             // 영상 재생 중 스크롤 방지
             $('body').css('overflow', 'hidden');
 
             function closeOpening() {
+                sessionStorage.setItem('introPlayed', '1');
                 $container.addClass('hidden');
                 $('body').css('overflow', '');
                 setTimeout(function() { $container.remove(); }, 600);
@@ -494,11 +505,14 @@
             // YouTube Player 생성
             var closingTimer = null;
             var hintTimer = null;
+            var player = null;
+            var hasStartedPlaying = false;
+
             window.onYouTubeIframeAPIReady = function() {
                 // 모바일/태블릿에서는 세로형 영상, PC에서는 가로형 영상
                 var isMobile = $(window).width() <= 1240;
                 var videoId = isMobile ? '3RHTzDpFQzI' : 'I4Fdm5eCXow';
-                var player = new YT.Player('yt-player', {
+                player = new YT.Player('yt-player', {
                     width: '100%',
                     height: '100%',
                     videoId: videoId,
@@ -516,6 +530,9 @@
                     },
                     events: {
                         onReady: function(e) {
+                            // iOS 자동재생: mute() 명시적 호출 후 playVideo()
+                            e.target.mute();
+                            e.target.playVideo();
                             // 최고 화질 요청 (hd2160 > hd1080 > hd720 순서로 시도)
                             var qualities = e.target.getAvailableQualityLevels();
                             if (qualities.indexOf('hd2160') !== -1) {
@@ -525,13 +542,22 @@
                             } else if (qualities.indexOf('hd720') !== -1) {
                                 e.target.setPlaybackQuality('hd720');
                             }
+                            // iOS에서는 터치 안내 즉시 표시
+                            if (isIOS) {
+                                $touchHint.text('터치하여 재생').addClass('visible');
+                            }
                         },
                         onStateChange: function(e) {
                             // 재생 시작 시 화질 재확인
                             if (e.data === YT.PlayerState.PLAYING) {
+                                hasStartedPlaying = true;
                                 var qualities = player.getAvailableQualityLevels();
                                 if (qualities.indexOf('hd1080') !== -1) {
                                     player.setPlaybackQuality('hd1080');
+                                }
+                                // iOS에서 재생 시작되면 안내 문구 변경
+                                if (isIOS) {
+                                    $touchHint.text('화면을 터치하면 넘어갑니다');
                                 }
                             }
                             // 재생 시작되면 종료 1.5초 전에 페이드아웃 예약
@@ -542,8 +568,8 @@
                                 if (remaining > 0) {
                                     closingTimer = setTimeout(closeOpening, remaining);
                                 }
-                                // 재생 1초 후 터치 안내 문구 표시
-                                if (!hintTimer) {
+                                // 재생 1초 후 터치 안내 문구 표시 (iOS 아닌 경우)
+                                if (!hintTimer && !isIOS) {
                                     hintTimer = setTimeout(function() {
                                         $touchHint.addClass('visible');
                                     }, 1000);
@@ -568,11 +594,18 @@
                 $skipCursor.removeClass('visible');
             });
 
-            // 클릭 시 스킵
-            $container.on('click', closeOpening);
+            // 클릭/터치 핸들러: iOS에서 재생 안 됐으면 재생, 그 외에는 스킵
+            function handleInteraction(e) {
+                if (isIOS && player && !hasStartedPlaying) {
+                    e.preventDefault();
+                    player.playVideo();
+                } else {
+                    closeOpening();
+                }
+            }
 
-            // 터치 시 스킵 (모바일)
-            $container.on('touchend', closeOpening);
+            $container.on('click', handleInteraction);
+            $container.on('touchend', handleInteraction);
         })(jQuery);
     </script>
 </body>

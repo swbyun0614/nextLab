@@ -530,6 +530,21 @@ header .topset {
             transform: scale(1.1);
         }
 
+        /* 이메일 복사 툴팁 */
+        #section4 .container .email {
+            position: relative;
+        }
+        .email-copy-tooltip {
+            position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translate(-50%, 20px);
+            background: #fff; color: #1f1f1f; padding: 6px 14px;
+            font-size: 1.5rem; white-space: nowrap; border-radius: 10px; font-weight: 600; border: 2px solid var(--maincolor1);
+            pointer-events: none; opacity: 0; transition: .3s;
+            z-index: 100;
+        }
+        .email-copy-tooltip.show {
+            opacity: 0.9; transform: translate(-50%, 0);
+        }
+
 
 footer {
     width: 100%; background: #343434; padding: 70px auto;

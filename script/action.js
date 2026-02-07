@@ -845,3 +845,26 @@ $(function() {
     });
 
 });
+
+// ===============================================
+// 이메일 클립보드 복사 (PC 전용)
+// ===============================================
+$(function() {
+    var $emailBtn = $('#section4 .container .email');
+
+    // 툴팁 요소 삽입
+    $emailBtn.append('<span class="email-copy-tooltip">클립보드에 복사되었습니다</span>');
+
+    $emailBtn.on('click', function(e) {
+        // PC(1024px 초과)에서만 클립보드 복사, 태블릿 이하에서는 기본 mailto 동작
+        if ($(window).width() > 1024) {
+            e.preventDefault();
+            var email = 's1korea86@gmail.com';
+            navigator.clipboard.writeText(email).then(function() {
+                var $tooltip = $(e.currentTarget).find('.email-copy-tooltip');
+                $tooltip.addClass('show');
+                setTimeout(function() { $tooltip.removeClass('show'); }, 2000);
+            });
+        }
+    });
+});

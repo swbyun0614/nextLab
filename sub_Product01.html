@@ -482,5 +482,48 @@
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="script/action.js"></script>
+
+    <!-- 견적 문의 모달 -->
+    <div class="inquiry-modal-overlay">
+        <div class="inquiry-modal">
+            <button class="modal-close" type="button">&times;</button>
+            <p class="modal-title">문의 방법을 선택해주세요.</p>
+            <div class="modal-buttons">
+                <a href="tel:15225077" class="tel">전화 문의 1522-5077</a>
+                <a href="mailto:s1korea86@gmail.com" class="email">이메일 문의<span class="email-copy-tooltip">클립보드에 복사되었습니다</span></a>
+                <a href="http://pf.kakao.com/_IWJUn" target="_blank" class="kakao">카카오톡 문의</a>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(function() {
+        var $overlay = $('.inquiry-modal-overlay');
+        // 견적 문의 버튼 클릭 → 모달 열기
+        $('.btn-inquiry').on('click', function(e) {
+            e.preventDefault();
+            $('html').css('overflow', 'hidden');
+            $overlay.addClass('active');
+        });
+        // 닫기: X 버튼 또는 오버레이 클릭
+        $overlay.on('click', function(e) {
+            if ($(e.target).is('.inquiry-modal-overlay') || $(e.target).closest('.modal-close').length) {
+                $overlay.removeClass('active');
+                $('html').css('overflow', '');
+            }
+        });
+        // 이메일 버튼: PC에서 클립보드 복사, 태블릿 이하에서는 mailto
+        $overlay.find('.email').on('click', function(e) {
+            if ($(window).width() > 1024) {
+                e.preventDefault();
+                var $btn = $(this);
+                navigator.clipboard.writeText('s1korea86@gmail.com').then(function() {
+                    var $tip = $btn.find('.email-copy-tooltip');
+                    $tip.addClass('show');
+                    setTimeout(function() { $tip.removeClass('show'); }, 2000);
+                });
+            }
+        });
+    });
+    </script>
 </body>
 </html>
