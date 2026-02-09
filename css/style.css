@@ -550,7 +550,7 @@ footer {
     width: 100%; background: #343434; padding: 70px auto;
 }
 footer .tec_container {
-    display: flex; gap: 1.8vw; align-items: center; justify-content: space-evenly;
+    display: flex; gap: 1.8vw; align-items: center; justify-content: space-evenly; justify-self: center;
     max-width: 1300px; padding: 70px;
 }
 footer .tec_container .logoFoot {
