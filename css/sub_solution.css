@@ -26,13 +26,12 @@
     
 }
 
-.sub-hero .container {
-    margin: 100px auto 0; padding: 0 10.4vw;
+.sub-hero .tec_container {
+    margin-top: 100px;
 }
 
 .sub-hero .solu02_hero-content {
     display: flex; justify-content: space-between; align-items: end;
-    min-height: 400px;
 }
 
 .sub-hero .solu02_hero-text {
